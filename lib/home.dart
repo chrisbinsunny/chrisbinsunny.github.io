@@ -16,8 +16,15 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Stack(
         children: [
+          SizedBox(
+            width: 1000,
+            child: Image.asset(
+              "assets/chrisbinBG.jpg",
+              fit: BoxFit.fitWidth,
+            ),
+          ),
           Container(
-            color: Colors.black.withOpacity(0.9),
+            color: Colors.black.withOpacity(0.96),
           )
         ],
       ),
