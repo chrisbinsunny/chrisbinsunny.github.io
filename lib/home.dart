@@ -17,7 +17,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.green.withOpacity(0.96),
+        color: Color(0xff0c0c0c),
+        width: screenWidth(context),
         child: Wrap(
           children: [
             MainView()
