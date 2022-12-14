@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/sizes.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,10 +18,11 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           SizedBox(
-            width: 1000,
+            width: screenWidth(context),
+            height: screenHeight(context),
             child: Image.asset(
               "assets/chrisbinBG.jpg",
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.cover,
             ),
           ),
           Container(
