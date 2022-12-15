@@ -3,11 +3,21 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/home.dart';
+import 'package:provider/provider.dart';
 import 'package:seo/html/seo_controller.dart';
 import 'package:seo/html/tree/widget_tree.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'components/appBar.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<ScrollDetail>(
+      create: (context) => ScrollDetail(),
+    ),
+  ],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           scrollbarTheme: ScrollbarThemeData(
-            thumbColor: MaterialStateProperty.all<Color>(Colors.red)
+            thumbColor: MaterialStateProperty.all<Color>(Color(0x5455889f))
           ),
           fontFamily: "Gilroy"
         ),
