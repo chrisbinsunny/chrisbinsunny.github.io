@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   animated_text_kit: ^4.2.2
+  seo: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +63,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -83,23 +84,23 @@ flutter:
   #         style: italic
     - family: Gilroy
       fonts:
-        - asset: assets/fonts/GilroyThin.otf
+        - asset: fonts/GilroyThin.otf
           weight: 100
-        - asset: assets/fonts/GilroyUltraLight.otf
+        - asset: fonts/GilroyUltraLight.otf
           weight: 200
-        - asset: assets/fonts/GilroyLight.otf
+        - asset: fonts/GilroyLight.otf
           weight: 300
-        - asset: assets/fonts/GilroyRegular.otf
+        - asset: fonts/GilroyRegular.otf
           weight: 400
-        - asset: assets/fonts/GilroyMedium.otf
+        - asset: fonts/GilroyMedium.otf
           weight: 500
-        - asset: assets/fonts/GilroySemiBold.otf
+        - asset: fonts/GilroySemiBold.otf
           weight: 600
-        - asset: assets/fonts/GilroyBold.otf
+        - asset: fonts/GilroyBold.otf
           weight: 700
-        - asset: assets/fonts/GilroyExtraBold.otf
+        - asset: fonts/GilroyExtraBold.otf
           weight: 800
-        - asset: assets/fonts/GilroyBlack.otf
+        - asset: fonts/GilroyBlack.otf
           weight: 900
 
   #
