@@ -53,52 +53,73 @@ class _MainViewState extends State<MainView> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "Chrisbin",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xff5dc8f8),
-                        fontSize: 70
-                      ),
-                    ),
-                    const Text(
-                      "Sunny",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff065a9d),
-                          fontSize: 70,
-                        height: 0.8
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: screenHeight(context, mulBy: 0.25),
-                      width: constraints.maxWidth,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 20
-                      ),
-                      child: DefaultTextStyle(
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+
+                      child: const Text(
+                        "Chrisbin",
                         style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.w100,
-                          color: Colors.white.withOpacity(0.7),
-                          shadows: [
-                            BoxShadow(
-                              blurRadius: 7.0,
-                              spreadRadius: 20,
-                              color: Color(0xff5dc8f8),
-                            ),
-                          ],
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xff5dc8f8),
+                          fontSize: 70
                         ),
-                        child: AnimatedTextKit(
-                          repeatForever: true,
-                          pause: const Duration(seconds: 2),
-                          animatedTexts: [
-                            FlickerAnimatedText(
-                              'Flicker Frenzy',
-                             ),
-                          ],
-                          displayFullTextOnTap: true,
+                      ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+
+                      child: const Text(
+                        "Sunny",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff065a9d),
+                            fontSize: 70,
+                          height: 0.8
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: screenHeight(context, mulBy: 0.25),
+                        width: 400,
+                        child: DefaultTextStyle(
+                          style: TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w100,
+                            color: Colors.white.withOpacity(0.7),
+                            shadows: const [
+                              BoxShadow(
+                                blurRadius: 17.0,
+                                spreadRadius: 20,
+                                color: Color(0xff5dc8f8),
+                              ),
+                            ],
+                          ),
+                          child: AnimatedTextKit(
+
+                            repeatForever: true,
+                            pause: const Duration(seconds: 1),
+                            animatedTexts: [
+                              FlickerAnimatedText(
+                                'App Developer',
+                               ),
+                              FlickerAnimatedText(
+                                'Speaker',
+                              ),
+                              FlickerAnimatedText(
+                                'Engineer',
+                              ),
+                              FlickerAnimatedText(
+                                'Designer',
+                              ),
+                            ],
+                            displayFullTextOnTap: true,
+                          ),
                         ),
                       ),
                     )
