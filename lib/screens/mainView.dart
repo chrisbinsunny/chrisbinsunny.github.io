@@ -3,6 +3,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/sizes.dart';
+import 'package:portfolio/widgets/widgets.dart';
+import 'package:seo/html/seo_widget.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenWidth(context, mulBy: 0.5),
+      width: screenWidth(context, mulBy: 1),
       height: screenHeight(context),
       color: const Color(0xff0c0c0c),
       constraints: const BoxConstraints(
@@ -25,14 +27,17 @@ class _MainViewState extends State<MainView> {
         builder: (context, constraints) {
           return Stack(
             children: [
-              Text(
-                "Flutter Dart Firebase Supabase Google Cloud Maps GoLang "*30,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 80,
-                    color: Color(0x83093c0)
+              Seo.text(
+                text: "App Developer | Engineer | Designer | Speaker",
+                child: Text(
+                  "Flutter Dart Firebase Supabase Google Cloud Maps GoLang "*30,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 80,
+                      color: Color(0x83093c0)
+                  ),
+                  textAlign: TextAlign.justify,
                 ),
-                textAlign: TextAlign.justify,
               ),
               SizedBox(
                 width: constraints.maxWidth,
@@ -45,8 +50,9 @@ class _MainViewState extends State<MainView> {
                     ),
                     SizedBox(
                       height: 250,
-                      child: Image.asset(
-                        "assets/macGuy.png",
+                      child: Imager(
+                        path: "images/macGuy.png",
+                        altText: "Memoji using macbook. WWDC",
                         colorBlendMode: BlendMode.colorDodge,
                       ),
                     ),
@@ -56,25 +62,30 @@ class _MainViewState extends State<MainView> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
 
-                      child: const Text(
-                        "Chrisbin",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xff5dc8f8),
-                          fontSize: 70
-                        ),
-                      ),
-                    ),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-
-                      child: const Text(
-                        " Sunny  ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff065a9d),
-                            fontSize: 70,
-                          height: 0.8
+                      child: RichTexter(
+                        text: "Chrisbin Sunny",
+                        child: RichText(
+                          text: const TextSpan(
+                            text: "Chrisbin\n",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w800,
+                                color: Color(0xff5dc8f8),
+                                fontSize: 70,
+                              fontFamily: "Gilroy"
+                            ),
+                            children: [
+                              TextSpan(
+                                  text: "Sunny",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xff065a9d),
+                                    fontSize: 70,
+                                    height: 0.7
+                                ),
+                              ),
+                            ]
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -101,7 +112,6 @@ class _MainViewState extends State<MainView> {
                             ],
                           ),
                           child: AnimatedTextKit(
-
                             repeatForever: true,
                             pause: const Duration(seconds: 1),
                             animatedTexts: [
