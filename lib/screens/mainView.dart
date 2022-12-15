@@ -69,7 +69,7 @@ class _MainViewState extends State<MainView> {
                       fit: BoxFit.scaleDown,
 
                       child: const Text(
-                        "Sunny",
+                        " Sunny  ",
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: Color(0xff065a9d),
@@ -91,7 +91,7 @@ class _MainViewState extends State<MainView> {
                           style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.w100,
-                            color: Colors.white.withOpacity(0.7),
+                            color: Colors.white.withOpacity(0.9),
                             shadows: const [
                               BoxShadow(
                                 blurRadius: 17.0,
