@@ -18,7 +18,7 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth(context, mulBy: 1),
-      height: screenHeight(context),
+      height: screenHeight(context)-70,  ///Reducing 70 for appbar
       color: const Color(0xff0c0c0c),
       constraints: const BoxConstraints(
       minWidth: 500
