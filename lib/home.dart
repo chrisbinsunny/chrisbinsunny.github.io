@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../screens/mainView.dart';
 import '../sizes.dart';
 
@@ -18,13 +19,23 @@ class _HomeState extends State<Home> {
 
   final ScrollController scrollController= ScrollController();
 
+  _scrollListener() {
+    Provider.of<ScrollDetail>(context, listen: false).setPos(scrollController.position.pixels);
+  }
+
+  @override
+  void initState() {
+    scrollController.addListener(_scrollListener);
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(screenWidth(context), 70),
-        child: AppBarCustom(scrollController: scrollController),
+        child: AppBarCustom(),
       ),
       extendBodyBehindAppBar: true,
       body: Container(
@@ -43,7 +54,10 @@ class _HomeState extends State<Home> {
             child: ListView(
               controller: scrollController,
               children: const [
-                MainView()
+                MainView(),
+                MainView(),
+                MainView(),
+                MainView(),
               ],
             ),
           ),
