@@ -1,3 +1,6 @@
+import 'dart:ui';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/home.dart';
 import 'package:seo/html/seo_controller.dart';
@@ -16,10 +19,13 @@ class MyApp extends StatelessWidget {
       enabled: true,
       tree: WidgetTree(context: context),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Chrisbin Sunny | App Developer | Speaker',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          scrollbarTheme: ScrollbarThemeData(
+            thumbColor: MaterialStateProperty.all<Color>(Colors.red)
+          ),
           fontFamily: "Gilroy"
         ),
         home: const Home(),
