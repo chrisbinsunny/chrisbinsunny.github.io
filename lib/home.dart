@@ -2,8 +2,10 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:portfolio/screens/mainView.dart';
-import 'package:portfolio/sizes.dart';
+import '../screens/mainView.dart';
+import '../sizes.dart';
+
+import 'components/appBar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,16 +15,38 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  final ScrollController scrollController= ScrollController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(screenWidth(context), 70),
+        child: AppBarCustom(scrollController: scrollController),
+      ),
+      extendBodyBehindAppBar: true,
       body: Container(
-        color: Color(0xff0c0c0c),
+        color: const Color(0xff0c0c0c),
         width: screenWidth(context),
-        child: Wrap(
-          children: [
-            MainView()
-          ],
+        child: Scrollbar(
+          controller: scrollController,
+          thickness: 11,
+          interactive: true,
+          radius: const Radius.circular(0),
+          trackVisibility: false,
+          thumbVisibility: true,
+          child: ScrollConfiguration(
+            behavior:
+            ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: ListView(
+              controller: scrollController,
+              children: const [
+                MainView()
+              ],
+            ),
+          ),
         ),
       ),
     );
