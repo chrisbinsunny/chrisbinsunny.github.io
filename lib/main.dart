@@ -32,11 +32,16 @@ class MyApp extends StatelessWidget {
         title: 'Chrisbin Sunny | App Developer | Speaker',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xff5dc8f8),
+          secondaryHeaderColor: Color(0xff065a9d),
           scrollbarTheme: ScrollbarThemeData(
             thumbColor: MaterialStateProperty.all<Color>(Color(0x5455889f))
           ),
-          fontFamily: "Gilroy"
+          fontFamily: "Gilroy",
+          textTheme: Theme.of(context).textTheme.apply(
+            bodyColor: Colors.white,
+            displayColor: Colors.white,
+          )
         ),
         home: const Home(),
       ),
