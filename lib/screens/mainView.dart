@@ -20,8 +20,9 @@ class _MainViewState extends State<MainView> {
       width: screenWidth(context, mulBy: 1),
       height: screenHeight(context)-70,  ///Reducing 70 for appbar
       color: const Color(0xff0c0c0c),
-      constraints: const BoxConstraints(
-      minWidth: 500
+      constraints:BoxConstraints(
+      minWidth: 500,
+        minHeight:  screenHeight(context)-70,  ///Reducing 70 for appbar
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -30,7 +31,7 @@ class _MainViewState extends State<MainView> {
               Seo.text(
                 text: "App Developer | Engineer | Designer | Speaker",
                 child: Text(
-                  "Flutter Dart Firebase Supabase Google Cloud Maps GoLang "*30,
+                  "Flutter Dart Firebase Supabase Google Cloud Maps GoLang "*10,
                   style: const TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 80,
