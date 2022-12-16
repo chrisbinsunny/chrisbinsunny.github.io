@@ -20,9 +20,10 @@ class _AboutState extends State<About> {
       width: screenWidth(context, mulBy: 1),
       //height: screenHeight(context)-70,  ///Reducing 70 for appbar
       color: const Color(0xff0c0c0c),
-      constraints: BoxConstraints(
+      //color: Colors.green,
+      constraints: const BoxConstraints(
       minWidth: 500,
-        minHeight: screenHeight(context)-70,
+        //minHeight: screenHeight(context)-70,
       ),
       padding: EdgeInsets.symmetric(
         horizontal: screenWidth(context, mulBy: 0.05),
@@ -32,47 +33,55 @@ class _AboutState extends State<About> {
         direction: Axis.horizontal,
         crossAxisAlignment: WrapCrossAlignment.center,
         alignment: WrapAlignment.spaceEvenly,
+        spacing: 20,
         children: [
-          SizedBox(
+          Container(
             width: 600,
+            color: Colors.blueAccent.withOpacity(0.3),
             height: screenHeight(context, mulBy: 0.86)-70,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Texter(
-                  "About Chrisbin",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 34,
-                    color: Theme.of(context).secondaryHeaderColor
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: 600,
+              height: screenHeight(context, mulBy: 0.86)-70,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Texter(
+                    "About Chrisbin",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 34,
+                      color: Theme.of(context).secondaryHeaderColor
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Texter(
-                  "Programming was always my area of interest since teenage. My main objective is to make technology reach everyone, so "
-                    "I conduct tech talks at schools and colleges. Currently on a mission to make clean UI/UX using Flutter Web.",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20,
+                  const SizedBox(
+                    height: 30,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  const Texter(
+                    "Programming was always my area of interest since teenage. My main objective is to make technology reach everyone, so "
+                      "I conduct tech talks at schools and colleges. Currently on a mission to make clean UI/UX using Flutter Web.",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ),
           Container(
             width: 600,
             color: Colors.blueAccent.withOpacity(0.3),
             height: screenHeight(context, mulBy: 0.86)-70,
+            alignment: Alignment.center,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Texter(
-                  "About Chrisbin",
+                  "Skill Stack",
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 34,
@@ -80,17 +89,27 @@ class _AboutState extends State<About> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 25,
                 ),
-                const Texter(
-                  "Programming was always my area of interest since teenage. My main objective is to make technology reach everyone, so "
-                      "I conduct tech talks at schools and colleges. Currently on a mission to make clean UI/UX using Flutter Web.",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 20,
+                Container(
+                  height: 450,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff0c0c0c),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 0.7
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x38ffffff),
+                        spreadRadius: 4,
+                        blurRadius: 15
+                      )
+                    ]
                   ),
-                  textAlign: TextAlign.center,
-                ),
+                )
               ],
             ),
           ),
