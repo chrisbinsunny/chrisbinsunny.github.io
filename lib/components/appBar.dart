@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../sizes.dart';
+import '../widgets/widgets.dart';
 
 class AppBarCustom extends StatefulWidget {
 
@@ -32,10 +33,11 @@ class AppBarCustomState extends State<AppBarCustom> {
     opacity = findOpacity(Provider.of<ScrollDetail>(context, listen: true).getPos);
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: opacity*100, sigmaY: opacity*100, tileMode: TileMode.decal),
+        filter: ImageFilter.blur(sigmaX: opacity*100, sigmaY: opacity*100, tileMode: TileMode.repeated),
         child: Container(
           color: Colors.black.withOpacity(opacity), ///303030
           alignment: Alignment.centerLeft,
+         // height: 70,
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 30
@@ -52,14 +54,21 @@ class AppBarCustomState extends State<AppBarCustom> {
                           onPressed: (){
                             Scaffold.of(context).openDrawer();
                           },
-                          icon: Icon(Icons.menu, size: 22,),
+                          icon: const Icon(Icons.menu, size: 22,),
                         padding: EdgeInsets.zero,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
-                      Text(
-                        'DREAM',
+                      const Texter(
+                        'CHRISBIN',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xff5dc8f8),
+                            fontSize: 30,
+                            fontFamily: "Gilroy",
+                            letterSpacing: 3
+                        ),
                       ),
                     ],
                   );
@@ -67,14 +76,15 @@ class AppBarCustomState extends State<AppBarCustom> {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'DREAM',
-                      // style: GoogleFonts.montserrat(
-                      //   color: Colors.blueGrey[300],
-                      //   fontSize: 26,
-                      //   fontWeight: FontWeight.w600,
-                      //   letterSpacing: 5,
-                      // ),
+                    const Texter(
+                      'CHRISBIN',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xff5dc8f8),
+                          fontSize: 30,
+                          fontFamily: "Gilroy",
+                        letterSpacing: 3
+                      ),
                     ),
                     ValueListenableBuilder<int>(
                       valueListenable: hovered,
@@ -83,7 +93,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              SizedBox(width: screenWidth(context, mulBy: 0.125)),
+                              Spacer(),
                               InkWell(
                                 onHover: (value) {
                                   if(value){
@@ -96,8 +106,8 @@ class AppBarCustomState extends State<AppBarCustom> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      'Color Finder',
+                                    Texter(
+                                      'Home',
                                       style: TextStyle(
                                         color: ((hover==0)||
                                             ((ModalRoute.of(context)!.settings.name=="/color-finder/")||
@@ -106,10 +116,11 @@ class AppBarCustomState extends State<AppBarCustom> {
                                             ))
                                             ? Colors.blue[200]
                                             : Colors.white,
-                                        fontSize: 16
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    const SizedBox(height: 5),
                                     AnimatedContainer(
                                       duration: const Duration(milliseconds: 100),
                                       height: 2,
@@ -154,8 +165,8 @@ class AppBarCustomState extends State<AppBarCustom> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      'Gradient Builder',
+                                    Texter(
+                                      'About',
                                       style: TextStyle(
                                         color: ((hover==1)||
                                             ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
@@ -163,11 +174,11 @@ class AppBarCustomState extends State<AppBarCustom> {
                                             ))
                                             ? Colors.blue[200]
                                             : Colors.white,
-                                          fontSize: 16
-
+                                          fontSize: 20,
+                                        fontWeight: FontWeight.w500
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    const SizedBox(height: 5),
                                     AnimatedContainer(
                                       duration: const Duration(milliseconds: 100),
                                       height: 2,
@@ -198,6 +209,122 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   ],
                                 ),
                               ),
+                              SizedBox(width: screenWidth(context, mulBy: 0.05)),
+                              InkWell(
+                                onHover: (value) {
+                                  if(value){
+                                    hovered.value=1;
+                                  }else{
+                                    hovered.value=-1;
+                                  }
+                                },
+                                onTap: gmOnTap(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Texter(
+                                      'Projects',
+                                      style: TextStyle(
+                                          color: ((hover==1)||
+                                              ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
+                                                  (ModalRoute.of(context)!.settings.name=="/gradient-maker")
+                                              ))
+                                              ? Colors.blue[200]
+                                              : Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    AnimatedContainer(
+                                      duration: const Duration(milliseconds: 100),
+                                      height: 2,
+                                      curve: Curves.bounceIn,
+                                      width: hover==1?100:0,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                    ),
+                                    Visibility(
+                                      maintainAnimation: true,
+                                      maintainState: true,
+                                      maintainSize: true,
+                                      visible:
+                                      ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
+                                          (ModalRoute.of(context)!.settings.name=="/gradient-maker")
+                                      ),
+                                      child: Container(
+                                        height: 2,
+                                        width: 20,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(10)
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: screenWidth(context, mulBy: 0.05)),
+                              InkWell(
+                                onHover: (value) {
+                                  if(value){
+                                    hovered.value=1;
+                                  }else{
+                                    hovered.value=-1;
+                                  }
+                                },
+                                onTap: gmOnTap(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Texter(
+                                      'Social',
+                                      style: TextStyle(
+                                          color: ((hover==1)||
+                                              ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
+                                                  (ModalRoute.of(context)!.settings.name=="/gradient-maker")
+                                              ))
+                                              ? Colors.blue[200]
+                                              : Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    AnimatedContainer(
+                                      duration: const Duration(milliseconds: 100),
+                                      height: 2,
+                                      curve: Curves.bounceIn,
+                                      width: hover==1?100:0,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                    ),
+                                    Visibility(
+                                      maintainAnimation: true,
+                                      maintainState: true,
+                                      maintainSize: true,
+                                      visible:
+                                      ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
+                                          (ModalRoute.of(context)!.settings.name=="/gradient-maker")
+                                      ),
+                                      child: Container(
+                                        height: 2,
+                                        width: 20,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(10)
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: screenWidth(context, mulBy: 0.05)),
+
                             ],
                           ),
                         );
