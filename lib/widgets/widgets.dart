@@ -16,6 +16,7 @@ class Texter extends StatelessWidget {
         text,
         textAlign: textAlign,
         style: style,
+
       ),
     );
   }
@@ -70,5 +71,16 @@ class Linker extends StatelessWidget {
         link,
       ),
     );
+  }
+}
+
+extension Stringy on String {
+  String get breakWord{
+    String breakWord = '';
+    for (var element in runes) {
+      breakWord += String.fromCharCode(element);
+      breakWord +='\ufeff';
+    }
+    return breakWord;
   }
 }
