@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:seo/html/seo_widget.dart';
 
 class Texter extends StatelessWidget {
-  const Texter({Key? key, this.textStyle, required this.text}) : super(key: key);
+  const Texter(this.text, {Key? key, this.style, this.textAlign=TextAlign.start}) : super(key: key);
 
-  final TextStyle? textStyle;
+  final TextStyle? style;
   final String text;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,8 @@ class Texter extends StatelessWidget {
       text: text,
       child: Text(
         text,
-        style: textStyle,
+        textAlign: textAlign,
+        style: style,
       ),
     );
   }
