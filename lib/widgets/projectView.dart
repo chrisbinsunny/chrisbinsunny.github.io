@@ -41,15 +41,12 @@ class _ProjectViewState extends State<ProjectView> {
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return Wrap(
-              direction: Axis.horizontal,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.spaceEvenly,
-              runAlignment: WrapAlignment.spaceEvenly,
-              spacing: 20,
-              runSpacing: 40,
+            if(constraints.maxWidth>1090) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
               children: [
                 Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Texter(
                       widget.name,
@@ -72,9 +69,71 @@ class _ProjectViewState extends State<ProjectView> {
                             color: Colors.white),
                       ),
                     ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InkWell(
+                          onTap: (){},
+                          child: Container(
+                            height: 60,
+                            width: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xff5dc8f8),
+                                  Color(0xff065a9d)
+                                ]
+                              )
+                            ),
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
-
+                Container(
+                  width: screenWidth(context, mulBy: 0.35),
+                  constraints: const BoxConstraints(
+                      minWidth: 500
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.white, width: 0.6)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Imager(
+                      altText: widget.altText,
+                      path: widget.image,
+                    ),
+                  ),
+                ),
+              ],
+            );
+            }
+            return Column(
+              children: [
+                Texter(
+                  widget.name,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 34,
+                      color: Theme.of(context).secondaryHeaderColor),
+                ),
+                Container(
+                  width: screenWidth(context, mulBy: 0.3),
+                  constraints: const BoxConstraints(
+                    maxHeight: 250,
+                    minWidth: 400,
+                  ),
+                  child: Texter(
+                    widget.desc,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                        color: Colors.white),
+                  ),
+                ),
                 Container(
                   width: screenWidth(context, mulBy: 0.35),
                   constraints: const BoxConstraints(
