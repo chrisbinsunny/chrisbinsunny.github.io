@@ -68,20 +68,27 @@ class _ProjectsState extends State<Projects> {
 
 
 class ProjectItem extends StatelessWidget {
-  const ProjectItem({Key? key, required this.name, required this.image, this.imageFit=BoxFit.cover}) : super(key: key);
+  const ProjectItem({Key? key, required this.name, required this.image, this.imageFit=BoxFit.cover, required this.projectDetails}) : super(key: key);
 
   final String image, name;
   final BoxFit imageFit;
+  final Map<String, String> projectDetails;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
         showDialog(
-          barrierColor: Colors.black.withOpacity(0.15),
+          barrierColor: Colors.white.withOpacity(0.02),
           context: context,
           builder: (context) {
-            return const ProjectView();
+            return ProjectView(
+              image: projectDetails["image"],
+              altText: projectDetails["altText"],
+              link: projectDetails["link"],
+              desc: projectDetails["desc"],
+              github: projectDetails["github"],
+            );
           },
         );
       },
