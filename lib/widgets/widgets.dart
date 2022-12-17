@@ -38,10 +38,12 @@ class RichTexter extends StatelessWidget {
 }
 
 class Imager extends StatelessWidget {
-  const Imager({Key? key, required this.altText, required this.path, this.colorBlendMode}) : super(key: key);
+  const Imager({Key? key,  this.imageFit = BoxFit.cover, required this.altText, required this.path, this.colorBlendMode, this.alignment= Alignment.center}) : super(key: key);
 
   final String path, altText;
   final BlendMode? colorBlendMode;
+  final Alignment alignment;
+  final BoxFit imageFit;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,9 @@ class Imager extends StatelessWidget {
       alt: altText,
       child: Image.asset(
         path,
-          colorBlendMode: colorBlendMode
+          colorBlendMode: colorBlendMode,
+        fit: imageFit,
+        alignment: alignment,
       ),
     );
   }
