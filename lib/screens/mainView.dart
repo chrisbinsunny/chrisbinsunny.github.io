@@ -22,7 +22,7 @@ class _MainViewState extends State<MainView> {
       color: const Color(0xff0c0c0c),
       constraints:BoxConstraints(
       minWidth: 500,
-        minHeight:  screenHeight(context)-70,  ///Reducing 70 for appbar
+        minHeight:  725,  ///Reducing 70 for appbar
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -40,14 +40,17 @@ class _MainViewState extends State<MainView> {
                   textAlign: TextAlign.justify,
                 ),
               ),
-              SizedBox(
+              Container(
                 width: constraints.maxWidth,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 100,
+                    SizedBox(
+                      height: screenHeight(context, mulBy: 0.08),
                     ),
                     SizedBox(
                       height: 250,
@@ -90,8 +93,8 @@ class _MainViewState extends State<MainView> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
+                    SizedBox(
+                      height: screenHeight(context, mulBy: 0.03),
                     ),
                     FittedBox(
                       fit: BoxFit.scaleDown,
