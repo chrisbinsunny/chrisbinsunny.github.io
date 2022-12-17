@@ -84,7 +84,6 @@ class _AboutState extends State<About> {
                 height: 25,
               ),
               Container(
-                height: 480,
                 width: 400,
                 clipBehavior: Clip.antiAlias,
                 alignment: Alignment.center,
@@ -105,6 +104,10 @@ class _AboutState extends State<About> {
                 ),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 15,
+                  vertical: 10
+                ),
+                constraints: const BoxConstraints(
+                  minHeight: 480,
                 ),
                 child: const Texter(
                   "Flutter, Dart, Firebase, Supabase, Google Cloud Maps, GoLang",
