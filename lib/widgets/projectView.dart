@@ -24,29 +24,29 @@ class _ProjectViewState extends State<ProjectView> {
       //elevation: 0,
 
       alignment: Alignment.center,
-      child: Container(
-        // height: screenHeight(context, mulBy: 0.55),
-        // width: screenWidth(context, mulBy: 0.6),
-
-        decoration: BoxDecoration(
-            color: const Color(0xff111111),
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Colors.white, width: 0.6)),
-        constraints: BoxConstraints(
-          minHeight: screenHeight(context, mulBy: 0.55),
-        ),
-        padding: const EdgeInsets.symmetric(
-          vertical: 30,
-          horizontal: 30
-        ),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            if(constraints.maxWidth>1090) {
-              return Row(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if(constraints.maxWidth>1090) {
+            return Container(
+              height: screenHeight(context, mulBy: 0.49),
+              // width: screenWidth(context, mulBy: 0.6),
+              decoration: BoxDecoration(
+                  color: const Color(0xff111111),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.white, width: 0.6)),
+              constraints: BoxConstraints(
+                minHeight: 400,
+              ),
+              padding: const EdgeInsets.symmetric(
+                  vertical: 30,
+                  horizontal: 30
+              ),
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
               children: [
                 Column(
-                  mainAxisSize: MainAxisSize.min,
+                  // mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Texter(
                       widget.name,
@@ -69,22 +69,68 @@ class _ProjectViewState extends State<ProjectView> {
                             color: Colors.white),
                       ),
                     ),
+
                     Row(
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
                           onTap: (){},
                           child: Container(
-                            height: 60,
-                            width: 150,
+                            height: 50,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10
+                            ),
+                            alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                               gradient: LinearGradient(
                                 colors: [
                                   Color(0xff5dc8f8),
                                   Color(0xff065a9d)
-                                ]
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter
                               )
+                            ),
+                            child: Texter(
+                              "View Project 🚀",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                          onTap: (){},
+                          child: Container(
+                            height: 50,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10
+                            ),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xff5dc8f8),
+                                      Color(0xff065a9d)
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter
+                                )
+                            ),
+                            child: Texter(
+                              "View GitHub 💻",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500
+                              ),
                             ),
                           ),
                         )
@@ -109,10 +155,43 @@ class _ProjectViewState extends State<ProjectView> {
                   ),
                 ),
               ],
+          ),
             );
-            }
-            return Column(
+          }
+          return Container(
+            //height: screenHeight(context, mulBy: 0.49),
+            width: screenWidth(context, mulBy: 0.6),
+
+            decoration: BoxDecoration(
+                color: const Color(0xff111111),
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.white, width: 0.6)),
+            constraints: BoxConstraints(
+              minHeight: 400,
+            ),
+            padding: const EdgeInsets.symmetric(
+                vertical: 30,
+                horizontal: 30
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
+                Container(
+                  width: screenWidth(context, mulBy: 0.35),
+                  constraints: const BoxConstraints(
+                      minWidth: 500
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.white, width: 0.6)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Imager(
+                      altText: widget.altText,
+                      path: widget.image,
+                    ),
+                  ),
+                ),
                 Texter(
                   widget.name,
                   style: TextStyle(
@@ -134,26 +213,76 @@ class _ProjectViewState extends State<ProjectView> {
                         color: Colors.white),
                   ),
                 ),
-                Container(
-                  width: screenWidth(context, mulBy: 0.35),
-                  constraints: const BoxConstraints(
-                      minWidth: 500
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.white, width: 0.6)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Imager(
-                      altText: widget.altText,
-                      path: widget.image,
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    InkWell(
+                      onTap: (){},
+                      child: Container(
+                        height: 50,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10
+                        ),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                                colors: [
+                                  Color(0xff5dc8f8),
+                                  Color(0xff065a9d)
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter
+                            )
+                        ),
+                        child: Texter(
+                          "View Project 🚀",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      onTap: (){},
+                      child: Container(
+                        height: 50,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10
+                        ),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                                colors: [
+                                  Color(0xff5dc8f8),
+                                  Color(0xff065a9d)
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter
+                            )
+                        ),
+                        child: Texter(
+                          "View GitHub 💻",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
