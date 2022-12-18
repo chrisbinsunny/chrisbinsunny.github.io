@@ -2,6 +2,8 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/screens/about.dart';
+import 'package:portfolio/screens/projects.dart';
 import 'package:provider/provider.dart';
 import '../screens/mainView.dart';
 import '../sizes.dart';
@@ -54,10 +56,9 @@ class _HomeState extends State<Home> {
             child: ListView(
               controller: scrollController,
               children: const [
-                MainView(),
-                MainView(),
-                MainView(),
-                MainView(),
+                //MainView(),
+                //About(),
+                Projects()
               ],
             ),
           ),
