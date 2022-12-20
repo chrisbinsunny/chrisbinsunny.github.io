@@ -28,15 +28,13 @@ class _ProjectViewState extends State<ProjectView> {
         builder: (context, constraints) {
           if(constraints.maxWidth>1090) {
             return Container(
-              height: screenHeight(context, mulBy: 0.49),
+              height: 430,
               // width: screenWidth(context, mulBy: 0.6),
               decoration: BoxDecoration(
                   color: const Color(0xff111111),
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Colors.white, width: 0.6)),
-              constraints: BoxConstraints(
-                minHeight: 400,
-              ),
+
               padding: const EdgeInsets.symmetric(
                   vertical: 30,
                   horizontal: 30
@@ -77,13 +75,13 @@ class _ProjectViewState extends State<ProjectView> {
                           onTap: (){},
                           child: Container(
                             height: 50,
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: 10
                             ),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 colors: [
                                   Color(0xff5dc8f8),
                                   Color(0xff065a9d)
@@ -92,7 +90,7 @@ class _ProjectViewState extends State<ProjectView> {
                                 end: Alignment.bottomCenter
                               )
                             ),
-                            child: Texter(
+                            child: const Texter(
                               "View Project 🚀",
                               style: TextStyle(
                                 color: Colors.black,
@@ -102,20 +100,20 @@ class _ProjectViewState extends State<ProjectView> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         InkWell(
                           onTap: (){},
                           child: Container(
                             height: 50,
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 10
                             ),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     colors: [
                                       Color(0xff5dc8f8),
                                       Color(0xff065a9d)
@@ -124,7 +122,7 @@ class _ProjectViewState extends State<ProjectView> {
                                     end: Alignment.bottomCenter
                                 )
                             ),
-                            child: Texter(
+                            child: const Texter(
                               "View GitHub 💻",
                               style: TextStyle(
                                   color: Colors.black,
@@ -161,13 +159,12 @@ class _ProjectViewState extends State<ProjectView> {
           return Container(
             //height: screenHeight(context, mulBy: 0.49),
             width: screenWidth(context, mulBy: 0.6),
-
             decoration: BoxDecoration(
                 color: const Color(0xff111111),
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(color: Colors.white, width: 0.6)),
-            constraints: BoxConstraints(
-              minHeight: 400,
+            constraints: const BoxConstraints(
+              minHeight: 430,
             ),
             padding: const EdgeInsets.symmetric(
                 vertical: 30,
@@ -177,7 +174,7 @@ class _ProjectViewState extends State<ProjectView> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  width: screenWidth(context, mulBy: 0.35),
+                  width: constraints.maxWidth*0.8,
                   constraints: const BoxConstraints(
                       minWidth: 500
                   ),
@@ -200,7 +197,8 @@ class _ProjectViewState extends State<ProjectView> {
                       color: Theme.of(context).secondaryHeaderColor),
                 ),
                 Container(
-                  width: screenWidth(context, mulBy: 0.3),
+                  width: constraints.maxWidth*0.8,
+
                   constraints: const BoxConstraints(
                     maxHeight: 250,
                     minWidth: 400,
@@ -220,13 +218,13 @@ class _ProjectViewState extends State<ProjectView> {
                       onTap: (){},
                       child: Container(
                         height: 50,
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 10
                         ),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                                 colors: [
                                   Color(0xff5dc8f8),
                                   Color(0xff065a9d)
@@ -235,7 +233,7 @@ class _ProjectViewState extends State<ProjectView> {
                                 end: Alignment.bottomCenter
                             )
                         ),
-                        child: Texter(
+                        child: const Texter(
                           "View Project 🚀",
                           style: TextStyle(
                               color: Colors.black,
@@ -245,20 +243,20 @@ class _ProjectViewState extends State<ProjectView> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     InkWell(
                       onTap: (){},
                       child: Container(
                         height: 50,
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 10
                         ),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                                 colors: [
                                   Color(0xff5dc8f8),
                                   Color(0xff065a9d)
@@ -267,7 +265,7 @@ class _ProjectViewState extends State<ProjectView> {
                                 end: Alignment.bottomCenter
                             )
                         ),
-                        child: Texter(
+                        child: const Texter(
                           "View GitHub 💻",
                           style: TextStyle(
                               color: Colors.black,
