@@ -21,7 +21,7 @@ class _ProjectViewState extends State<ProjectView> {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      //elevation: 0,
+      //elevation: 20,
 
       alignment: Alignment.center,
       child: LayoutBuilder(
@@ -165,6 +165,7 @@ class _ProjectViewState extends State<ProjectView> {
                 border: Border.all(color: Colors.white, width: 0.6)),
             constraints: const BoxConstraints(
               minHeight: 430,
+              maxWidth: 500
             ),
             padding: const EdgeInsets.symmetric(
                 vertical: 30,
@@ -174,9 +175,9 @@ class _ProjectViewState extends State<ProjectView> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  width: constraints.maxWidth*0.8,
+                  width: constraints.maxWidth*0.6,
                   constraints: const BoxConstraints(
-                      minWidth: 500
+                      minWidth: 250
                   ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -197,11 +198,11 @@ class _ProjectViewState extends State<ProjectView> {
                       color: Theme.of(context).secondaryHeaderColor),
                 ),
                 Container(
-                  width: constraints.maxWidth*0.8,
+                  width: constraints.maxWidth*0.6,
 
                   constraints: const BoxConstraints(
                     maxHeight: 250,
-                    minWidth: 400,
+                    minWidth: 250,
                   ),
                   child: Texter(
                     widget.desc,
