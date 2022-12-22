@@ -4,6 +4,7 @@ import 'dart:html' as html;
 import 'dart:ui' as ui;
 
 import 'package:portfolio/widgets/widgets.dart';
+import 'package:seo/html/seo_widget.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key, required this.name, required this.image, required this.altText, required this.desc, required this.github, required this.link}) : super(key: key);
@@ -190,12 +191,22 @@ class _ProjectViewState extends State<ProjectView> {
                     ),
                   ),
                 ),
-                Texter(
-                  widget.name,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 34,
-                      color: Theme.of(context).secondaryHeaderColor),
+                // Seo.text(
+                //   text: widget.name,
+                //   child: Text(
+                //     widget.name,
+                //     style: style,
+                //
+                //   ),
+                // ),
+                SingleChildScrollView(
+                  child: Texter(
+                    widget.name,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 34,
+                        color: Theme.of(context).secondaryHeaderColor),
+                  ),
                 ),
                 Container(
                   width: constraints.maxWidth*0.6,
@@ -204,12 +215,14 @@ class _ProjectViewState extends State<ProjectView> {
                     maxHeight: 250,
                     minWidth: 250,
                   ),
-                  child: Texter(
-                    widget.desc,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                        color: Colors.white),
+                  child: SingleChildScrollView(
+                    child: Texter(
+                      widget.desc,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
                 Row(
