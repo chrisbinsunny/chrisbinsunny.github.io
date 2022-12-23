@@ -27,6 +27,10 @@ class _ProjectViewState extends State<ProjectView> {
     return Dialog(
       backgroundColor: Colors.transparent,
       //elevation: 20,
+      insetPadding: EdgeInsets.symmetric(
+        vertical: 24,
+        horizontal: 20
+      ),
       alignment: Alignment.center,
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -202,7 +206,8 @@ class _ProjectViewState extends State<ProjectView> {
                   widget.name,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 34,
+                      fontSize: 34,                fontFamily: "Gilroy",
+
                       color: Theme.of(context).secondaryHeaderColor),
                 ),
                 Container(
@@ -244,8 +249,9 @@ class _ProjectViewState extends State<ProjectView> {
                         child: Texter(
                           "\n${widget.desc}\n",
                           style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
+                              fontWeight: FontWeight.w300,
+                              fontSize: 15,                fontFamily: "Gilroy",
+
                               color: Colors.white),
                         ),
                       ),),
@@ -253,69 +259,77 @@ class _ProjectViewState extends State<ProjectView> {
                   ),
                 ),
 
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      onTap: (){},
-                      child: Container(
-                        height: 40,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10
-                        ),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: const LinearGradient(
-                                colors: [
-                                  Color(0xff5dc8f8),
-                                  Color(0xff065a9d)
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter
-                            )
-                        ),
-                        child: const Texter(
-                          "Launch 🚀",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500
+                FittedBox(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: Container(
+                          height: 40,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10
+                          ),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xff5dc8f8),
+                                    Color(0xff065a9d)
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter
+                              )
+                          ),
+                          child: const Texter(
+                            "Launch 🚀",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Gilroy",
+
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: (){},
-                      child: Container(
-                        height: 40,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10
-                        ),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: const LinearGradient(
-                                colors: [
-                                  Color(0xff5dc8f8),
-                                  Color(0xff065a9d)
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter
-                            )
-                        ),
-                        child: const Texter(
-                          "GitHub 💻",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500
+                      SizedBox(
+                        width: screenWidth(context, mulBy: 0.03),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Container(
+                          height: 40,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10
+                          ),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xff5dc8f8),
+                                    Color(0xff065a9d)
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter
+                              )
+                          ),
+                          child: const Texter(
+                            "GitHub 💻",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,                fontFamily: "Gilroy",
+
+                                fontWeight: FontWeight.w600
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
