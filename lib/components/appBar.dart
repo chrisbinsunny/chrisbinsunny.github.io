@@ -33,7 +33,7 @@ class AppBarCustomState extends State<AppBarCustom> {
     opacity = findOpacity(Provider.of<ScrollDetail>(context, listen: true).getPos);
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: opacity*100, sigmaY: opacity*100, tileMode: TileMode.repeated),
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10, tileMode: TileMode.clamp),
         child: Container(
           color: Colors.black.withOpacity(opacity), ///303030
           alignment: Alignment.centerLeft,
