@@ -70,9 +70,9 @@ class _ProjectsState extends State<Projects> {
                 image: "images/dream.png",
                 imageFit: BoxFit.contain,
                 projectDetails: ProjectDetails(
-                  name: "D R E A M",
+                  name: "DREAM- Color Finder",
                   image: "images/dreamWeb.jpg",
-                  altText: "Home screen of Dream color finder and gradient maker.\n",
+                  altText: "Home screen of Dream color finder and gradient maker.",
                   desc: "✦ A website built to find colours from images and screenshots.\n"
                   "✦ Implemented a gradient builder to create website backgrounds.\n"
                "✦ Integrated CSS code copying and sharing.\n"
@@ -86,12 +86,16 @@ class _ProjectsState extends State<Projects> {
                 name: "Flutter Talks",
                 image: "images/flutterTalks.jpg",
                 projectDetails: ProjectDetails(
-                  name: "ChrisHub",
-                  image: "images/chrishubWeb.jpg",
-                  altText: "",
-                  desc: "",
-                  github: "",
-                  link: "https://chrisbinsunny.github.io/chrishub",
+                  name: "Flutter Talks by Chrisbin",
+                  image: "images/flutterTalksWeb.jpg",
+                  altText: "Home screen of Flutter talks by Chrisbin Sunny.\n",
+                  desc: "✦ A presentation website to be shown at the intro session of workshops.\n"
+                  "✦ The website shows Intro to Flutter slides and is to be controlled by arrow keys.\n"
+                      "✦ Can be controlled by using the link to each slide.\n"
+                      "✦ Used Provider for managing the state.\n"
+                      "✦ Tech stack: Flutter",
+                  github: "https://github.com/chrisbinsunny/Flutter-Talks",
+                  link: "https://chrisbinsunny.github.io/Flutter-Talks",
                 ),
               ),
             ],
