@@ -27,7 +27,6 @@ class _ProjectViewState extends State<ProjectView> {
     return Dialog(
       backgroundColor: Colors.transparent,
       //elevation: 20,
-
       alignment: Alignment.center,
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -173,8 +172,8 @@ class _ProjectViewState extends State<ProjectView> {
               maxWidth: 500
             ),
             padding: const EdgeInsets.symmetric(
-                vertical: 30,
-                horizontal: 30
+                vertical: 20,
+                horizontal: 20
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
