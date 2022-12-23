@@ -1,6 +1,7 @@
 
 
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/screens/about.dart';
 import 'package:portfolio/screens/projects.dart';
@@ -20,6 +21,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   final ScrollController scrollController= ScrollController();
+  late final bool isWebMobile;
 
   _scrollListener() {
     Provider.of<ScrollDetail>(context, listen: false).setPos(scrollController.position.pixels);
@@ -28,6 +30,9 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     scrollController.addListener(_scrollListener);
+    isWebMobile = kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.iOS ||
+            defaultTargetPlatform == TargetPlatform.android);
     super.initState();
   }
 
@@ -45,19 +50,19 @@ class _HomeState extends State<Home> {
         width: screenWidth(context),
         child: Scrollbar(
           controller: scrollController,
-          thickness: 11,
+          thickness: isWebMobile?3:11,
           interactive: true,
-          radius: const Radius.circular(0),
+          radius: Radius.circular(isWebMobile?10:0),
           trackVisibility: false,
-          thumbVisibility: true,
+          thumbVisibility: false,
           child: ScrollConfiguration(
             behavior:
             ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: ListView(
               controller: scrollController,
               children: const [
-                //MainView(),
-                //About(),
+                MainView(),
+                About(),
                 Projects()
               ],
             ),
