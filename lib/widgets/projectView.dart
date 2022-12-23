@@ -215,16 +215,38 @@ class _ProjectViewState extends State<ProjectView> {
                     maxHeight: 250,
                     minWidth: 250,
                   ),
-                  child: SingleChildScrollView(
-                    child: Texter(
-                      widget.desc,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          color: Colors.white),
+                  child: ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (bounds) => LinearGradient(
+                      colors: [
+                        Colors.black.withAlpha(0),
+                        Colors.white,
+                        Colors.white,
+                        Colors.black.withAlpha(0),
+                      ],
+                      stops: const [
+                        0,
+                        0.1,
+                        0.9,
+                        1
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ).createShader(
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Texter(
+                        "\n${widget.desc}\n",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
+
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
