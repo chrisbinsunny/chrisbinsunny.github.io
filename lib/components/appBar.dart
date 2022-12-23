@@ -35,7 +35,7 @@ class AppBarCustomState extends State<AppBarCustom> {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10, tileMode: TileMode.clamp),
         child: Container(
-          color: Colors.black.withOpacity(opacity), ///303030
+          color: Colors.black.withOpacity(0.1), ///303030
           alignment: Alignment.centerLeft,
          // height: 70,
           child: Padding(
@@ -48,18 +48,8 @@ class AppBarCustomState extends State<AppBarCustom> {
                 if(constraints.biggest.width<510){
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                          onPressed: (){
-                            Scaffold.of(context).openDrawer();
-                          },
-                          icon: const Icon(Icons.menu, size: 22,),
-                        padding: EdgeInsets.zero,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
                       const Texter(
                         'CHRISBIN',
                         style: TextStyle(
@@ -69,6 +59,13 @@ class AppBarCustomState extends State<AppBarCustom> {
                             fontFamily: "Gilroy",
                             letterSpacing: 3
                         ),
+                      ),
+                      IconButton(
+                        onPressed: (){
+                          Scaffold.of(context).openEndDrawer();
+                        },
+                        icon: Icon(Icons.menu, size: 22, color: Theme.of(context).primaryColor,),
+                        padding: EdgeInsets.zero,
                       ),
                     ],
                   );
