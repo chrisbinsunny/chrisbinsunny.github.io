@@ -33,6 +33,7 @@ class _ProjectsState extends State<Projects> {
         children: [
           Texter(
             "Open Source Projects",
+            textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 34,
