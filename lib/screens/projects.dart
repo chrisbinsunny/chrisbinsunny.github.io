@@ -118,7 +118,7 @@ class ProjectItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         showDialog(
-          barrierColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
+          barrierColor: Color(0x98021a2d),
           context: context,
           builder: (context) {
             return ProjectView(
@@ -160,6 +160,7 @@ class ProjectItem extends StatelessWidget {
             style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 24,
+                fontFamily: "Gilroy",
                 color: Color(0xffffffff)),
             textAlign: TextAlign.left,
           )
