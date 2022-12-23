@@ -3,6 +3,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/components/drawer.dart';
 import 'package:portfolio/screens/about.dart';
 import 'package:portfolio/screens/projects.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +46,7 @@ class _HomeState extends State<Home> {
         child: AppBarCustom(),
       ),
       extendBodyBehindAppBar: true,
+      endDrawer: CustomEndDrawer(),
       body: Container(
         color: const Color(0xff0c0c0c),
         width: screenWidth(context),
