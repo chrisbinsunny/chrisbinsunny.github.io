@@ -54,15 +54,14 @@ class _ProjectsState extends State<Projects> {
                   image: "images/chrishub.jpg",
                   projectDetails: ProjectDetails(
                     name: "ChrisHub",
-
                     image: "images/chrishubWeb.jpg",
-                      altText: "",
-                      desc: "• A portfolio website built as a Web Simulation of macOS Big Sur.\n"
-                      "• Implemented Terminal, Safari, Messages, VSCode, Spotify, etc.\n"
-                    "• Integrated features like create/delete folder, change brightness,wallpaper, etc.\n"
-                    "• Used Provider for managing the state and Hive as local database.\n"
-                    "• Tech stack: Flutter, Firebase, Hive",
-                    github: "",
+                      altText: "Home screen of chrishub- Chrisbin's Macbook Pro",
+                      desc: "✦ A portfolio website built as a Web Simulation of macOS Big Sur.\n"
+                      "✦ Implemented Terminal, Safari, Messages, VSCode, Spotify, etc.\n"
+                    "✦ Integrated features like create/delete folder, change brightness,wallpaper, etc.\n"
+                    "✦ Used Provider for managing the state and Hive as local database.\n"
+                    "✦ Tech stack: Flutter, Firebase, Hive",
+                    github: "https://github.com/chrisbinsunny/chrishub",
                       link: "https://chrisbinsunny.github.io/chrishub",
                   ),
               ),
@@ -71,13 +70,16 @@ class _ProjectsState extends State<Projects> {
                 image: "images/dream.png",
                 imageFit: BoxFit.contain,
                 projectDetails: ProjectDetails(
-                  name: "ChrisHub",
-
-                  image: "images/chrishubWeb.jpg",
-                  altText: "",
-                  desc: "",
-                  github: "",
-                  link: "https://chrisbinsunny.github.io/chrishub",
+                  name: "D R E A M",
+                  image: "images/dreamWeb.jpg",
+                  altText: "Home screen of Dream color finder and gradient maker.\n",
+                  desc: "✦ A website built to find colours from images and screenshots.\n"
+                  "✦ Implemented a gradient builder to create website backgrounds.\n"
+               "✦ Integrated CSS code copying and sharing.\n"
+                "✦ Used Provider for managing the state.\n"
+                "✦ Tech stack: Flutter",
+                  github: "https://github.com/chrisbinsunny/dream",
+                  link: "https://chrisbinsunny.github.io/dream",
                 ),
               ),
               ProjectItem(
