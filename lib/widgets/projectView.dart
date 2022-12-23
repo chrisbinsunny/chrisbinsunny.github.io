@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/sizes.dart';
 import 'dart:html' as html;
@@ -16,6 +17,9 @@ class ProjectView extends StatefulWidget {
 }
 
 class _ProjectViewState extends State<ProjectView> {
+
+  final ScrollController scrollController= ScrollController();
+
 
 
   @override
@@ -183,6 +187,9 @@ class _ProjectViewState extends State<ProjectView> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: Colors.white, width: 0.6)),
+                  margin: EdgeInsets.only(
+                    bottom: 10
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Imager(
@@ -191,28 +198,18 @@ class _ProjectViewState extends State<ProjectView> {
                     ),
                   ),
                 ),
-                // Seo.text(
-                //   text: widget.name,
-                //   child: Text(
-                //     widget.name,
-                //     style: style,
-                //
-                //   ),
-                // ),
-                SingleChildScrollView(
-                  child: Texter(
-                    widget.name,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 34,
-                        color: Theme.of(context).secondaryHeaderColor),
-                  ),
+
+                Texter(
+                  widget.name,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 34,
+                      color: Theme.of(context).secondaryHeaderColor),
                 ),
                 Container(
                   width: constraints.maxWidth*0.6,
-
                   constraints: const BoxConstraints(
-                    maxHeight: 250,
+                    maxHeight: 220,
                     minWidth: 250,
                   ),
                   child: ShaderMask(
@@ -235,31 +232,42 @@ class _ProjectViewState extends State<ProjectView> {
                     ).createShader(
                       Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                     ),
-                    child: SingleChildScrollView(
-                      child: Texter(
-                        "\n${widget.desc}\n",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                            color: Colors.white),
-                      ),
+                    child: CupertinoScrollbar(
+                      controller: scrollController,
+                      thickness: 2,
+                      thumbVisibility: false,
+                      child: ScrollConfiguration(
+                        behavior:
+                        ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                      child: SingleChildScrollView(
+                        controller: scrollController,
+                        physics: BouncingScrollPhysics(),
+                        child: Texter(
+                          "\n${widget.desc}\n",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                              color: Colors.white),
+                        ),
+                      ),),
                     ),
                   ),
                 ),
 
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
                       onTap: (){},
                       child: Container(
-                        height: 50,
+                        height: 40,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10
                         ),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(10),
                             gradient: const LinearGradient(
                                 colors: [
                                   Color(0xff5dc8f8),
@@ -270,28 +278,25 @@ class _ProjectViewState extends State<ProjectView> {
                             )
                         ),
                         child: const Texter(
-                          "View Project 🚀",
+                          "Launch 🚀",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.w500
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
                     InkWell(
                       onTap: (){},
                       child: Container(
-                        height: 50,
+                        height: 40,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10
                         ),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(10),
                             gradient: const LinearGradient(
                                 colors: [
                                   Color(0xff5dc8f8),
@@ -302,10 +307,10 @@ class _ProjectViewState extends State<ProjectView> {
                             )
                         ),
                         child: const Texter(
-                          "View GitHub 💻",
+                          "GitHub 💻",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.w500
                           ),
                         ),
