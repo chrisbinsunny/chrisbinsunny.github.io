@@ -114,7 +114,7 @@ class ProjectItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         showDialog(
-          barrierColor: Colors.white.withOpacity(0.05),
+          barrierColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
           context: context,
           builder: (context) {
             return ProjectView(
