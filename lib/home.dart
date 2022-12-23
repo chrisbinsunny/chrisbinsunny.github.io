@@ -23,13 +23,13 @@ class _HomeState extends State<Home> {
   final ScrollController scrollController= ScrollController();
   late final bool isWebMobile;
 
-  _scrollListener() {
-    Provider.of<ScrollDetail>(context, listen: false).setPos(scrollController.position.pixels);
-  }
+  // _scrollListener() {
+  //   Provider.of<ScrollDetail>(context, listen: false).setPos(scrollController.position.pixels);
+  // }
 
   @override
   void initState() {
-    scrollController.addListener(_scrollListener);
+    // scrollController.addListener(_scrollListener);
     isWebMobile = kIsWeb &&
         (defaultTargetPlatform == TargetPlatform.iOS ||
             defaultTargetPlatform == TargetPlatform.android);
@@ -60,9 +60,10 @@ class _HomeState extends State<Home> {
             ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: ListView(
               controller: scrollController,
+              physics: BouncingScrollPhysics(),
               children: const [
-                MainView(),
-                About(),
+                // MainView(),
+                // About(),
                 Projects()
               ],
             ),
