@@ -57,8 +57,12 @@ class _ProjectsState extends State<Projects> {
 
                     image: "images/chrishubWeb.jpg",
                       altText: "",
-                      desc: "Happier Than Ever: A Love Letter to Los Angeles is a 2021 American concert film directed by Robert Rodriguez and Patrick Osborne. It stars singer-songwriter Billie Eilish (pictured), who performs all 16 tracks from her second studio album, Happier Than Ever, at Los Angeles's Hollywood Bowl. Inspired by Who Framed Roger Rabbit (1988) and Cool World (1992), the film blends live action with animation; its animated scenes combine motion capture footage of Eilish with rotoscoping by Osborne. ",
-                      github: "",
+                      desc: "• A portfolio website built as a Web Simulation of macOS Big Sur.\n"
+                      "• Implemented Terminal, Safari, Messages, VSCode, Spotify, etc.\n"
+                    "• Integrated features like create/delete folder, change brightness,wallpaper, etc.\n"
+                    "• Used Provider for managing the state and Hive as local database.\n"
+                    "• Tech stack: Flutter, Firebase, Hive",
+                    github: "",
                       link: "https://chrisbinsunny.github.io/chrishub",
                   ),
               ),
