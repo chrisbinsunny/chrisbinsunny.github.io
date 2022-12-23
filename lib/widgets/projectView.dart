@@ -391,6 +391,7 @@ class ProjectView extends StatelessWidget {
                           children: [
                             Texter(
                               name,
+                              maxLines: 1,
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 34,
@@ -558,6 +559,8 @@ class ProjectView extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Texter(
                     name,
+                    maxLines: 1,
+
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 34,
