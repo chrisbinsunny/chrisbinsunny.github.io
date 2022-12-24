@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
 
 class CustomEndDrawer extends StatelessWidget {
-  const CustomEndDrawer({Key? key}) : super(key: key);
+  const CustomEndDrawer({Key? key, required this.keys}): super(key: key);
+  final List<GlobalKey> keys;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,12 @@ class CustomEndDrawer extends StatelessWidget {
             filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20, tileMode: TileMode.clamp),
             child: Drawer(
               backgroundColor: Colors.white.withOpacity(0.07),
+              shape: const Border(
+                left: BorderSide(
+                  color: Color(0x18ffffff),
+                  width: 0.5
+                )
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -102,9 +109,9 @@ class CustomEndDrawer extends StatelessWidget {
         );
       }
       if(
-      Scaffold.of(context).isDrawerOpen
+      Scaffold.of(context).isEndDrawerOpen
       ){
-        Scaffold.of(context).closeDrawer();
+        Scaffold.of(context).closeEndDrawer();
       }
       return const SizedBox();
     },
