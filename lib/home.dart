@@ -23,6 +23,12 @@ class _HomeState extends State<Home> {
 
   final ScrollController scrollController= ScrollController();
   late final bool isWebMobile;
+  final List<GlobalKey> keys=[
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+  ];
 
   // _scrollListener() {
   //   Provider.of<ScrollDetail>(context, listen: false).setPos(scrollController.position.pixels);
@@ -43,10 +49,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(screenWidth(context), 70),
-        child: AppBarCustom(),
+        child: AppBarCustom(keys: keys,),
       ),
       extendBodyBehindAppBar: true,
-      endDrawer: CustomEndDrawer(),
+      endDrawer: CustomEndDrawer(keys: keys,),
       body: Container(
         color: const Color(0xff0c0c0c),
         width: screenWidth(context),
@@ -62,10 +68,10 @@ class _HomeState extends State<Home> {
             ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: ListView(
               controller: scrollController,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               children: const [
-                // MainView(),
-                // About(),
+                MainView(),
+                About(),
                 Projects()
               ],
             ),
