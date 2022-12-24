@@ -11,8 +11,10 @@ import '../widgets/widgets.dart';
 class AppBarCustom extends StatefulWidget {
 
 
-  const AppBarCustom({super.key, required this.keys});
+  const AppBarCustom({super.key, required this.keys, required this.scrollController});
   final List<GlobalKey> keys;
+  final ScrollController scrollController;
+
 
   @override
   AppBarCustomState createState() => AppBarCustomState();
@@ -101,7 +103,9 @@ class AppBarCustomState extends State<AppBarCustom> {
                                     hovered.value=-1;
                                   }
                                 },
-                                onTap: cfOnTap(),
+                                onTap: (){
+                                  Scrollable.ensureVisible(widget.keys[0].currentContext!);
+                                },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -384,6 +388,8 @@ class AppBarCustomState extends State<AppBarCustom> {
 
 class ScrollDetail extends ChangeNotifier{
   double scrollPosition = 0;
+  ScrollController scrollController= ScrollController();
+
 
 
   double get getPos{
@@ -393,5 +399,27 @@ class ScrollDetail extends ChangeNotifier{
   void setPos(double pos){
     scrollPosition= pos;
     notifyListeners();
+  }
+
+  ScrollController get getScrollController{
+    return scrollController;
+  }
+
+  void setScrollController(double pos){
+    scrollPosition= pos;
+    notifyListeners();
+  }
+}
+
+isVisibleNow(GlobalKey key){
+  final RenderObject? box = key.currentContext?.findRenderObject(); //     !
+  if (box != null) {
+    final double yPosition = (box as RenderBox).localToGlobal(Offset.zero).dy; // !
+    print('Widget is visible in the viewport at position: $yPosition');
+    // do stuff...
+  }
+  else {
+    print('Widget is not visible.');
+    // do stuff...
   }
 }
