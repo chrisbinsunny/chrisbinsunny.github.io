@@ -25,7 +25,7 @@ class _AboutState extends State<About> {
       //color: Colors.green,
       constraints: BoxConstraints(
       minWidth: 500,
-        minHeight: screenHeight(context)-70,
+        minHeight: screenHeight(context),
       ),
       padding: EdgeInsets.symmetric(
         horizontal: screenWidth(context, mulBy: 0.05),
