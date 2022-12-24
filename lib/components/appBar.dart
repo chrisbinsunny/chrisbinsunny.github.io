@@ -10,7 +10,9 @@ import '../widgets/widgets.dart';
 
 class AppBarCustom extends StatefulWidget {
 
-  const AppBarCustom({super.key});
+
+  const AppBarCustom({super.key, required this.keys});
+  final List<GlobalKey> keys;
 
   @override
   AppBarCustomState createState() => AppBarCustomState();
