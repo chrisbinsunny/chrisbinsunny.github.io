@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(screenWidth(context), 70),
-        child: AppBarCustom(keys: keys,),
+        child: AppBarCustom(keys: keys, scrollController: scrollController,),
       ),
       extendBodyBehindAppBar: true,
       endDrawer: CustomEndDrawer(keys: keys,),
@@ -69,10 +69,10 @@ class _HomeState extends State<Home> {
             child: ListView(
               controller: scrollController,
               physics: const BouncingScrollPhysics(),
-              children: const [
-                MainView(),
-                About(),
-                Projects()
+              children: [
+                MainView(key: keys[0],),
+                About(key: keys[1],),
+                Projects(key: keys[2],)
               ],
             ),
           ),
