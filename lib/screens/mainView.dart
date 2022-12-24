@@ -18,7 +18,7 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth(context, mulBy: 1),
-      height: screenHeight(context)-70,  ///Reducing 70 for appbar
+      height: screenHeight(context),  ///Reducing 70 for appbar
       color: const Color(0xff0c0c0c),
       constraints:BoxConstraints(
       minWidth: 500,
@@ -47,7 +47,7 @@ class _MainViewState extends State<MainView> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: screenHeight(context, mulBy: 0.08),
