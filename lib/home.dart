@@ -66,14 +66,16 @@ class _HomeState extends State<Home> {
           child: ScrollConfiguration(
             behavior:
             ScrollConfiguration.of(context).copyWith(scrollbars: false),
-            child: ListView(
+            child: SingleChildScrollView(
               controller: scrollController,
               physics: const BouncingScrollPhysics(),
-              children: [
-                MainView(key: keys[0],),
-                About(key: keys[1],),
-                Projects(key: keys[2],)
-              ],
+              child: Column(
+                children: [
+                  MainView(key: keys[0],),
+                  About(key: keys[1],),
+                  Projects(key: keys[2],)
+                ],
+              ),
             ),
           ),
         ),
