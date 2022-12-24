@@ -35,6 +35,7 @@ class AppBarCustomState extends State<AppBarCustom> {
   @override
   Widget build(BuildContext context) {
     opacity = findOpacity(Provider.of<ScrollDetail>(context, listen: true).getPos);
+    isVisibleNow(widget.keys[2]);
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10, tileMode: TileMode.clamp),
@@ -104,7 +105,12 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   }
                                 },
                                 onTap: (){
-                                  Scrollable.ensureVisible(widget.keys[0].currentContext!);
+                                  Scrollable.ensureVisible(
+                                    widget.keys[1].currentContext!,
+                                    curve: Curves.easeInOut,
+                                    duration: Duration(seconds: 1),
+                                    alignment: -0.7
+                                  );
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
