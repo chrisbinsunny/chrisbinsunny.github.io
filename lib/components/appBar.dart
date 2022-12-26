@@ -30,6 +30,7 @@ class AppBarCustomState extends State<AppBarCustom> {
     return (pos < screenHeight(context, mulBy: 0.1))
         ? ((pos > 0)? pos / screenHeight(context,):0)
         : 0.1;
+
   }
 
   @override
@@ -105,9 +106,21 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   }
                                 },
                                 onTap: (){
-                                  Scrollable.ensureVisible(
-                                    widget.keys[1].currentContext!,
+                                  // check first if orange widget context is not null
+                                  if (widget.keys[2].currentContext != null) {
+                                    widget.scrollController.position.ensureVisible(
+                                      widget.keys[2].currentContext!.findRenderObject()!,
+                                      alignment: 0.0,
+                                      duration: const Duration(milliseconds: 300),
+                                    );
+                                  } else {
+                                    
+                                  }
+                                  widget.scrollController.position
+                                      .ensureVisible(
+                                    widget.keys[2].currentContext!.findRenderObject()!,
                                     curve: Curves.easeInOut,
+
                                     duration: Duration(seconds: 1),
                                     alignment: -0.7
                                   );
