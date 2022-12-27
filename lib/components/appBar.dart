@@ -106,24 +106,33 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   }
                                 },
                                 onTap: (){
+                                  int a=2, i=0;
                                   // check first if orange widget context is not null
-                                  if (widget.keys[2].currentContext != null) {
+                                  if (widget.keys[a].currentContext != null) {
                                     widget.scrollController.position.ensureVisible(
-                                      widget.keys[2].currentContext!.findRenderObject()!,
+                                      widget.keys[a].currentContext!.findRenderObject()!,
                                       alignment: 0.0,
                                       duration: const Duration(milliseconds: 300),
                                     );
                                   } else {
-                                    
-                                  }
-                                  widget.scrollController.position
-                                      .ensureVisible(
-                                    widget.keys[2].currentContext!.findRenderObject()!,
-                                    curve: Curves.easeInOut,
+                                    while(i<=a){
+                                      widget.scrollController.position.ensureVisible(
+                                        widget.keys[i].currentContext!.findRenderObject()!,
+                                        alignment: 0.0,
+                                      ).then((value) {
+                                        i++;
+                                      });
+                                    }
 
-                                    duration: Duration(seconds: 1),
-                                    alignment: -0.7
-                                  );
+                                  }
+                                  // widget.scrollController.position
+                                  //     .ensureVisible(
+                                  //   widget.keys[2].currentContext!.findRenderObject()!,
+                                  //   curve: Curves.easeInOut,
+                                  //
+                                  //   duration: Duration(seconds: 1),
+                                  //   alignment: -0.7
+                                  // );
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
