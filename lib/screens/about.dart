@@ -1,10 +1,12 @@
 
 
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:portfolio/provider/heights.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
-import 'package:seo/html/seo_widget.dart';
+import 'package:provider/provider.dart';
 
 class About extends StatefulWidget {
   const About({Key? key}) : super(key: key);
@@ -17,19 +19,36 @@ class _AboutState extends State<About> {
 
 
   @override
+  void didUpdateWidget(covariant About oldWidget) {
+    final RenderBox? box = context.findRenderObject() as RenderBox?;
+    if(box!=null) {
+      Provider.of<Heights>(context, listen: false).setAboutHeight=box.size.height;
+      //log(box.size.toString());
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // final RenderBox? box = context.findRenderObject() as RenderBox?;
+    // if(box!=null) {
+    //   Provider.of<Heights>(context, listen: false).setAboutHeight=box.size.height;
+    //   //log(box.size.toString());
+    // }
+
     return Container(
       width: screenWidth(context, mulBy: 1),
       //height: screenHeight(context)-70,  ///Reducing 70 for appbar
-      color: const Color(0xff0c0c0c),
-      //color: Colors.green,
+      //color: const Color(0xff0c0c0c),
+
+      color: Colors.green,
       constraints: BoxConstraints(
-      minWidth: 500,
-        minHeight: screenHeight(context)-70,
+        minWidth: 500,
+        minHeight: screenHeight(context),
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: screenWidth(context, mulBy: 0.05),
-        vertical: screenHeight(context, mulBy: 0.07)
+          horizontal: screenWidth(context, mulBy: 0.05),
+          vertical: screenHeight(context, mulBy: 0.07)
       ),
       child: Wrap(
         direction: Axis.horizontal,
@@ -48,9 +67,9 @@ class _AboutState extends State<About> {
                 Texter(
                   "About Chrisbin",
                   style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 34,
-                    color: Theme.of(context).secondaryHeaderColor
+                      fontWeight: FontWeight.w600,
+                      fontSize: 34,
+                      color: Theme.of(context).secondaryHeaderColor
                   ),
                 ),
                 const SizedBox(
@@ -58,10 +77,10 @@ class _AboutState extends State<About> {
                 ),
                 const Texter(
                   "Programming was always my area of interest since teenage. My main objective is to make technology reach everyone, so "
-                    "I conduct tech talks at schools and colleges. Currently on a mission to make clean UI/UX using Flutter Web.",
+                      "I conduct tech talks at schools and colleges. Currently on a mission to make clean UI/UX using Flutter Web.",
                   style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -88,23 +107,23 @@ class _AboutState extends State<About> {
                 clipBehavior: Clip.antiAlias,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: const Color(0xff0c0c0c),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 0.7
-                  ),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x2dffffff),
-                      spreadRadius: 4,
-                      blurRadius: 15
-                    )
-                  ]
+                    color: const Color(0xff0c0c0c),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                        color: Colors.white,
+                        width: 0.7
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0x2dffffff),
+                          spreadRadius: 4,
+                          blurRadius: 15
+                      )
+                    ]
                 ),
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 10
+                    horizontal: 15,
+                    vertical: 10
                 ),
                 constraints: const BoxConstraints(
                   minHeight: 480,
