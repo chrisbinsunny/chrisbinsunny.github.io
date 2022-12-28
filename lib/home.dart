@@ -12,14 +12,14 @@ import '../sizes.dart';
 
 import 'components/appBar.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Index extends StatefulWidget {
+  const Index({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Index> createState() => _IndexState();
 }
 
-class _HomeState extends State<Home> {
+class _IndexState extends State<Index> {
 
   final ScrollController scrollController= ScrollController();
   late final bool isWebMobile;
@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
               controller: scrollController,
               physics: const BouncingScrollPhysics(),
               children: [
-                MainView(key: keys[0],),
+                Home(key: keys[0],),
                 About(key: keys[1],),
                 Projects(key: keys[2],)
               ],
