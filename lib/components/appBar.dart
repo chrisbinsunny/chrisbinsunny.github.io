@@ -22,20 +22,12 @@ class AppBarCustom extends StatefulWidget {
 
 class AppBarCustomState extends State<AppBarCustom> {
 
-  double opacity=0.1;
 
   final hovered=ValueNotifier<int>(-1);
 
-  findOpacity(double pos){
-    return (pos < screenHeight(context, mulBy: 0.1))
-        ? ((pos > 0)? pos / screenHeight(context,):0)
-        : 0.1;
-
-  }
-
   @override
   Widget build(BuildContext context) {
-    opacity = findOpacity(Provider.of<ScrollDetail>(context, listen: true).getPos);
+
     isVisibleNow(widget.keys[2]);
     return ClipRect(
       child: BackdropFilter(
@@ -106,33 +98,14 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   }
                                 },
                                 onTap: (){
-                                  int a=2, i=0;
-                                  // check first if orange widget context is not null
-                                  if (widget.keys[a].currentContext != null) {
-                                    widget.scrollController.position.ensureVisible(
-                                      widget.keys[a].currentContext!.findRenderObject()!,
-                                      alignment: 0.0,
-                                      duration: const Duration(milliseconds: 300),
-                                    );
-                                  } else {
-                                    for(int i=1; i<=a;){
-                                      log("i=$i");
-                                      Scrollable.ensureVisible(
-                                        widget.keys[i].currentContext!,
-                                        alignment: 0.0,
-                                        duration: Duration(milliseconds: 300),
-                                      ).whenComplete(() => i++);
-                                    }
+                                  widget.scrollController.position
+                                      .ensureVisible(
+                                    widget.keys[0].currentContext!.findRenderObject()!,
+                                    curve: Curves.easeInOut,
 
-                                  }
-                                  // widget.scrollController.position
-                                  //     .ensureVisible(
-                                  //   widget.keys[2].currentContext!.findRenderObject()!,
-                                  //   curve: Curves.easeInOut,
-                                  //
-                                  //   duration: Duration(seconds: 1),
-                                  //   alignment: -0.7
-                                  // );
+                                    duration: const Duration(seconds: 1),
+                                    alignment: -0.7
+                                  );
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
