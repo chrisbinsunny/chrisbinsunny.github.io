@@ -115,13 +115,13 @@ class AppBarCustomState extends State<AppBarCustom> {
                                       duration: const Duration(milliseconds: 300),
                                     );
                                   } else {
-                                    while(i<=a){
-                                      widget.scrollController.position.ensureVisible(
-                                        widget.keys[i].currentContext!.findRenderObject()!,
+                                    for(int i=1; i<=a;){
+                                      log("i=$i");
+                                      Scrollable.ensureVisible(
+                                        widget.keys[i].currentContext!,
                                         alignment: 0.0,
-                                      ).then((value) {
-                                        i++;
-                                      });
+                                        duration: Duration(milliseconds: 300),
+                                      ).whenComplete(() => i++);
                                     }
 
                                   }
