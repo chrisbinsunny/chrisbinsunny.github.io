@@ -6,19 +6,19 @@ import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:seo/html/seo_widget.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<MainView> createState() => _MainViewState();
+  State<Home> createState() => _HomeState();
 }
 
-class _MainViewState extends State<MainView> {
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth(context, mulBy: 1),
-      height: screenHeight(context),  ///Reducing 70 for appbar
+      height: screenHeight(context)-70,  ///Reducing 70 for appbar
       color: const Color(0xff0c0c0c),
       constraints:BoxConstraints(
       minWidth: 500,
