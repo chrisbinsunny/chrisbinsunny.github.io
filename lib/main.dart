@@ -1,8 +1,6 @@
-import 'dart:ui';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:portfolio/home.dart';
+import 'package:portfolio/index.dart';
 import 'package:portfolio/provider/heights.dart';
 import 'package:provider/provider.dart';
 import 'package:seo/html/seo_controller.dart';
