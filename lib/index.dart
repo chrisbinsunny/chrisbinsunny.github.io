@@ -7,7 +7,7 @@ import 'package:portfolio/components/drawer.dart';
 import 'package:portfolio/screens/about.dart';
 import 'package:portfolio/screens/projects.dart';
 import 'package:provider/provider.dart';
-import '../screens/mainView.dart';
+import '../screens/home.dart';
 import '../sizes.dart';
 
 import 'components/appBar.dart';
@@ -66,14 +66,16 @@ class _IndexState extends State<Index> {
           child: ScrollConfiguration(
             behavior:
             ScrollConfiguration.of(context).copyWith(scrollbars: false),
-            child: ListView(
+            child: SingleChildScrollView(
               controller: scrollController,
               physics: const BouncingScrollPhysics(),
-              children: [
-                Home(key: keys[0],),
-                About(key: keys[1],),
-                Projects(key: keys[2],)
-              ],
+              child: Column(
+                children: [
+                  Home(key: keys[0],),
+                  About(key: keys[1],),
+                  Projects(key: keys[2],)
+                ],
+              ),
             ),
           ),
         ),
