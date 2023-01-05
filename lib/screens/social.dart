@@ -1,5 +1,6 @@
 
 
+import 'dart:async';
 import 'dart:math';
 import 'dart:developer' as dev;
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:seo/html/seo_widget.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 class Social extends StatefulWidget {
   const Social({Key? key}) : super(key: key);
@@ -24,7 +26,7 @@ class _SocialState extends State<Social> {
     return Container(
       width: screenWidth(context, mulBy: 1),
       height: screenHeight(context),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
               colors: [
                 Color(0xff0c0c0c),
@@ -102,7 +104,7 @@ class _SocialState extends State<Social> {
           //     ),
           //   ],
           // ),
-          ContactCard()
+          const ContactCard()
         ],
       ),
     );
@@ -132,9 +134,9 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 70,
-          child: const Imager(
+          child: Imager(
             altText: "QR code to get Chrisbin's contact vCard",
             path: "images/qrCode.png",
             imageFit: BoxFit.scaleDown,
@@ -196,7 +198,8 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
     controller = AnimationController(
       duration: const Duration (milliseconds: 500),
       vsync: this,
-    ); // Animation Controller
+    );
+
     controller.addListener(() {
       setState(() {
         dragPosition = animation.value;
@@ -223,7 +226,6 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
         isFrontStart= isFront;
       },
       onHorizontalDragUpdate: (details) {
-        dev.log("fd");
         setState(() {
           dragPosition -= details.delta.dx;
           dragPosition %= 360;
@@ -241,25 +243,37 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
         ).animate (controller);
         controller.forward(from: 0);
       },
-      child: Transform(
-        transform: transform,
-        alignment: Alignment.center,
-        child: Container(
-          height: 320,
-          width: 200,
-          decoration: BoxDecoration(
-            color: const Color(0xff1a1a1a),
-            borderRadius: BorderRadius.circular(8)
-          ),
-          child: isFront ?
-          front :
+      child: Column(
+        children: [
           Transform(
-            transform: Matrix4.identity()
-              ..rotateY(pi),
+            transform: transform,
             alignment: Alignment.center,
-              child: back,
+            child: Shimmer(
+              colorOpacity: .1,
+              duration: Duration(seconds: 5),
+              child: Container(
+                height: 320,
+                width: 200,
+                decoration: BoxDecoration(
+                  color: const Color(0xff1a1a1a),
+                  borderRadius: BorderRadius.circular(8)
+                ),
+                child: isFront ?
+                front :
+                Transform(
+                  transform: Matrix4.identity()
+                    ..rotateY(pi),
+                  alignment: Alignment.center,
+                    child: back,
+                ),
+              ),
+            ),
           ),
-        ),
+          const SizedBox(
+            height: 30,
+          ),
+          CustomPaint(foregroundPainter: CircleBlurPainter( blurSigma: 11))
+        ],
       ),
     );
   }
@@ -273,4 +287,27 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
     }
   }
 
+}
+
+
+class CircleBlurPainter extends CustomPainter {
+
+  CircleBlurPainter({required this.blurSigma});
+
+  double blurSigma;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint line = Paint()
+      ..color = const Color(0xff8a8a8a)
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.fill
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, blurSigma);
+    canvas.drawOval(const Rect.fromLTRB(-110, 0, 110, 13), line);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
+  }
 }
