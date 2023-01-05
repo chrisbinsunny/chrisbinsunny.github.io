@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/components/drawer.dart';
 import 'package:portfolio/screens/about.dart';
 import 'package:portfolio/screens/projects.dart';
+import 'package:portfolio/screens/social.dart';
 import 'screens/home.dart';
 import 'sizes.dart';
 
@@ -70,9 +71,10 @@ class _IndexState extends State<Index> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  Home(key: keys[0],),
-                  About(key: keys[1],),
-                  Projects(key: keys[2],)
+                  // Home(key: keys[0],),
+                  // About(key: keys[1],),
+                  // Projects(key: keys[2],),
+                  Social(key: keys[3])
                 ],
               ),
             ),
