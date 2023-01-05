@@ -18,7 +18,18 @@ class _ProjectsState extends State<Projects> {
     return Container(
       width: screenWidth(context, mulBy: 1),
       //height: screenHeight(context)-70,  ///Reducing 70 for appbar
-      color: const Color(0xff0c0c0c),
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                Color(0xff0c0c0c),
+                Color(0xff0f1617),
+                Color(0xff0c0c0c),
+
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter
+          )
+      ),
       //color: Colors.green,
       constraints: BoxConstraints(
         minWidth: 500,
