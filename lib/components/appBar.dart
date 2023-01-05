@@ -53,7 +53,6 @@ class AppBarCustomState extends State<AppBarCustom> {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 ///Had to add a lesser width due to the padding of 40
-               log("AppBar: ${constraints.maxWidth}");
                 if(constraints.biggest.width<610){
 
                   return Row(
@@ -155,7 +154,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   onTap: (){
                                     widget.scrollController.position
                                         .ensureVisible(
-                                        widget.keys[2].currentContext!.findRenderObject()!,
+                                        widget.keys[3].currentContext!.findRenderObject()!,
                                         curve: Curves.easeInOut,
 
                                         duration: const Duration(seconds: 1),
