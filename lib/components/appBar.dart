@@ -25,11 +25,22 @@ class AppBarCustomState extends State<AppBarCustom> {
 
 
   final hovered=ValueNotifier<int>(-1);
+  final viewing=ValueNotifier<int>(0);
+  @override
+  void initState() {
+    log(viewing.value.toString());
+    widget.scrollController.addListener(() {
+      viewing.value= isVisibleNow(widget.keys)-1;
+      log(viewing.value.toString());
+
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    isVisibleNow(widget.keys[2]);
+
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10, tileMode: TileMode.clamp),
@@ -44,7 +55,9 @@ class AppBarCustomState extends State<AppBarCustom> {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 ///Had to add a lesser width due to the padding of 40
+               log("AppBar: ${constraints.maxWidth}");
                 if(constraints.biggest.width<610){
+
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,6 +116,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   },
                                   text: 'Home',
                                   hovered: hovered,
+                                  viewing: viewing,
                                   count: 0
                               ),
                               AppBarButton(
@@ -118,6 +132,8 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   },
                                   text: 'About',
                                   hovered: hovered,
+                                  viewing: viewing,
+
                                   count: 1
                               ),
                               AppBarButton(
@@ -133,6 +149,8 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   },
                                   text: 'Projects',
                                   hovered: hovered,
+                                  viewing: viewing,
+
                                   count: 2
                               ),
                               AppBarButton(
@@ -148,6 +166,8 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   },
                                   text: 'Social',
                                   hovered: hovered,
+                                  viewing: viewing,
+
                                   count: 3
                               ),
                             ],
@@ -166,91 +186,31 @@ class AppBarCustomState extends State<AppBarCustom> {
     );
   }
 
-
-  VoidCallback? gmOnTap(){
-    switch(ModalRoute.of(context)!.settings.name){
-      case "/gradient-maker":
-      case "/gradient-maker/":
-        return null;
-        break;
-      case "/color-finder":
-      case "/color-finder/":
-      case "/":
-        return (){
-          // Provider.of<AnalyticsService>(context, listen: false)
-          //     .setCurrentScreen("Gradient Builder");
-          // Navigator.of(context).pushNamed("/gradient-maker");
-        };
-        break;
-    }
-    return null;
-  }
-
-  VoidCallback? cfOnTap(){
-    switch(ModalRoute.of(context)!.settings.name){
-      case "/gradient-maker":
-      case "/gradient-maker/":
-      return (){
-        // Provider.of<AnalyticsService>(context, listen: false)
-        //     .setCurrentScreen("Color Finder");
-        // Navigator.of(context).pushNamed("/color-finder");
-      };
-        break;
-      case "/color-finder":
-      case "/color-finder/":
-      case "/":
-      return null;
-
-      break;
-    }
-    return null;
-  }
 }
 
 
-class ScrollDetail extends ChangeNotifier{
-  double scrollPosition = 0;
-  ScrollController scrollController= ScrollController();
 
-
-
-  double get getPos{
-    return scrollPosition+0.1;
+int isVisibleNow(List<GlobalKey> keys){
+  List<double> pos=[];
+  for (int i=0; i<keys.length; i++) {
+    if (keys[i].currentContext?.findRenderObject() != null) {
+      pos.add((keys[i].currentContext?.findRenderObject() as RenderBox).localToGlobal(const Offset(0,-270)).dy);
+    }
   }
+  pos.add(1);
+  return pos.indexOf(
+    pos.firstWhere((element) => element>0)
+  );
 
-  void setPos(double pos){
-    scrollPosition= pos;
-    notifyListeners();
-  }
 
-  ScrollController get getScrollController{
-    return scrollController;
-  }
 
-  void setScrollController(double pos){
-    scrollPosition= pos;
-    notifyListeners();
-  }
-}
-
-isVisibleNow(GlobalKey key){
-  final RenderObject? box = key.currentContext?.findRenderObject(); //     !
-  if (box != null) {
-    final double yPosition = (box as RenderBox).localToGlobal(Offset.zero).dy; // !
-    print('Widget is visible in the viewport at position: $yPosition');
-    // do stuff...
-  }
-  else {
-    print('Widget is not visible.');
-    // do stuff...
-  }
 }
 
 
 class AppBarButton extends StatelessWidget {
-  const AppBarButton({Key? key, required this.onTap, required this.text, required this.hovered, required this.count}) : super(key: key);
+  const AppBarButton({Key? key, required this.onTap, required this.text, required this.hovered, required this.viewing, required this.count}) : super(key: key);
 
-  final ValueNotifier<int> hovered;
+  final ValueNotifier<int> hovered, viewing;
   final VoidCallback onTap;
   final int count;
   final String text;
@@ -271,16 +231,26 @@ class AppBarButton extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 60),
-              height: hovered.value==count?30:0,
-              curve: Curves.easeIn,
-              width:hovered.value==count?100:0,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).secondaryHeaderColor,
-                  borderRadius: BorderRadius.circular(4)
-              ),
-            ),
+            ValueListenableBuilder<int>(
+              valueListenable: viewing,
+              builder: (context, view, child) {
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 100),
+                  height: ((hovered.value==count)||(view==count))?30:0,
+                  curve: Curves.easeIn,
+                  width:((hovered.value==count)||(view==count))?100:0,
+                  decoration: BoxDecoration(
+                      color: hovered.value==count?Theme.of(context).secondaryHeaderColor:Colors.transparent,
+                      borderRadius: BorderRadius.circular(
+                          20
+                      ),
+                      border: ((view==count)&&(hovered.value!=count))?Border.all(
+                          color: Colors.white,
+                          width: 1
+                      ):null
+                  ),
+                );
+              },),
             SizedBox(
               width: 100,
               child: Texter(
