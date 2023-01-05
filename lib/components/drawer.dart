@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -14,7 +15,8 @@ class CustomEndDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-      if(constraints.biggest.width<550){
+        log("Drawer: ${constraints.maxWidth}");
+      if(constraints.biggest.width<670){
         return ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20, tileMode: TileMode.clamp),
@@ -127,7 +129,7 @@ class CustomEndDrawer extends StatelessWidget {
       if(
       Scaffold.of(context).isEndDrawerOpen
       ){
-        Scaffold.of(context).closeEndDrawer();
+        Navigator.pop(context);
       }
       return const SizedBox();
     },
