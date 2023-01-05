@@ -2,6 +2,7 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -89,73 +90,70 @@ class AppBarCustomState extends State<AppBarCustom> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Spacer(),
-                              InkWell(
-                                onHover: (value) {
-                                  if(value){
-                                    hovered.value=0;
-                                  }else{
-                                    hovered.value=-1;
-                                  }
-                                },
-                                onTap: (){
-                                  widget.scrollController.position
-                                      .ensureVisible(
-                                    widget.keys[0].currentContext!.findRenderObject()!,
-                                    curve: Curves.easeInOut,
+                              AppBarButton(
+                                  onTap: (){
+                                    widget.scrollController.position
+                                        .ensureVisible(
+                                        widget.keys[0].currentContext!.findRenderObject()!,
+                                        curve: Curves.easeInOut,
 
-                                    duration: const Duration(seconds: 1),
-                                    alignment: -0.7
-                                  );
-                                },
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Texter(
-                                      'Home',
-                                      style: TextStyle(
-                                        color: ((hover==0)||
-                                            ((ModalRoute.of(context)!.settings.name=="/color-finder/")||
-                                                (ModalRoute.of(context)!.settings.name=="/color-finder")||
-                                                (ModalRoute.of(context)!.settings.name=="/")
-                                            ))
-                                            ? Colors.blue[200]
-                                            : Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    AnimatedContainer(
-                                      duration: const Duration(milliseconds: 100),
-                                      height: 2,
-                                      curve: Curves.bounceIn,
-                                      width: hover==0?80:0,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(10)
-                                      ),
-                                    ),
-                                    Visibility(
-                                      maintainAnimation: true,
-                                      maintainState: true,
-                                      maintainSize: true,
-                                      visible:
-                                      ((ModalRoute.of(context)!.settings.name=="/color-finder/")||
-                                          (ModalRoute.of(context)!.settings.name=="/color-finder")||
-                                          (ModalRoute.of(context)!.settings.name=="/")
-                                      ),
-                                      child: Container(
-                                        height: 2,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(10)
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        duration: const Duration(seconds: 1),
+                                        alignment: -0.7
+                                    );
+                                  },
+                                  text: 'Home',
+                                  hovered: hovered,
+                                  count: 0
                               ),
+
+                              // InkWell(
+                              //   onHover: (value) {
+                              //     if(value){
+                              //       hovered.value=0;
+                              //     }else{
+                              //       hovered.value=-1;
+                              //     }
+                              //   },
+                              //   onTap: (){
+                              //     widget.scrollController.position
+                              //         .ensureVisible(
+                              //       widget.keys[0].currentContext!.findRenderObject()!,
+                              //       curve: Curves.easeInOut,
+                              //
+                              //       duration: const Duration(seconds: 1),
+                              //       alignment: -0.7
+                              //     );
+                              //   },
+                              //   child: Stack(
+                              //     alignment: Alignment.center,
+                              //     children: [
+                              //       AnimatedContainer(
+                              //         duration: const Duration(milliseconds: 100),
+                              //         height: hover==0?30:0,
+                              //         curve: Curves.bounceIn,
+                              //         width: hover==0?65:0,
+                              //         decoration: BoxDecoration(
+                              //             color: Colors.white,
+                              //             borderRadius: BorderRadius.circular(4)
+                              //         ),
+                              //       ),
+                              //       Texter(
+                              //         'Home',
+                              //         style: TextStyle(
+                              //           color: ((hover==0)||
+                              //               ((ModalRoute.of(context)!.settings.name=="/color-finder/")||
+                              //                   (ModalRoute.of(context)!.settings.name=="/color-finder")||
+                              //                   (ModalRoute.of(context)!.settings.name=="/")
+                              //               ))
+                              //               ? Colors.blue[200]
+                              //               : Colors.white,
+                              //             fontSize: 20,
+                              //             fontWeight: FontWeight.w500
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                               SizedBox(width: screenWidth(context, mulBy: 0.05)),
                               InkWell(
                                 onHover: (value) {
@@ -165,7 +163,16 @@ class AppBarCustomState extends State<AppBarCustom> {
                                     hovered.value=-1;
                                   }
                                 },
-                                onTap: gmOnTap(),
+                                onTap: (){
+                                  widget.scrollController.position
+                                      .ensureVisible(
+                                      widget.keys[1].currentContext!.findRenderObject()!,
+                                      curve: Curves.easeInOut,
+
+                                      duration: const Duration(seconds: 1),
+                                      alignment: -0.7
+                                  );
+                                },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -217,19 +224,28 @@ class AppBarCustomState extends State<AppBarCustom> {
                               InkWell(
                                 onHover: (value) {
                                   if(value){
-                                    hovered.value=1;
+                                    hovered.value=2;
                                   }else{
                                     hovered.value=-1;
                                   }
                                 },
-                                onTap: gmOnTap(),
+                                onTap: (){
+                                  widget.scrollController.position
+                                      .ensureVisible(
+                                      widget.keys[2].currentContext!.findRenderObject()!,
+                                      curve: Curves.easeInOut,
+
+                                      duration: const Duration(seconds: 1),
+                                      alignment: -0.7
+                                  );
+                                },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Texter(
                                       'Projects',
                                       style: TextStyle(
-                                          color: ((hover==1)||
+                                          color: ((hover==2)||
                                               ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
                                                   (ModalRoute.of(context)!.settings.name=="/gradient-maker")
                                               ))
@@ -244,7 +260,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                                       duration: const Duration(milliseconds: 100),
                                       height: 2,
                                       curve: Curves.bounceIn,
-                                      width: hover==1?100:0,
+                                      width: hover==2?100:0,
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(10)
@@ -274,19 +290,28 @@ class AppBarCustomState extends State<AppBarCustom> {
                               InkWell(
                                 onHover: (value) {
                                   if(value){
-                                    hovered.value=1;
+                                    hovered.value=3;
                                   }else{
                                     hovered.value=-1;
                                   }
                                 },
-                                onTap: gmOnTap(),
+                                onTap: (){
+                                  widget.scrollController.position
+                                      .ensureVisible(
+                                      widget.keys[2].currentContext!.findRenderObject()!,
+                                      curve: Curves.easeInOut,
+
+                                      duration: const Duration(seconds: 1),
+                                      alignment: -0.7
+                                  );
+                                },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Texter(
                                       'Social',
                                       style: TextStyle(
-                                          color: ((hover==1)||
+                                          color: ((hover==3)||
                                               ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
                                                   (ModalRoute.of(context)!.settings.name=="/gradient-maker")
                                               ))
@@ -301,7 +326,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                                       duration: const Duration(milliseconds: 100),
                                       height: 2,
                                       curve: Curves.bounceIn,
-                                      width: hover==1?100:0,
+                                      width: hover==3?100:0,
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(10)
@@ -422,5 +447,58 @@ isVisibleNow(GlobalKey key){
   else {
     print('Widget is not visible.');
     // do stuff...
+  }
+}
+
+
+class AppBarButton extends StatelessWidget {
+  const AppBarButton({Key? key, required this.onTap, required this.text, required this.hovered, required this.count}) : super(key: key);
+
+  final ValueNotifier<int> hovered;
+  final VoidCallback onTap;
+  final int count;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onHover: (value) {
+        if(value){
+          hovered.value=count;
+        }else{
+          hovered.value=-1;
+        }
+      },
+      onTap: onTap,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 60),
+            height: hovered.value==count?30:0,
+            curve: Curves.easeIn,
+            width:hovered.value==count?100:0,
+            decoration: BoxDecoration(
+                color: Theme.of(context).secondaryHeaderColor,
+                borderRadius: BorderRadius.circular(4)
+            ),
+          ),
+          SizedBox(
+            width: 100,
+            child: Texter(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: (hovered.value==count)
+                      ? Colors.white
+                      : Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
