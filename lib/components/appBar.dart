@@ -44,7 +44,7 @@ class AppBarCustomState extends State<AppBarCustom> {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 ///Had to add a lesser width due to the padding of 40
-                if(constraints.biggest.width<510){
+                if(constraints.biggest.width<610){
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,255 +105,51 @@ class AppBarCustomState extends State<AppBarCustom> {
                                   hovered: hovered,
                                   count: 0
                               ),
+                              AppBarButton(
+                                  onTap: (){
+                                    widget.scrollController.position
+                                        .ensureVisible(
+                                        widget.keys[1].currentContext!.findRenderObject()!,
+                                        curve: Curves.easeInOut,
 
-                              // InkWell(
-                              //   onHover: (value) {
-                              //     if(value){
-                              //       hovered.value=0;
-                              //     }else{
-                              //       hovered.value=-1;
-                              //     }
-                              //   },
-                              //   onTap: (){
-                              //     widget.scrollController.position
-                              //         .ensureVisible(
-                              //       widget.keys[0].currentContext!.findRenderObject()!,
-                              //       curve: Curves.easeInOut,
-                              //
-                              //       duration: const Duration(seconds: 1),
-                              //       alignment: -0.7
-                              //     );
-                              //   },
-                              //   child: Stack(
-                              //     alignment: Alignment.center,
-                              //     children: [
-                              //       AnimatedContainer(
-                              //         duration: const Duration(milliseconds: 100),
-                              //         height: hover==0?30:0,
-                              //         curve: Curves.bounceIn,
-                              //         width: hover==0?65:0,
-                              //         decoration: BoxDecoration(
-                              //             color: Colors.white,
-                              //             borderRadius: BorderRadius.circular(4)
-                              //         ),
-                              //       ),
-                              //       Texter(
-                              //         'Home',
-                              //         style: TextStyle(
-                              //           color: ((hover==0)||
-                              //               ((ModalRoute.of(context)!.settings.name=="/color-finder/")||
-                              //                   (ModalRoute.of(context)!.settings.name=="/color-finder")||
-                              //                   (ModalRoute.of(context)!.settings.name=="/")
-                              //               ))
-                              //               ? Colors.blue[200]
-                              //               : Colors.white,
-                              //             fontSize: 20,
-                              //             fontWeight: FontWeight.w500
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
-                              SizedBox(width: screenWidth(context, mulBy: 0.05)),
-                              InkWell(
-                                onHover: (value) {
-                                  if(value){
-                                    hovered.value=1;
-                                  }else{
-                                    hovered.value=-1;
-                                  }
-                                },
-                                onTap: (){
-                                  widget.scrollController.position
-                                      .ensureVisible(
-                                      widget.keys[1].currentContext!.findRenderObject()!,
-                                      curve: Curves.easeInOut,
-
-                                      duration: const Duration(seconds: 1),
-                                      alignment: -0.7
-                                  );
-                                },
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Texter(
-                                      'About',
-                                      style: TextStyle(
-                                        color: ((hover==1)||
-                                            ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
-                                                (ModalRoute.of(context)!.settings.name=="/gradient-maker")
-                                            ))
-                                            ? Colors.blue[200]
-                                            : Colors.white,
-                                          fontSize: 20,
-                                        fontWeight: FontWeight.w500
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    AnimatedContainer(
-                                      duration: const Duration(milliseconds: 100),
-                                      height: 2,
-                                      curve: Curves.bounceIn,
-                                      width: hover==1?100:0,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(10)
-                                      ),
-                                    ),
-                                    Visibility(
-                                      maintainAnimation: true,
-                                      maintainState: true,
-                                      maintainSize: true,
-                                      visible:
-                                      ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
-                                          (ModalRoute.of(context)!.settings.name=="/gradient-maker")
-                                      ),
-                                      child: Container(
-                                        height: 2,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(10)
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        duration: const Duration(seconds: 1),
+                                        alignment: -0.7
+                                    );
+                                  },
+                                  text: 'About',
+                                  hovered: hovered,
+                                  count: 1
                               ),
-                              SizedBox(width: screenWidth(context, mulBy: 0.05)),
-                              InkWell(
-                                onHover: (value) {
-                                  if(value){
-                                    hovered.value=2;
-                                  }else{
-                                    hovered.value=-1;
-                                  }
-                                },
-                                onTap: (){
-                                  widget.scrollController.position
-                                      .ensureVisible(
-                                      widget.keys[2].currentContext!.findRenderObject()!,
-                                      curve: Curves.easeInOut,
+                              AppBarButton(
+                                  onTap: (){
+                                    widget.scrollController.position
+                                        .ensureVisible(
+                                        widget.keys[2].currentContext!.findRenderObject()!,
+                                        curve: Curves.easeInOut,
 
-                                      duration: const Duration(seconds: 1),
-                                      alignment: -0.7
-                                  );
-                                },
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Texter(
-                                      'Projects',
-                                      style: TextStyle(
-                                          color: ((hover==2)||
-                                              ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
-                                                  (ModalRoute.of(context)!.settings.name=="/gradient-maker")
-                                              ))
-                                              ? Colors.blue[200]
-                                              : Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    AnimatedContainer(
-                                      duration: const Duration(milliseconds: 100),
-                                      height: 2,
-                                      curve: Curves.bounceIn,
-                                      width: hover==2?100:0,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(10)
-                                      ),
-                                    ),
-                                    Visibility(
-                                      maintainAnimation: true,
-                                      maintainState: true,
-                                      maintainSize: true,
-                                      visible:
-                                      ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
-                                          (ModalRoute.of(context)!.settings.name=="/gradient-maker")
-                                      ),
-                                      child: Container(
-                                        height: 2,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(10)
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        duration: const Duration(seconds: 1),
+                                        alignment: -0.7
+                                    );
+                                  },
+                                  text: 'Projects',
+                                  hovered: hovered,
+                                  count: 2
                               ),
-                              SizedBox(width: screenWidth(context, mulBy: 0.05)),
-                              InkWell(
-                                onHover: (value) {
-                                  if(value){
-                                    hovered.value=3;
-                                  }else{
-                                    hovered.value=-1;
-                                  }
-                                },
-                                onTap: (){
-                                  widget.scrollController.position
-                                      .ensureVisible(
-                                      widget.keys[2].currentContext!.findRenderObject()!,
-                                      curve: Curves.easeInOut,
+                              AppBarButton(
+                                  onTap: (){
+                                    widget.scrollController.position
+                                        .ensureVisible(
+                                        widget.keys[2].currentContext!.findRenderObject()!,
+                                        curve: Curves.easeInOut,
 
-                                      duration: const Duration(seconds: 1),
-                                      alignment: -0.7
-                                  );
-                                },
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Texter(
-                                      'Social',
-                                      style: TextStyle(
-                                          color: ((hover==3)||
-                                              ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
-                                                  (ModalRoute.of(context)!.settings.name=="/gradient-maker")
-                                              ))
-                                              ? Colors.blue[200]
-                                              : Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    AnimatedContainer(
-                                      duration: const Duration(milliseconds: 100),
-                                      height: 2,
-                                      curve: Curves.bounceIn,
-                                      width: hover==3?100:0,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(10)
-                                      ),
-                                    ),
-                                    Visibility(
-                                      maintainAnimation: true,
-                                      maintainState: true,
-                                      maintainSize: true,
-                                      visible:
-                                      ((ModalRoute.of(context)!.settings.name=="/gradient-maker/")||
-                                          (ModalRoute.of(context)!.settings.name=="/gradient-maker")
-                                      ),
-                                      child: Container(
-                                        height: 2,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(10)
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        duration: const Duration(seconds: 1),
+                                        alignment: -0.7
+                                    );
+                                  },
+                                  text: 'Social',
+                                  hovered: hovered,
+                                  count: 3
                               ),
-                              SizedBox(width: screenWidth(context, mulBy: 0.05)),
-
                             ],
                           ),
                         );
@@ -461,43 +257,46 @@ class AppBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onHover: (value) {
-        if(value){
-          hovered.value=count;
-        }else{
-          hovered.value=-1;
-        }
-      },
-      onTap: onTap,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 60),
-            height: hovered.value==count?30:0,
-            curve: Curves.easeIn,
-            width:hovered.value==count?100:0,
-            decoration: BoxDecoration(
-                color: Theme.of(context).secondaryHeaderColor,
-                borderRadius: BorderRadius.circular(4)
-            ),
-          ),
-          SizedBox(
-            width: 100,
-            child: Texter(
-              text,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: (hovered.value==count)
-                      ? Colors.white
-                      : Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500
+    return Padding(
+      padding: EdgeInsets.only(right: screenWidth(context, mulBy: 0.02)),
+      child: InkWell(
+        onHover: (value) {
+          if(value){
+            hovered.value=count;
+          }else{
+            hovered.value=-1;
+          }
+        },
+        onTap: onTap,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 60),
+              height: hovered.value==count?30:0,
+              curve: Curves.easeIn,
+              width:hovered.value==count?100:0,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  borderRadius: BorderRadius.circular(4)
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              width: 100,
+              child: Texter(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: (hovered.value==count)
+                        ? Colors.white
+                        : Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
