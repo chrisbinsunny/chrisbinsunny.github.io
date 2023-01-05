@@ -3,13 +3,31 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import '../widgets/nothing.dart';
 import '../widgets/widgets.dart';
 
-class CustomEndDrawer extends StatelessWidget {
+class CustomEndDrawer extends StatefulWidget {
   const CustomEndDrawer({Key? key, required this.keys, required this.scrollController}): super(key: key);
   final List<GlobalKey> keys;
   final ScrollController scrollController;
+
+  @override
+  State<CustomEndDrawer> createState() => _CustomEndDrawerState();
+}
+
+class _CustomEndDrawerState extends State<CustomEndDrawer> {
+
+  final hovered=ValueNotifier<int>(-1);
+  final viewing=ValueNotifier<int>(0);
+
+
+  @override
+  void initState() {
+    super.initState();
+    widget.scrollController.addListener(() {
+      viewing.value= isVisibleNow(widget.keys)-1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +65,9 @@ class CustomEndDrawer extends StatelessWidget {
                   ),
                   AppBarButton(
                       onTap: (){
-                        scrollController.position
+                        widget.scrollController.position
                             .ensureVisible(
-                            keys[0].currentContext!.findRenderObject()!,
+                            widget.keys[0].currentContext!.findRenderObject()!,
                             curve: Curves.easeInOut,
 
                             duration: const Duration(seconds: 1),
@@ -60,9 +78,9 @@ class CustomEndDrawer extends StatelessWidget {
                   ),
                   AppBarButton(
                       onTap: (){
-                        scrollController.position
+                        widget.scrollController.position
                             .ensureVisible(
-                            keys[1].currentContext!.findRenderObject()!,
+                            widget.keys[1].currentContext!.findRenderObject()!,
                             curve: Curves.easeInOut,
 
                             duration: const Duration(seconds: 1),
@@ -73,9 +91,9 @@ class CustomEndDrawer extends StatelessWidget {
                   ),
                   AppBarButton(
                       onTap: (){
-                        scrollController.position
+                        widget.scrollController.position
                             .ensureVisible(
-                            keys[2].currentContext!.findRenderObject()!,
+                            widget.keys[2].currentContext!.findRenderObject()!,
                             curve: Curves.easeInOut,
 
                             duration: const Duration(seconds: 1),
@@ -86,9 +104,9 @@ class CustomEndDrawer extends StatelessWidget {
                   ),
                   AppBarButton(
                       onTap: (){
-                        scrollController.position
+                        widget.scrollController.position
                             .ensureVisible(
-                            keys[2].currentContext!.findRenderObject()!,
+                            widget.keys[2].currentContext!.findRenderObject()!,
                             curve: Curves.easeInOut,
 
                             duration: const Duration(seconds: 1),
@@ -131,12 +149,10 @@ class CustomEndDrawer extends StatelessWidget {
       ){
         Navigator.pop(context);
       }
-      return const SizedBox();
+      return const Nothing();
     },
     );
   }
-
-
 
   VoidCallback? gmOnTap(BuildContext context){
     switch(ModalRoute.of(context)!.settings.name){
