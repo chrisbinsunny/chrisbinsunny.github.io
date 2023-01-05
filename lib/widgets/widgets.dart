@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seo/html/seo_widget.dart';
 
 class Texter extends StatelessWidget {
-  const Texter(this.text, {Key? key, required this.style, this.textAlign=TextAlign.start, this.maxLines}) : super(key: key);
+  const Texter(this.text, {Key? key, this.style=const TextStyle(), this.textAlign=TextAlign.start, this.maxLines}) : super(key: key);
 
   final TextStyle style;
   final String text;
