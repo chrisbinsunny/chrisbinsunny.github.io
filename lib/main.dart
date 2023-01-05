@@ -1,22 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/index.dart';
-import 'package:portfolio/provider/heights.dart';
-import 'package:provider/provider.dart';
 import 'package:seo/html/seo_controller.dart';
 import 'package:seo/html/tree/widget_tree.dart';
 
-import 'components/appBar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<ScrollDetail>(
-      create: (context) => ScrollDetail(),
-    ),
-  ],
-      child: const MyApp()));
+  runApp(
+      const MyApp());
 }
 
 class MyApp extends StatelessWidget {
