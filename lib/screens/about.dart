@@ -26,7 +26,7 @@ class _AboutState extends State<About> {
       //height: screenHeight(context)-70,  ///Reducing 70 for appbar
       //color: const Color(0xff0c0c0c),
 
-      color: Colors.green,
+      color: Color(0xff0e1112),
       constraints: BoxConstraints(
         minWidth: 500,
         minHeight: screenHeight(context),
