@@ -3,7 +3,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:portfolio/provider/heights.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +24,17 @@ class _AboutState extends State<About> {
       width: screenWidth(context, mulBy: 1),
       //height: screenHeight(context)-70,  ///Reducing 70 for appbar
       //color: const Color(0xff0c0c0c),
-
-      color: Color(0xff0e1112),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xff0c0c0c),
+            Color(0xff0f1617),
+            Color(0xff0c0c0c)
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter
+        )
+      ),
       constraints: BoxConstraints(
         minWidth: 500,
         minHeight: screenHeight(context),
