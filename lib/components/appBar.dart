@@ -26,8 +26,7 @@ class AppBarCustom extends StatefulWidget {
 class AppBarCustomState extends State<AppBarCustom> {
 
 
-  final hovered=ValueNotifier<int>(-1);
-  final viewing=ValueNotifier<int>(0);
+  final hovered=ValueNotifier<int>(-1), viewing=ValueNotifier<int>(0);
   @override
   void initState() {
     widget.scrollController.addListener(() {
@@ -225,7 +224,18 @@ class AppBarButton extends StatelessWidget {
                   curve: Curves.easeIn,
                   width:((hovered.value==count)||(view==count))?100:0,
                   decoration: BoxDecoration(
-                      color: hovered.value==count?Theme.of(context).secondaryHeaderColor:Colors.transparent,
+                      gradient: hovered.value==count?LinearGradient(
+                        colors: [
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).secondaryHeaderColor
+                        ],
+                        stops: [
+                          0,
+                          0.8
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter
+                      ):null,
                       borderRadius: BorderRadius.circular(
                           20
                       ),
@@ -241,12 +251,20 @@ class AppBarButton extends StatelessWidget {
               child: Texter(
                 text,
                 textAlign: TextAlign.center,
+
                 style: TextStyle(
                     color: (hovered.value==count)
                         ? Colors.white
                         : Colors.white,
                     fontSize: 20,
-                    fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
+                  shadows: [
+                    BoxShadow(
+                      color: Colors.black,
+                      spreadRadius: 8,
+                      blurRadius: 7
+                    )
+                  ]
                 ),
               ),
             ),
