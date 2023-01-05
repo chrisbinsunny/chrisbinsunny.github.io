@@ -75,7 +75,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                               curve: Curves.easeInOut,
 
                               duration: const Duration(seconds: 1),
-                              alignment: -0.7
+                              alignment: -0.2
                           );
                         },
                         text: 'Home',
@@ -91,7 +91,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                               curve: Curves.easeInOut,
 
                               duration: const Duration(seconds: 1),
-                              alignment: -0.7
+                              alignment: -0.2
                           );
                         },
                         text: 'About',
@@ -107,7 +107,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                               curve: Curves.easeInOut,
 
                               duration: const Duration(seconds: 1),
-                              alignment: -0.7
+                              alignment: -0.2
                           );
                         },
                         text: 'Projects',
@@ -123,7 +123,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                               curve: Curves.easeInOut,
 
                               duration: const Duration(seconds: 1),
-                              alignment: -0.7
+                              alignment: -0.2
                           );
                         },
                         text: 'Social',
