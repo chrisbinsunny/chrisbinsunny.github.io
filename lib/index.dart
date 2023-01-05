@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/components/drawer.dart';
 import 'package:portfolio/screens/about.dart';
 import 'package:portfolio/screens/projects.dart';
-import 'package:provider/provider.dart';
-import '../screens/home.dart';
-import '../sizes.dart';
+import 'screens/home.dart';
+import 'sizes.dart';
 
 import 'components/appBar.dart';
 
