@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../sizes.dart';
+import '../widgets/functions.dart';
+
 import '../widgets/widgets.dart';
 
 class AppBarCustom extends StatefulWidget {
