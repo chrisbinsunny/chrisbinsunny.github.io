@@ -11,17 +11,19 @@ class Texter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Seo.text(
-      text: text,
-      child: Text(
-        text,
-        maxLines: maxLines,
-        overflow: maxLines==1?TextOverflow.ellipsis:null,
-        textAlign: textAlign,
-        style: style.copyWith(
-          fontFamily: "Gilroy",
-        ),
+    return SelectionArea(
+      child: Seo.text(
+        text: text,
+        child: Text(
+          text,
+          maxLines: maxLines,
+          overflow: maxLines==1?TextOverflow.ellipsis:null,
+          textAlign: textAlign,
+          style: style.copyWith(
+            fontFamily: "Gilroy",
+          ),
 
+        ),
       ),
     );
   }
