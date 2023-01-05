@@ -19,22 +19,7 @@ class _AboutState extends State<About> {
 
 
   @override
-  void didUpdateWidget(covariant About oldWidget) {
-    final RenderBox? box = context.findRenderObject() as RenderBox?;
-    if(box!=null) {
-      Provider.of<Heights>(context, listen: false).setAboutHeight=box.size.height;
-      //log(box.size.toString());
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // final RenderBox? box = context.findRenderObject() as RenderBox?;
-    // if(box!=null) {
-    //   Provider.of<Heights>(context, listen: false).setAboutHeight=box.size.height;
-    //   //log(box.size.toString());
-    // }
 
     return Container(
       width: screenWidth(context, mulBy: 1),
