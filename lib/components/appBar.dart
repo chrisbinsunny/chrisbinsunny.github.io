@@ -28,11 +28,8 @@ class AppBarCustomState extends State<AppBarCustom> {
   final viewing=ValueNotifier<int>(0);
   @override
   void initState() {
-    log(viewing.value.toString());
     widget.scrollController.addListener(() {
       viewing.value= isVisibleNow(widget.keys)-1;
-      log(viewing.value.toString());
-
     });
     super.initState();
   }
@@ -190,21 +187,7 @@ class AppBarCustomState extends State<AppBarCustom> {
 
 
 
-int isVisibleNow(List<GlobalKey> keys){
-  List<double> pos=[];
-  for (int i=0; i<keys.length; i++) {
-    if (keys[i].currentContext?.findRenderObject() != null) {
-      pos.add((keys[i].currentContext?.findRenderObject() as RenderBox).localToGlobal(const Offset(0,-270)).dy);
-    }
-  }
-  pos.add(1);
-  return pos.indexOf(
-    pos.firstWhere((element) => element>0)
-  );
 
-
-
-}
 
 
 class AppBarButton extends StatelessWidget {
