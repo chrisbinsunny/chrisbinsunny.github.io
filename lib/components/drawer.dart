@@ -32,7 +32,6 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        log("Drawer: ${constraints.maxWidth}");
       if(constraints.biggest.width<670){
         return ClipRect(
           child: BackdropFilter(
