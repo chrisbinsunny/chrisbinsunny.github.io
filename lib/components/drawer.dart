@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/nothing.dart';
 import '../widgets/widgets.dart';
+import '../widgets/functions.dart';
 
 class CustomEndDrawer extends StatefulWidget {
   const CustomEndDrawer({Key? key, required this.keys, required this.scrollController}): super(key: key);
