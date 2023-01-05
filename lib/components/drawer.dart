@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
 
 class CustomEndDrawer extends StatelessWidget {
-  const CustomEndDrawer({Key? key, required this.keys}): super(key: key);
+  const CustomEndDrawer({Key? key, required this.keys, required this.scrollController}): super(key: key);
   final List<GlobalKey> keys;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -42,42 +43,57 @@ class CustomEndDrawer extends StatelessWidget {
                     ),
 
                   ),
-                  ListTile(
-                    title: const Texter(
-                        "Color Finder",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18
-                    ),
-                    ),
-                    onTap: cfOnTap(context),
-                    hoverColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
-                    focusColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.3),
-                    enabled: true,
-                    selectedTileColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.4),
-                    selected: true,
-                    leading: const Icon(
-                    Icons.navigate_before,
-                    color: Colors.white,
+                  AppBarButton(
+                      onTap: (){
+                        scrollController.position
+                            .ensureVisible(
+                            keys[0].currentContext!.findRenderObject()!,
+                            curve: Curves.easeInOut,
+
+                            duration: const Duration(seconds: 1),
+                            alignment: -0.7
+                        );
+                      },
+                      text: 'Home',
                   ),
+                  AppBarButton(
+                      onTap: (){
+                        scrollController.position
+                            .ensureVisible(
+                            keys[1].currentContext!.findRenderObject()!,
+                            curve: Curves.easeInOut,
+
+                            duration: const Duration(seconds: 1),
+                            alignment: -0.7
+                        );
+                      },
+                      text: 'About',
                   ),
-                  ListTile(
-                    title: const Texter(
-                      "Color Finder",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18
-                      ),
-                    ),
-                    onTap: cfOnTap(context),
-                    hoverColor:Colors.deepPurpleAccent.withOpacity(0.1),
-                    focusColor: Colors.deepPurpleAccent.withOpacity(0.3),
-                    enabled: true,
-                    selectedTileColor: Colors.deepPurpleAccent.withOpacity(0.3),
-                    leading: const Icon(
-                      Icons.navigate_before,
-                      color: Colors.white,
-                    ),
+                  AppBarButton(
+                      onTap: (){
+                        scrollController.position
+                            .ensureVisible(
+                            keys[2].currentContext!.findRenderObject()!,
+                            curve: Curves.easeInOut,
+
+                            duration: const Duration(seconds: 1),
+                            alignment: -0.7
+                        );
+                      },
+                      text: 'Projects',
+                  ),
+                  AppBarButton(
+                      onTap: (){
+                        scrollController.position
+                            .ensureVisible(
+                            keys[2].currentContext!.findRenderObject()!,
+                            curve: Curves.easeInOut,
+
+                            duration: const Duration(seconds: 1),
+                            alignment: -0.7
+                        );
+                      },
+                      text: 'Social',
                   ),
                   const Spacer(),
                   Container(
@@ -153,5 +169,34 @@ class CustomEndDrawer extends StatelessWidget {
         break;
     }
     return null;
+  }
+}
+
+
+class AppBarButton extends StatelessWidget {
+  const AppBarButton({Key? key, required this.onTap, required this.text,}) : super(key: key);
+
+  final VoidCallback onTap;
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Texter(
+        text,
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 18
+        ),
+      ),
+      onTap: onTap,
+      hoverColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
+      focusColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.3),
+      enabled: true,
+      selectedTileColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.4),
+      leading: const Icon(
+        Icons.navigate_before,
+        color: Colors.white,
+      ),
+    );
   }
 }
