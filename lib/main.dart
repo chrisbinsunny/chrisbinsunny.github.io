@@ -15,9 +15,6 @@ Future<void> main() async {
     ChangeNotifierProvider<ScrollDetail>(
       create: (context) => ScrollDetail(),
     ),
-    ChangeNotifierProvider<Heights>(
-      create: (context) => Heights(),
-    ),
   ],
       child: const MyApp()));
 }
@@ -36,6 +33,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Color(0xff5dc8f8),
           secondaryHeaderColor: Color(0xff065a9d),
+          scaffoldBackgroundColor: const Color(0xff0c0c0c),
           scrollbarTheme: ScrollbarThemeData(
             thumbColor: MaterialStateProperty.all<Color>(Color(0x5455889f))
           ),
