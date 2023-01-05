@@ -1,5 +1,7 @@
 
 
+import 'dart:math';
+import 'dart:developer' as dev;
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/sizes.dart';
@@ -22,7 +24,17 @@ class _SocialState extends State<Social> {
     return Container(
       width: screenWidth(context, mulBy: 1),
       height: screenHeight(context),
-      color: const Color(0xff0c0c0c),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                Color(0xff0c0c0c),
+                Color(0xff0f1617),
+                Color(0xff0c0c0c)
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter
+          )
+      ),
       constraints:const BoxConstraints(
       minWidth: 500,
         minHeight:  725,
@@ -31,50 +43,234 @@ class _SocialState extends State<Social> {
         alignment: WrapAlignment.center,
         runAlignment: WrapAlignment.center,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: screenHeight(context, mulBy: 0.3),
-                child: Imager(
-                  altText: "QR code to get Chrisbin's contact vCard",
-                  path:"images/qrCode.png",
-                  imageFit: BoxFit.scaleDown,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Texter("  Chrisbin Sunny",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600
-                ),
-              ),
-              SizedBox(
-                height: 2,
-              ),
-              Texter("   App Developer | Speaker",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w200
-                ),
-              ),
-              TextButton(
-                  onPressed: (){},
-                  child: Texter(
-                      "(IND) +91 83300 70512",
-
-                  ),
-                style: TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.w200
-    ),
-              )
-            ],
-          ),
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     SizedBox(
+          //       height: screenHeight(context, mulBy: 0.3),
+          //       child: const Imager(
+          //         altText: "QR code to get Chrisbin's contact vCard",
+          //         path:"images/qrCode.png",
+          //         imageFit: BoxFit.scaleDown,
+          //       ),
+          //     ),
+          //     const SizedBox(
+          //       height: 10,
+          //     ),
+          //     const Texter("  Chrisbin Sunny",
+          //       style: TextStyle(
+          //         fontSize: 24,
+          //         fontWeight: FontWeight.w600
+          //       ),
+          //     ),
+          //     const SizedBox(
+          //       height: 2,
+          //     ),
+          //     const Texter("   App Developer | Speaker",
+          //       style: TextStyle(
+          //           fontSize: 15,
+          //           fontWeight: FontWeight.w200
+          //       ),
+          //     ),
+          //     const SizedBox(
+          //       height: 30,
+          //     ),
+          //     TextButton(
+          //         onPressed: (){},
+          //         child: const Text(
+          //             " (IND)  +91 83300 70512",
+          //           style: TextStyle(
+          //               fontSize: 15,
+          //               color: Colors.white,
+          //               fontWeight: FontWeight.w200
+          //           ),
+          //         ),
+          //     ),
+          //     const SizedBox(
+          //       height: 2,
+          //     ),
+          //     TextButton(
+          //       onPressed: (){},
+          //       child: const Text(
+          //         " chrisbinofficial@gmail.com",
+          //         style: TextStyle(
+          //             fontSize: 15,
+          //             color: Colors.white,
+          //             fontWeight: FontWeight.w200
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          ContactCard()
         ],
       ),
     );
   }
+}
+
+
+class ContactCard extends StatefulWidget {
+  const ContactCard({Key? key}) : super(key: key);
+
+  @override
+  State<ContactCard> createState() => _ContactCardState();
+}
+
+class _ContactCardState extends State<ContactCard> with SingleTickerProviderStateMixin{
+
+  late AnimationController controller;
+  late Animation<double> animation;
+  double dragPosition = 0;
+  bool isFront = true, isFrontStart=true;
+
+  Widget front = Container(
+    color: Colors.green,
+  );
+
+  Widget back = Container(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 70,
+          child: const Imager(
+            altText: "QR code to get Chrisbin's contact vCard",
+            path: "images/qrCode.png",
+            imageFit: BoxFit.scaleDown,
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const Texter("  Chrisbin Sunny",
+          style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600
+          ),
+        ),
+        const SizedBox(
+          height: 2,
+        ),
+        const Texter("   App Developer | Speaker",
+          style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w200
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        TextButton(
+          onPressed: () {},
+          child: const Text(
+            " (IND)  +91 83300 70512",
+            style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.w200
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 2,
+        ),
+        TextButton(
+          onPressed: () {},
+          child: const Text(
+            " chrisbinofficial@gmail.com",
+            style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.w200
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: const Duration (milliseconds: 500),
+      vsync: this,
+    ); // Animation Controller
+    controller.addListener(() {
+      setState(() {
+        dragPosition = animation.value;
+        setImageSide();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final angle = dragPosition / 180 * pi;
+    final transform = Matrix4.identity()
+      ..setEntry(3, 2, 0.001)
+      ..rotateY(angle);
+    return GestureDetector(
+      onHorizontalDragStart: (details){
+        controller.stop();
+        isFrontStart= isFront;
+      },
+      onHorizontalDragUpdate: (details) {
+        dev.log("fd");
+        setState(() {
+          dragPosition -= details.delta.dx;
+          dragPosition %= 360;
+          setImageSide();
+        });
+      },
+      onHorizontalDragEnd: (details){
+        final velocity= details.velocity.pixelsPerSecond.dx.abs();
+        if (velocity >= 100) {
+          isFront = !isFrontStart;
+        }
+        animation = Tween<double>(
+        begin: dragPosition,
+        end: isFront? (dragPosition > 180 ? 360:0):180,
+        ).animate (controller);
+        controller.forward(from: 0);
+      },
+      child: Transform(
+        transform: transform,
+        alignment: Alignment.center,
+        child: Container(
+          height: 320,
+          width: 200,
+          decoration: BoxDecoration(
+            color: const Color(0xff1a1a1a),
+            borderRadius: BorderRadius.circular(8)
+          ),
+          child: isFront ?
+          front :
+          Transform(
+            transform: Matrix4.identity()
+              ..rotateY(pi),
+            alignment: Alignment.center,
+              child: back,
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  void setImageSide() {
+    if (dragPosition <= 90 || dragPosition >= 270) {
+      isFront = true;
+    } else {
+      isFront = false;
+    }
+  }
+
 }
