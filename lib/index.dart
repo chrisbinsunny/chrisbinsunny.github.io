@@ -51,7 +51,7 @@ class _IndexState extends State<Index> {
         child: AppBarCustom(keys: keys, scrollController: scrollController,),
       ),
       extendBodyBehindAppBar: true,
-      endDrawer: CustomEndDrawer(keys: keys,),
+      endDrawer: CustomEndDrawer(keys: keys, scrollController: scrollController,),
       body: Container(
         color: const Color(0xff0c0c0c),
         width: screenWidth(context),
