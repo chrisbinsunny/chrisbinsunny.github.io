@@ -68,11 +68,11 @@ class _ProjectsState extends State<Projects> {
                     name: "ChrisHub",
                     image: "images/chrishubWeb.jpg",
                       altText: "Home screen of chrishub- Chrisbin's Macbook Pro",
-                      desc: "✦ A portfolio website built as a Web Simulation of macOS Big Sur.\n"
-                      "✦ Implemented Terminal, Safari, Messages, VSCode, Spotify, etc.\n"
-                    "✦ Integrated features like create/delete folder, change brightness,wallpaper, etc.\n"
-                    "✦ Used Provider for managing the state and Hive as local database.\n"
-                    "✦ Tech stack: Flutter, Firebase, Hive",
+                      desc: "\u{25ca} A portfolio website built as a Web Simulation of macOS Big Sur.\n"
+                      "\u{25ca} Implemented Terminal, Safari, Messages, VSCode, Spotify, etc.\n"
+                    "\u{25ca} Integrated features like create/delete folder, change brightness,wallpaper, etc.\n"
+                    "\u{25ca} Used Provider for managing the state and Hive as local database.\n"
+                    "\u{25ca} Tech stack: Flutter, Firebase, Hive ",
                     github: "https://github.com/chrisbinsunny/chrishub",
                       link: "https://chrisbinsunny.github.io/chrishub",
                   ),
@@ -85,11 +85,11 @@ class _ProjectsState extends State<Projects> {
                   name: "DREAM- Color Finder",
                   image: "images/dreamWeb.jpg",
                   altText: "Home screen of Dream color finder and gradient maker.",
-                  desc: "✦ A website built to find colours from images and screenshots.\n"
-                  "✦ Implemented a gradient builder to create website backgrounds.\n"
-               "✦ Integrated CSS code copying and sharing.\n"
-                "✦ Used Provider for managing the state.\n"
-                "✦ Tech stack: Flutter",
+                  desc: "\u{25ca} A website built to find colours from images and screenshots.\n"
+                  "\u{25ca} Implemented a gradient builder to create website backgrounds.\n"
+               "\u{25ca} Integrated CSS code copying and sharing.\n"
+                "\u{25ca} Used Provider for managing the state.\n"
+                "\u{25ca} Tech stack: Flutter",
                   github: "https://github.com/chrisbinsunny/dream",
                   link: "https://chrisbinsunny.github.io/dream",
                 ),
@@ -101,11 +101,11 @@ class _ProjectsState extends State<Projects> {
                   name: "Flutter Talks by Chrisbin",
                   image: "images/flutterTalksWeb.jpg",
                   altText: "Home screen of Flutter talks by Chrisbin Sunny.\n",
-                  desc: "✦ A presentation website to be shown at the intro session of workshops.\n"
-                  "✦ The website shows Intro to Flutter slides and is to be controlled by arrow keys.\n"
-                      "✦ Can be controlled by using the link to each slide.\n"
-                      "✦ Used Provider for managing the state.\n"
-                      "✦ Tech stack: Flutter",
+                  desc: "\u{25ca} A presentation website to be shown at the intro session of workshops.\n"
+                  "\u{25ca} The website shows Intro to Flutter slides and is to be controlled by arrow keys.\n"
+                      "\u{25ca} Can be controlled by using the link to each slide.\n"
+                      "\u{25ca} Used Provider for managing the state.\n"
+                      "\u{25ca} Tech stack: Flutter",
                   github: "https://github.com/chrisbinsunny/Flutter-Talks",
                   link: "https://chrisbinsunny.github.io/Flutter-Talks",
                 ),
