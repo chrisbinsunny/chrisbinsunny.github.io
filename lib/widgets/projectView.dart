@@ -564,7 +564,6 @@ class ProjectView extends StatelessWidget {
                   child: Texter(
                     name,
                     maxLines: 1,
-
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 34,
