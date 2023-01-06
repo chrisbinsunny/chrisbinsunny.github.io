@@ -449,7 +449,9 @@ class ProjectView extends StatelessWidget {
                                   )
                               ),
                               child: const Texter(
-                                "Launch Project 🚀",
+                                "Launch Project \u{1F680}",
+                                select: false,
+
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
@@ -484,7 +486,9 @@ class ProjectView extends StatelessWidget {
                                   )
                               ),
                               child: const Texter(
-                                "View GitHub 💻",
+                                "View GitHub \u{1F4BB}",
+                                select: false,
+
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
@@ -648,7 +652,9 @@ class ProjectView extends StatelessWidget {
                               )
                           ),
                           child: const Texter(
-                            "Launch 🚀",
+                            "Launch \u{1F680}",
+                            select: false,
+
                             style: TextStyle(
                                 color: Colors.black,
 
@@ -684,7 +690,8 @@ class ProjectView extends StatelessWidget {
                               )
                           ),
                           child: const Texter(
-                            "GitHub 💻",
+                            "GitHub \u{1F4BB}",
+                            select: false,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
