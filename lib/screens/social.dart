@@ -45,67 +45,16 @@ class _SocialState extends State<Social> {
       child: Wrap(
         alignment: WrapAlignment.center,
         runAlignment: WrapAlignment.center,
-        children: const [
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     SizedBox(
-          //       height: screenHeight(context, mulBy: 0.3),
-          //       child: const Imager(
-          //         altText: "QR code to get Chrisbin's contact vCard",
-          //         path:"images/qrCode.png",
-          //         imageFit: BoxFit.scaleDown,
-          //       ),
-          //     ),
-          //     const SizedBox(
-          //       height: 10,
-          //     ),
-          //     const Texter("  Chrisbin Sunny",
-          //       style: TextStyle(
-          //         fontSize: 24,
-          //         fontWeight: FontWeight.w600
-          //       ),
-          //     ),
-          //     const SizedBox(
-          //       height: 2,
-          //     ),
-          //     const Texter("   App Developer | Speaker",
-          //       style: TextStyle(
-          //           fontSize: 15,
-          //           fontWeight: FontWeight.w200
-          //       ),
-          //     ),
-          //     const SizedBox(
-          //       height: 30,
-          //     ),
-          //     TextButton(
-          //         onPressed: (){},
-          //         child: const Text(
-          //             " (IND)  +91 83300 70512",
-          //           style: TextStyle(
-          //               fontSize: 15,
-          //               color: Colors.white,
-          //               fontWeight: FontWeight.w200
-          //           ),
-          //         ),
-          //     ),
-          //     const SizedBox(
-          //       height: 2,
-          //     ),
-          //     TextButton(
-          //       onPressed: (){},
-          //       child: const Text(
-          //         " chrisbinofficial@gmail.com",
-          //         style: TextStyle(
-          //             fontSize: 15,
-          //             color: Colors.white,
-          //             fontWeight: FontWeight.w200
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          ContactCard()
+        children: [
+          ContactCard(),
+          Wrap(
+            children: [
+              SocialButton(text: "", onTap: (){}, icon: Icons.add),
+              SocialButton(text: "", onTap: (){}, icon: Icons.add),
+              SocialButton(text: "", onTap: (){}, icon: Icons.add),
+              SocialButton(text: "", onTap: (){}, icon: Icons.add),
+            ],
+          )
         ],
       ),
     );
@@ -533,5 +482,28 @@ class CircleBlurPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
+  }
+}
+
+class SocialButton extends StatelessWidget {
+  const SocialButton({Key? key, required this.text, required this.onTap, required this.icon}) : super(key: key);
+
+  final IconData icon;
+  final VoidCallback onTap;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){},
+      child: Container(
+        height: 100,
+        width: 100,
+        decoration: BoxDecoration(
+          color: Color(0xff2a2a2a),
+
+        ),
+      ),
+    );
   }
 }
