@@ -127,159 +127,182 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
   double dragPosition = 0;
   bool isFront = true, isFrontStart=true;
 
-  Widget frontSide= Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const SizedBox(
-        height: 17,
-      ),
-          const Center(
-            child: SizedBox(
-              height: 110,
-              child: Imager(
-                path: "images/macGuy.png",
-                altText: "Memoji using macbook. WWDC",
-                colorBlendMode: BlendMode.plus,
-                alignment: Alignment.center,
+  Widget frontSide= LayoutBuilder(
+  builder: (p0, constraints) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: constraints.maxHeight*0.1
+        ),
+            const Center(
+              child: SizedBox(
+                height: 110,
+                child: Imager(
+                  path: "images/macGuy.png",
+                  altText: "Memoji using macbook. WWDC",
+                  colorBlendMode: BlendMode.plus,
+                  alignment: Alignment.center,
+                ),
               ),
             ),
-          ),
-      const SizedBox(
-        height: 10,
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 33
+        const SizedBox(
+          height: 10,
         ),
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
+        Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 33
+          ),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
 
-          child: RichTexter(
-            text: "Chrisbin Sunny",
-            child: RichText(
-              text: const TextSpan(
-                  text: "Chrisbin\n",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xff5dc8f8),
-                      fontSize: 32,
-                      fontFamily: "Gilroy",
-                    letterSpacing: 1.5
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "Sunny",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xff065a9d),
-                          fontSize: 35,
-                          height: 0.9,
-                          letterSpacing: 0.5
-
-                      ),
+            child: RichTexter(
+              text: "Chrisbin Sunny",
+              child: RichText(
+                text: const TextSpan(
+                    text: "Chrisbin\n",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xff5dc8f8),
+                        fontSize: 32,
+                        fontFamily: "Gilroy",
+                      letterSpacing: 1.5
                     ),
-                  ]
+                    children: [
+                      TextSpan(
+                        text: "Sunny",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff065a9d),
+                            fontSize: 35,
+                            height: 0.9,
+                            letterSpacing: 0.5
+
+                        ),
+                      ),
+                    ]
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           ),
         ),
-      ),
-      const Spacer(),
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          FaIcon(
-            FontAwesomeIcons.squareGithub,
-            color: Colors.white,
-            size: 11,
-          ),
-          Text(
-            "  chrisbinsunny",
-          style: TextStyle(
-            fontSize: 7,
-            fontWeight: FontWeight.w100,
-            letterSpacing: 1,
-            height: 1.7,
-            fontFamily: "Gilroy",
-          ),
-          ),
-        ],
-      ),
-      const SizedBox(
-        height: 2,
-      ),
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          FaIcon(
-            FontAwesomeIcons.linkedin,
-            color: Colors.white,
-            size: 11,
-          ),
-          Text(
-            "  chrisbinsunny",
-            style: TextStyle(
-              fontSize: 7,
-              fontWeight: FontWeight.w100,
-              letterSpacing: 1,
-              height: 1.7,
-              fontFamily: "Gilroy",
+        const Spacer(),
+        SizedBox(
+          width: constraints.maxWidth*0.42,
+          child: FittedBox(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                FaIcon(
+                  FontAwesomeIcons.squareGithub,
+                  color: Colors.white,
+                  size: 11,
+                ),
+                Text(
+                  "  chrisbinsunny",
+                style: TextStyle(
+                  fontSize: 7,
+                  fontWeight: FontWeight.w200,
+                  letterSpacing: 1,
+                  height: 1.7,
+                  fontFamily: "Gilroy",
+                ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
-      const SizedBox(
-        height: 2,
-      ),
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          FaIcon(
-            FontAwesomeIcons.squareTwitter,
-            color: Colors.white,
-            size: 11,
-          ),
-          Text(
-            "  chrisbinsunny",
-            style: TextStyle(
-              fontSize: 7,
-              fontWeight: FontWeight.w100,
-              letterSpacing: 1,
-              height: 1.7,
-              fontFamily: "Gilroy",
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(
-        height: 2,
-      ),
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          FaIcon(
-            FontAwesomeIcons.chrome,
-            color: Colors.white,
-            size: 10,
-          ),
-          Text(
-            "  chrisbinsunny.github.io",
-            style: TextStyle(
-              fontSize: 7,
-              fontWeight: FontWeight.w100,
-              letterSpacing: 1,
-              height: 1.7,
-              fontFamily: "Gilroy",
-            ),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 2,
+        ),
+        SizedBox(
+          width: constraints.maxWidth*0.42,
 
-    ],
+          child: FittedBox(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                FaIcon(
+                  FontAwesomeIcons.linkedin,
+                  color: Colors.white,
+                  size: 11,
+                ),
+                Text(
+                  "  chrisbinsunny",
+                  style: TextStyle(
+                    fontSize: 7,
+                    fontWeight: FontWeight.w100,
+                    letterSpacing: 1,
+                    height: 1.7,
+                    fontFamily: "Gilroy",
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 2,
+        ),
+        SizedBox(
+            width: constraints.maxWidth*0.42,
+
+            child: FittedBox(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            FaIcon(
+              FontAwesomeIcons.squareTwitter,
+              color: Colors.white,
+              size: 11,
+            ),
+            Text(
+              "  chrisbinsunny",
+              style: TextStyle(
+                fontSize: 7,
+                fontWeight: FontWeight.w100,
+                letterSpacing: 1,
+                height: 1.7,
+                fontFamily: "Gilroy",
+              ),
+            ),
+          ],
+        ),)),
+        const SizedBox(
+          height: 2,
+        ),
+        SizedBox(
+            width: constraints.maxWidth*0.64,
+
+            child: FittedBox(
+              child:
+              Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            FaIcon(
+              FontAwesomeIcons.chrome,
+              color: Colors.white,
+              size: 10,
+            ),
+            Text(
+              "  chrisbinsunny.github.io",
+              style: TextStyle(
+                fontSize: 7,
+                fontWeight: FontWeight.w100,
+                letterSpacing: 1,
+                height: 1.7,
+                fontFamily: "Gilroy",
+              ),
+            ),
+          ],
+        ),))
+
+      ],
+    );}
   );
   Widget back = LayoutBuilder(
 
@@ -296,7 +319,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           height: 5,
         ),
         SizedBox(
-          width: constraints.maxWidth*0.7,
+          width: constraints.maxWidth*0.65,
           child: const FittedBox(
             child: Texter(" Chrisbin Sunny",
               style: TextStyle(
@@ -310,7 +333,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           height: 2,
         ),
         SizedBox(
-          width: constraints.maxWidth*0.65,
+          width: constraints.maxWidth*0.6,
           child: const FittedBox(
             child: Texter("  App Developer | Speaker",
               style: TextStyle(
@@ -321,10 +344,10 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           ),
         ),
         const SizedBox(
-          height: 25,
+          height: 30,
         ),
         SizedBox(
-          width: constraints.maxWidth*0.6,
+          width: constraints.maxWidth*0.55,
           child: const FittedBox(
             child: Texter(
               " (IND)  +91 83300 70512",
@@ -340,7 +363,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           height: 2,
         ),
         SizedBox(
-          width: constraints.maxWidth*0.7,
+          width: constraints.maxWidth*0.65,
           child: const FittedBox(
             child: Texter(
               " chrisbinofficial@gmail.com",
@@ -454,7 +477,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
                       borderRadius: BorderRadius.circular(8)
                   ),
                   child: isFront ?
-                  fr :
+                  frontSide :
                   Transform(
                     transform: Matrix4.identity()
                       ..rotateY(pi),
@@ -468,7 +491,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           const SizedBox(
             height: 30,
           ),
-          CustomPaint(foregroundPainter: CircleBlurPainter( blurSigma: 11))
+          CustomPaint(foregroundPainter: CircleBlurPainter( blurSigma: 11, width: getWidth()))
         ],
       ),
     );
@@ -483,14 +506,19 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
     }
   }
 
+  getWidth(){
+    return dragPosition>180?(130+(180-dragPosition)*1.44):130-(dragPosition*1.44);
+  }
+
+
 }
 
 
 class CircleBlurPainter extends CustomPainter {
 
-  CircleBlurPainter({required this.blurSigma});
+  CircleBlurPainter({required this.blurSigma, required this.width});
 
-  double blurSigma;
+  double blurSigma, width;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -499,7 +527,7 @@ class CircleBlurPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.fill
       ..maskFilter = MaskFilter.blur(BlurStyle.normal, blurSigma);
-    canvas.drawOval(const Rect.fromLTRB(-110, 0, 110, 13), line);
+    canvas.drawOval(Rect.fromLTRB(-(width), 3, width, 10), line);
   }
 
   @override
