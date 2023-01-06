@@ -133,8 +133,8 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
       const SizedBox(
         height: 17,
       ),
-          Center(
-            child: const SizedBox(
+          const Center(
+            child: SizedBox(
               height: 110,
               child: Imager(
                 path: "images/macGuy.png",
@@ -197,77 +197,160 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           Text(
             "  chrisbinsunny",
           style: TextStyle(
-            fontSize: 8,
-            fontWeight: FontWeight.w200,
-            letterSpacing: 1.5,
+            fontSize: 7,
+            fontWeight: FontWeight.w100,
+            letterSpacing: 1,
+            height: 1.7,
             fontFamily: "Gilroy",
           ),
           ),
         ],
       ),
-
+      const SizedBox(
+        height: 2,
+      ),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          FaIcon(
+            FontAwesomeIcons.linkedin,
+            color: Colors.white,
+            size: 11,
+          ),
+          Text(
+            "  chrisbinsunny",
+            style: TextStyle(
+              fontSize: 7,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 1,
+              height: 1.7,
+              fontFamily: "Gilroy",
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 2,
+      ),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          FaIcon(
+            FontAwesomeIcons.squareTwitter,
+            color: Colors.white,
+            size: 11,
+          ),
+          Text(
+            "  chrisbinsunny",
+            style: TextStyle(
+              fontSize: 7,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 1,
+              height: 1.7,
+              fontFamily: "Gilroy",
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 2,
+      ),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          FaIcon(
+            FontAwesomeIcons.chrome,
+            color: Colors.white,
+            size: 10,
+          ),
+          Text(
+            "  chrisbinsunny.github.io",
+            style: TextStyle(
+              fontSize: 7,
+              fontWeight: FontWeight.w100,
+              letterSpacing: 1,
+              height: 1.7,
+              fontFamily: "Gilroy",
+            ),
+          ),
+        ],
+      ),
 
     ],
   );
-  Widget back = Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const SizedBox(
-        height: 70,
-        child: Imager(
+  Widget back = LayoutBuilder(
+
+    builder: (p0, constraints) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Imager(
           altText: "QR code to get Chrisbin's contact vCard",
           path: "images/qrCode.png",
-          imageFit: BoxFit.scaleDown,
+          imageFit: BoxFit.fitWidth,
         ),
-      ),
-      const SizedBox(
-        height: 10,
-      ),
-      const Texter("  Chrisbin Sunny",
-        style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600
+        const SizedBox(
+          height: 10,
         ),
-      ),
-      const SizedBox(
-        height: 2,
-      ),
-      const Texter("   App Developer | Speaker",
-        style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w200
-        ),
-      ),
-      const SizedBox(
-        height: 30,
-      ),
-      TextButton(
-        onPressed: () {},
-        child: const Text(
-          " (IND)  +91 83300 70512",
-          style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
-              fontWeight: FontWeight.w200
+        SizedBox(
+          width: constraints.maxWidth*0.7,
+          child: const FittedBox(
+            child: Texter(" Chrisbin Sunny",
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600
+              ),
+            ),
           ),
         ),
-      ),
-      const SizedBox(
-        height: 2,
-      ),
-      TextButton(
-        onPressed: () {},
-        child: const Text(
-          " chrisbinofficial@gmail.com",
-          style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
-              fontWeight: FontWeight.w200
+        const SizedBox(
+          height: 2,
+        ),
+        SizedBox(
+          width: constraints.maxWidth*0.65,
+          child: FittedBox(
+            child: const Texter("  App Developer | Speaker",
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w200
+              ),
+            ),
           ),
         ),
-      ),
-    ],
-  );
+        const SizedBox(
+          height: 30,
+        ),
+        TextButton(
+          onPressed: () {},
+          child: const Text(
+            " (IND)  +91 83300 70512",
+            style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.w200
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 2,
+        ),
+        TextButton(
+          onPressed: () {},
+          child: const Text(
+            " chrisbinofficial@gmail.com",
+            style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.w200
+            ),
+          ),
+        ),
+      ],
+    );
+  },);
 
   @override
   void initState() {
@@ -334,16 +417,16 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
                 child: Container(
                   height: 320,
                   width: 200,
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 8,
-                    horizontal: 12
+                    horizontal: 12  //12
                   ),
                   decoration: BoxDecoration(
                       color: const Color(0xff0c0c0c),
                       borderRadius: BorderRadius.circular(8)
                   ),
                   child: isFront ?
-                  frontSide :
+                  back :
                   Transform(
                     transform: Matrix4.identity()
                       ..rotateY(pi),
