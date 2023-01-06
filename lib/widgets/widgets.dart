@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:seo/html/seo_widget.dart';
 
 class Texter extends StatelessWidget {
-  const Texter(this.text, {Key? key, this.style=const TextStyle(), this.textAlign=TextAlign.start, this.maxLines}) : super(key: key);
+  const Texter(this.text, {Key? key, this.select=true, this.style=const TextStyle(), this.textAlign=TextAlign.start, this.maxLines}) : super(key: key);
 
   final TextStyle style;
   final String text;
   final TextAlign textAlign;
   final int? maxLines;
+  final bool select;
 
   @override
   Widget build(BuildContext context) {
-    return SelectionArea(
+    return select?
+    SelectionArea(
       child: Seo.text(
         text: text,
         child: Text(
@@ -23,6 +25,18 @@ class Texter extends StatelessWidget {
             fontFamily: "Gilroy",
           ),
 
+        ),
+      ),
+    ):
+    Seo.text(
+      text: text,
+      child: Text(
+        text,
+        maxLines: maxLines,
+        overflow: maxLines==1?TextOverflow.ellipsis:null,
+        textAlign: textAlign,
+        style: style.copyWith(
+          fontFamily: "Gilroy",
         ),
       ),
     );
