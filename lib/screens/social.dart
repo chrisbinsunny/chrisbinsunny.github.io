@@ -293,7 +293,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           imageFit: BoxFit.fitWidth,
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
         SizedBox(
           width: constraints.maxWidth*0.7,
@@ -311,8 +311,8 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
         ),
         SizedBox(
           width: constraints.maxWidth*0.65,
-          child: FittedBox(
-            child: const Texter("  App Developer | Speaker",
+          child: const FittedBox(
+            child: Texter("  App Developer | Speaker",
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w200
@@ -321,33 +321,61 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 25,
         ),
-        TextButton(
-          onPressed: () {},
-          child: const Text(
-            " (IND)  +91 83300 70512",
-            style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.w200
+        SizedBox(
+          width: constraints.maxWidth*0.6,
+          child: const FittedBox(
+            child: Texter(
+              " (IND)  +91 83300 70512",
+              style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300
+              ),
             ),
           ),
         ),
         const SizedBox(
           height: 2,
         ),
-        TextButton(
-          onPressed: () {},
-          child: const Text(
-            " chrisbinofficial@gmail.com",
-            style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.w200
+        SizedBox(
+          width: constraints.maxWidth*0.7,
+          child: const FittedBox(
+            child: Texter(
+              " chrisbinofficial@gmail.com",
+              style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                  fontFamily: "Gilroy",
+                  fontWeight: FontWeight.w300
+              ),
             ),
           ),
         ),
+        Spacer(),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const FlutterLogo(
+              size: 20,
+            ),
+            Texter(
+              " FlutterDev",
+              style: TextStyle(
+                  fontSize: 17,
+                  color: null,
+                  fontFamily: "Gilroy",
+                  fontWeight: FontWeight.w500,
+                foreground: Paint()..shader=const LinearGradient(
+                  colors: <Color>[Color(0xff5dc8f8), Color(0xff065a9d)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter
+                ).createShader(const Rect.fromLTWH(0.0, 0.0, 50.0, 20.0))
+              ),
+            )
+          ],
+        )
       ],
     );
   },);
@@ -415,8 +443,8 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
                 colorOpacity: .1,
                 duration: const Duration(seconds: 5),
                 child: Container(
-                  height: 320,
-                  width: 200,
+                  height: 384,
+                  width: 240,
                   padding: const EdgeInsets.symmetric(
                     vertical: 8,
                     horizontal: 12  //12
@@ -426,7 +454,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
                       borderRadius: BorderRadius.circular(8)
                   ),
                   child: isFront ?
-                  back :
+                  fr :
                   Transform(
                     transform: Matrix4.identity()
                       ..rotateY(pi),
