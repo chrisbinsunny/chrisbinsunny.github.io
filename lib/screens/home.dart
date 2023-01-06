@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
                   style: const TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 80,
-                      color: Color(0x83093c0)
+                      color: Color(0x53093c0)
                   ),
                   textAlign: TextAlign.justify,
                 ),
