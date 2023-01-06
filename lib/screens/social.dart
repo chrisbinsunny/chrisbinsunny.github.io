@@ -5,6 +5,7 @@ import 'dart:math';
 import 'dart:developer' as dev;
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:seo/html/seo_widget.dart';
@@ -44,7 +45,7 @@ class _SocialState extends State<Social> {
       child: Wrap(
         alignment: WrapAlignment.center,
         runAlignment: WrapAlignment.center,
-        children: [
+        children: const [
           // Column(
           //   crossAxisAlignment: CrossAxisAlignment.start,
           //   children: [
@@ -104,7 +105,7 @@ class _SocialState extends State<Social> {
           //     ),
           //   ],
           // ),
-          const ContactCard()
+          ContactCard()
         ],
       ),
     );
@@ -126,70 +127,146 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
   double dragPosition = 0;
   bool isFront = true, isFrontStart=true;
 
-  Widget front = Container(
-    color: Colors.green,
-  );
+  Widget frontSide= Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const SizedBox(
+        height: 17,
+      ),
+          Center(
+            child: const SizedBox(
+              height: 110,
+              child: Imager(
+                path: "images/macGuy.png",
+                altText: "Memoji using macbook. WWDC",
+                colorBlendMode: BlendMode.plus,
+                alignment: Alignment.center,
+              ),
+            ),
+          ),
+      const SizedBox(
+        height: 10,
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: 33
+        ),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
 
-  Widget back = Container(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 70,
-          child: Imager(
-            altText: "QR code to get Chrisbin's contact vCard",
-            path: "images/qrCode.png",
-            imageFit: BoxFit.scaleDown,
+          child: RichTexter(
+            text: "Chrisbin Sunny",
+            child: RichText(
+              text: const TextSpan(
+                  text: "Chrisbin\n",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xff5dc8f8),
+                      fontSize: 32,
+                      fontFamily: "Gilroy",
+                    letterSpacing: 1.5
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "Sunny",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff065a9d),
+                          fontSize: 35,
+                          height: 0.9,
+                          letterSpacing: 0.5
+
+                      ),
+                    ),
+                  ]
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        const Texter("  Chrisbin Sunny",
+      ),
+      const Spacer(),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          FaIcon(
+            FontAwesomeIcons.squareGithub,
+            color: Colors.white,
+            size: 11,
+          ),
+          Text(
+            "  chrisbinsunny",
           style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600
+            fontSize: 8,
+            fontWeight: FontWeight.w200,
+            letterSpacing: 1.5,
+            fontFamily: "Gilroy",
           ),
+          ),
+        ],
+      ),
+
+
+    ],
+  );
+  Widget back = Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const SizedBox(
+        height: 70,
+        child: Imager(
+          altText: "QR code to get Chrisbin's contact vCard",
+          path: "images/qrCode.png",
+          imageFit: BoxFit.scaleDown,
         ),
-        const SizedBox(
-          height: 2,
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      const Texter("  Chrisbin Sunny",
+        style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600
         ),
-        const Texter("   App Developer | Speaker",
+      ),
+      const SizedBox(
+        height: 2,
+      ),
+      const Texter("   App Developer | Speaker",
+        style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w200
+        ),
+      ),
+      const SizedBox(
+        height: 30,
+      ),
+      TextButton(
+        onPressed: () {},
+        child: const Text(
+          " (IND)  +91 83300 70512",
           style: TextStyle(
               fontSize: 15,
+              color: Colors.white,
               fontWeight: FontWeight.w200
           ),
         ),
-        const SizedBox(
-          height: 30,
-        ),
-        TextButton(
-          onPressed: () {},
-          child: const Text(
-            " (IND)  +91 83300 70512",
-            style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.w200
-            ),
+      ),
+      const SizedBox(
+        height: 2,
+      ),
+      TextButton(
+        onPressed: () {},
+        child: const Text(
+          " chrisbinofficial@gmail.com",
+          style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.w200
           ),
         ),
-        const SizedBox(
-          height: 2,
-        ),
-        TextButton(
-          onPressed: () {},
-          child: const Text(
-            " chrisbinofficial@gmail.com",
-            style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontWeight: FontWeight.w200
-            ),
-          ),
-        ),
-      ],
-    ),
+      ),
+    ],
   );
 
   @override
@@ -245,26 +322,34 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
       },
       child: Column(
         children: [
+
           Transform(
             transform: transform,
             alignment: Alignment.center,
-            child: Shimmer(
-              colorOpacity: .1,
-              duration: Duration(seconds: 5),
-              child: Container(
-                height: 320,
-                width: 200,
-                decoration: BoxDecoration(
-                  color: const Color(0xff1a1a1a),
-                  borderRadius: BorderRadius.circular(8)
-                ),
-                child: isFront ?
-                front :
-                Transform(
-                  transform: Matrix4.identity()
-                    ..rotateY(pi),
-                  alignment: Alignment.center,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Shimmer(
+                colorOpacity: .1,
+                duration: const Duration(seconds: 5),
+                child: Container(
+                  height: 320,
+                  width: 200,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12
+                  ),
+                  decoration: BoxDecoration(
+                      color: const Color(0xff0c0c0c),
+                      borderRadius: BorderRadius.circular(8)
+                  ),
+                  child: isFront ?
+                  frontSide :
+                  Transform(
+                    transform: Matrix4.identity()
+                      ..rotateY(pi),
+                    alignment: Alignment.center,
                     child: back,
+                  ),
                 ),
               ),
             ),
