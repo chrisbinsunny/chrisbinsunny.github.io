@@ -249,6 +249,7 @@ class AppBarButton extends StatelessWidget {
               width: 100,
               child: Texter(
                 text,
+                select: false,
                 textAlign: TextAlign.center,
 
                 style: TextStyle(
