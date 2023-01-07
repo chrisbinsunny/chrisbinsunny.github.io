@@ -26,7 +26,13 @@ class _SocialState extends State<Social> {
 
     return Container(
       width: screenWidth(context, mulBy: 1),
-      height: screenHeight(context),
+      //height: screenHeight(context),
+      padding: EdgeInsets.only(
+        left: screenWidth(context, mulBy: 0.15),
+        right: screenWidth(context, mulBy: 0.15),
+        top: 80
+
+      ),
       decoration: const BoxDecoration(
           gradient: LinearGradient(
               colors: [
@@ -38,22 +44,71 @@ class _SocialState extends State<Social> {
               end: Alignment.bottomCenter
           )
       ),
-      constraints:const BoxConstraints(
+      constraints: BoxConstraints(
       minWidth: 500,
-        minHeight:  725,
+        minHeight: screenHeight(context),
       ),
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        runAlignment: WrapAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ContactCard(),
-          Wrap(
-            children: [
-              SocialButton(text: "", onTap: (){}, icon: Icons.add),
-              SocialButton(text: "", onTap: (){}, icon: Icons.add),
-              SocialButton(text: "", onTap: (){}, icon: Icons.add),
-              SocialButton(text: "", onTap: (){}, icon: Icons.add),
-            ],
+          SizedBox(
+            width: screenWidth(context),
+            child: Wrap(
+              alignment: WrapAlignment.spaceEvenly,
+              runAlignment: WrapAlignment.spaceEvenly,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: const [
+                Texter(
+                  "Contact\nCard",
+                  textAlign: TextAlign.end,
+                  style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.w700
+                  ),
+                ),
+                ContactCard(),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 70,
+          ),
+          SizedBox(
+
+            width: screenWidth(context, mulBy: 0.6),
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              runAlignment: WrapAlignment.spaceEvenly,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 20,
+              runSpacing: 20,
+              children: [
+                SocialButton(topic: "Location", text:"Kerala, India", onTap: (){}, icon: Icons.pin_drop, large: true,),
+                SocialButton(topic: "Email", text:"chrisbinofficial@gmail.com", onTap: (){}, icon: Icons.email, large: true,),
+                SocialButton(topic: "Phone", text:"+91 83300 70512", onTap: (){}, icon: Icons.phone, large: true,),
+
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            width: screenWidth(context, mulBy: 0.6),
+
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              runAlignment: WrapAlignment.center,
+              spacing: 20,
+              runSpacing: 20,
+              children: [
+                SocialButton(topic: "GitHub", onTap: (){}, icon: FontAwesomeIcons.github),
+                SocialButton(topic: "Twitter", onTap: (){}, icon: FontAwesomeIcons.twitter),
+                SocialButton(topic: "LinkedIn", onTap: (){}, icon: FontAwesomeIcons.linkedin),
+                SocialButton(topic: "Instagram", onTap: (){}, icon: FontAwesomeIcons.instagram),
+              ],
+            ),
           )
         ],
       ),
@@ -325,7 +380,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
             ),
           ),
         ),
-        Spacer(),
+        const Spacer(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -404,6 +459,8 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
         controller.forward(from: 0);
       },
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
 
           Transform(
@@ -486,22 +543,86 @@ class CircleBlurPainter extends CustomPainter {
 }
 
 class SocialButton extends StatelessWidget {
-  const SocialButton({Key? key, required this.text, required this.onTap, required this.icon}) : super(key: key);
+  const SocialButton({Key? key, this.large=false, this.text="", required this.topic, required this.onTap, required this.icon}) : super(key: key);
 
   final IconData icon;
   final VoidCallback onTap;
-  final String text;
+  final String topic, text;
+  final bool large;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){},
-      child: Container(
-        height: 100,
-        width: 100,
+      child: large?
+      Container(
+        height: 170,
+        width: 300,
+        padding: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15
+        ),
+        constraints: const BoxConstraints(
+          minWidth: 100,
+          minHeight: 100,
+        ),
         decoration: BoxDecoration(
-          color: Color(0xff2a2a2a),
+          color: const Color(0xff2a2a2a),
+          borderRadius: BorderRadius.circular(15),
 
+        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(icon,
+          color: Theme.of(context).primaryColor,
+            size: 28,
+          ),
+          Texter(
+            topic.toUpperCase(),
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600
+            ),
+          ),
+          Texter(
+            text,
+            style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w400
+            ),
+          )
+        ],
+      ),
+      ):
+      Container(
+        height: screenHeight(context, mulBy: 0.14),
+        width: screenWidth(context, mulBy: 0.07),
+
+        constraints: const BoxConstraints(
+          minWidth: 100,
+          minHeight: 100,
+        ),
+        decoration: BoxDecoration(
+          color: const Color(0xff2a2a2a),
+          borderRadius: BorderRadius.circular(15),
+
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(icon,
+              color: Theme.of(context).primaryColor,
+              size: 28,
+            ),
+            Texter(
+              topic.toUpperCase(),
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600
+              ),
+            ),
+          ],
         ),
       ),
     );
