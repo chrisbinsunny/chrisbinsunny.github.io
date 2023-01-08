@@ -62,6 +62,7 @@ class _IndexState extends State<Index> {
           thickness: isWebMobile?3:11,
           interactive: true,
           radius: Radius.circular(isWebMobile?10:0),
+
           trackVisibility: false,
           thumbVisibility: false,
           child: ScrollConfiguration(
@@ -72,9 +73,9 @@ class _IndexState extends State<Index> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  // Home(key: keys[0],),
-                  // About(key: keys[1],),
-                  // Projects(key: keys[2],),
+                  Home(key: keys[0],),
+                  About(key: keys[1],),
+                  Projects(key: keys[2],),
                   Social(key: keys[3])
                 ],
               ),
