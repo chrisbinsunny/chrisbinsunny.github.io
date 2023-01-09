@@ -1,4 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/widgets/widgets.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 class ContactCard extends StatefulWidget {
   const ContactCard({Key? key}) : super(key: key);
