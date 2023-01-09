@@ -52,26 +52,15 @@ class _SocialState extends State<Social> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            width: screenWidth(context),
-            child: Wrap(
-              alignment: WrapAlignment.spaceEvenly,
-              runAlignment: WrapAlignment.spaceEvenly,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: const [
-                Texter(
-                  "Contact\nCard",
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                      fontSize: 44,
-                      fontWeight: FontWeight.w700
-                  ),
-                ),
-                ContactCard(),
-              ],
+          const Texter(
+            "Contact\nCard",
+            textAlign: TextAlign.end,
+            style: TextStyle(
+                fontSize: 44,
+                fontWeight: FontWeight.w700
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 70,
           ),
           SizedBox(
@@ -91,7 +80,7 @@ class _SocialState extends State<Social> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           SizedBox(
@@ -134,7 +123,7 @@ class SocialButton extends StatelessWidget {
       Container(
         height: 170,
         width: 300,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 15
         ),
