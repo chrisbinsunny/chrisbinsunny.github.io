@@ -53,7 +53,7 @@ class _SocialState extends State<Social> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Texter(
-            "Contact\nCard",
+            "I'm Social",
             textAlign: TextAlign.end,
             style: TextStyle(
                 fontSize: 44,
