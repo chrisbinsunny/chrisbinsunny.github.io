@@ -2,6 +2,7 @@
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/components/contactCard.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:seo/html/seo_widget.dart';
@@ -16,39 +17,27 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-
-
-
     return Container(
       width: screenWidth(context, mulBy: 1),
-      height: screenHeight(context),  ///Reducing 70 for appbar
+      //height: screenHeight(context),  ///Reducing 70 for appbar
       color: const Color(0xff0c0c0c),
-      constraints:const BoxConstraints(
+      constraints: BoxConstraints(
       minWidth: 500,
-        minHeight:  725,  ///Reducing 70 for appbar
+        minHeight:  screenHeight(context),  ///Reducing 70 for appbar
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          return Stack(
-            children: [
-              Seo.text(
-                text: "App Developer | Engineer | Designer | Speaker",
-                child: Text(
-                  "Flutter Dart Firebase Supabase Google Cloud Maps GoLang "*10,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 80,
-                      color: Color(0x53093c0)
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-              ),
-              Container(
-                width: constraints.maxWidth,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10
-                ),
-                child: Column(
+          return Container(
+            width: constraints.maxWidth,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10
+            ),
+            child: Wrap(
+              alignment: WrapAlignment.spaceEvenly,
+              runAlignment: WrapAlignment.spaceEvenly,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -142,8 +131,9 @@ class _HomeState extends State<Home> {
                     )
                   ],
                 ),
-              )
-            ],
+                ContactCard()
+              ],
+            ),
           );
         },
       ),
