@@ -52,23 +52,6 @@ class _AboutState extends State<About> {
         spacing: 20,
         runSpacing: 40,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Texter(
-                "Skill Stack",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 34,
-                    color: Theme.of(context).secondaryHeaderColor
-                ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-            ],
-          ),
           SizedBox(
             width: 600,
             child: Column(
@@ -98,7 +81,59 @@ class _AboutState extends State<About> {
               ],
             ),
           ),
-
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Texter(
+                "Skill Stack",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 34,
+                    color: Theme.of(context).secondaryHeaderColor
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Container(
+                width: 400,
+                clipBehavior: Clip.antiAlias,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: const Color(0xff0c0c0c),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                        color: Colors.white,
+                        width: 0.7
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0x2dffffff),
+                          spreadRadius: 4,
+                          blurRadius: 15
+                      )
+                    ]
+                ),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 10
+                ),
+                constraints: const BoxConstraints(
+                  minHeight: 480,
+                ),
+                child: const Texter(
+                  "Flutter, Dart, Firebase, Supabase, Google Cloud Maps, GoLang",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 52,
+                      color: Color(0x6b3093c0)
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
