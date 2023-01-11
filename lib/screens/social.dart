@@ -230,11 +230,13 @@ class SocialButton extends StatelessWidget {
               fontWeight: FontWeight.w600
             ),
           ),
-          Texter(
-            text,
-            style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400
+          FittedBox(
+            child: Texter(
+              text,
+              style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400
+              ),
             ),
           )
         ],
