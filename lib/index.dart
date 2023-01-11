@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/drawer.dart';
+import 'package:portfolio/constants/variables.dart';
 import 'package:portfolio/screens/about.dart';
 import 'package:portfolio/screens/projects.dart';
 import 'package:portfolio/screens/social.dart';
@@ -22,14 +23,9 @@ class Index extends StatefulWidget {
 
 class _IndexState extends State<Index> {
 
-  final ScrollController scrollController= ScrollController();
   late final bool isWebMobile;
-  final List<GlobalKey> keys=[
-    GlobalKey(),
-    GlobalKey(),
-    GlobalKey(),
-    GlobalKey(),
-  ];
+
+
 
   // _scrollListener() {
   //   Provider.of<ScrollDetail>(context, listen: false).setPos(scrollController.position.pixels);
@@ -50,15 +46,15 @@ class _IndexState extends State<Index> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(screenWidth(context), 70),
-        child: AppBarCustom(keys: keys, scrollController: scrollController,),
+        child: AppBarCustom(keys: Variables.keys, scrollController: Variables.scrollController,),
       ),
       extendBodyBehindAppBar: true,
-      endDrawer: CustomEndDrawer(keys: keys, scrollController: scrollController,),
+      endDrawer: CustomEndDrawer(keys: Variables.keys, scrollController: Variables.scrollController,),
       body: Container(
         color: const Color(0xff0c0c0c),
         width: screenWidth(context),
         child: Scrollbar(
-          controller: scrollController,
+          controller: Variables.scrollController,
           thickness: isWebMobile?3:11,
           interactive: true,
           radius: Radius.circular(isWebMobile?10:0),
@@ -69,14 +65,14 @@ class _IndexState extends State<Index> {
             behavior:
             ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
-              controller: scrollController,
+              controller: Variables.scrollController,
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  Home(key: keys[0],),
-                  About(key: keys[1],),
-                  Projects(key: keys[2],),
-                  Social(key: keys[3])
+                  Home(key: Variables.keys[0],),
+                  About(key: Variables.keys[1],),
+                  Projects(key: Variables.keys[2],),
+                  Social(key: Variables.keys[3])
                 ],
               ),
             ),
