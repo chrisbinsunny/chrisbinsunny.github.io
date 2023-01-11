@@ -59,7 +59,7 @@ class _AboutState extends State<About> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Texter(
-                  "About Chrisbin",
+                  "About Me",
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 34,
@@ -70,13 +70,17 @@ class _AboutState extends State<About> {
                   height: 30,
                 ),
                 const Texter(
-                  "Programming was always my area of interest since teenage. My main objective is to make technology reach everyone, so "
-                      "I conduct tech talks at schools and colleges. Currently on a mission to make clean UI/UX using Flutter Web.",
+                  "Ever since I was a teenager, programming has been a passion of mine. "
+                      "My goal is to make technology accessible to everyone, which is why I frequently give tech talks and workshops at schools and colleges. "
+                      "Currently, I am focused on creating clean and user-friendly UI/UX using the Flutter Web framework.\n\n"
+                      "Over the past few years, I have had the opportunity to work on a wide range of Flutter mobile and web projects, gaining a wealth of experience in the process. "
+                      "By working for both companies and individuals across the globe and attending meetups, I have had the opportunity to learn from and collaborate with some truly exceptional and motivated individuals.\n\n"
+                      "I am currently working remotely with a select group of freelance clients, while also open to new opportunities.",
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
-                    fontSize: 20,
+                    fontSize: 19,
                   ),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                 ),
               ],
             ),
