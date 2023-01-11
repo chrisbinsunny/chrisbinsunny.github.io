@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
@@ -385,7 +386,33 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           const SizedBox(
             height: 30,
           ),
-          CustomPaint(foregroundPainter: CircleBlurPainter( blurSigma: 11, width: getWidth()))
+          CustomPaint(foregroundPainter: CircleBlurPainter( blurSigma: 11, width: getWidth())),
+          const SizedBox(
+            height: 50,
+          ),
+          InkWell(
+            onTap: (){},
+            child: Container(
+              height: 45,
+              width: 200,
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(13),
+                gradient: LinearGradient(
+                    colors: [
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).secondaryHeaderColor
+                    ],
+                    stops: [
+                      0,
+                      0.8
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter
+                )
+              ),
+            ),
+          )
         ],
       ),
     );
