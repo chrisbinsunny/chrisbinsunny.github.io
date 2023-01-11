@@ -92,9 +92,7 @@ class Linker extends StatelessWidget {
     return Seo.link(
       anchor: name,
       href: link,
-      child: Image.asset(
-        link,
-      ),
+      child: child,
     );
   }
 }
