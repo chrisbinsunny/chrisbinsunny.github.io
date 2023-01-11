@@ -118,7 +118,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                         onTap: (){
                           widget.scrollController.position
                               .ensureVisible(
-                              widget.keys[2].currentContext!.findRenderObject()!,
+                              widget.keys[3].currentContext!.findRenderObject()!,
                               curve: Curves.easeInOut,
 
                               duration: const Duration(seconds: 1),
@@ -184,11 +184,13 @@ class AppBarButton extends StatelessWidget {
     return ListTile(
       title: Texter(
         text,
+        select: false,
         style: TextStyle(
             color: Colors.white,
             fontSize: 18
         ),
       ),
+
       onTap: onTap,
       hoverColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
       focusColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.3),
