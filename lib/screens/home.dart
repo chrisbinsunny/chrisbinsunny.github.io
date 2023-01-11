@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
         alignment: WrapAlignment.spaceEvenly,
         runAlignment: WrapAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
-        runSpacing: 20,
+        runSpacing: 40,
         spacing: 20,
         children: [
           Column(
@@ -60,15 +60,6 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 180,
               ),
-              const Texter(
-                " Hey, I am",
-                style: TextStyle(
-                    fontSize: 34
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
               FittedBox(
                 fit: BoxFit.scaleDown,
 
@@ -76,22 +67,31 @@ class _HomeState extends State<Home> {
                   text: "Chrisbin Sunny",
                   child: RichText(
                     text: const TextSpan(
-                        text: "Chrisbin\n",
+                        text:
+                            " Hey, I am\n",
                         style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          // color: Color(0xff5dc8f8),
-                          fontSize: 70,
+                          fontSize: 34,
                           color: Colors.white,
                           fontFamily: "Gilroy",
-                          shadows: const [
-                            BoxShadow(
-                              blurRadius: 17.0,
-                              spreadRadius: 15,
-                              color: Color(0xff5dc8f8),
-                            ),
-                          ],
                         ),
                         children: [
+                          TextSpan(
+                            text: "Chrisbin\n",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              // color: Color(0xff5dc8f8),
+                              fontSize: 70,
+                              color: Colors.white,
+                              fontFamily: "Gilroy",
+                              shadows: const [
+                                BoxShadow(
+                                  blurRadius: 17.0,
+                                  spreadRadius: 15,
+                                  color: Color(0xff5dc8f8),
+                                ),
+                              ],
+                            ),
+                          ),
                           TextSpan(
                             text: "Sunny",
                             style: TextStyle(
@@ -99,7 +99,13 @@ class _HomeState extends State<Home> {
                                 //color: Color(0xff065a9d),
                                 fontSize: 70,
                                 color: Colors.white,
-
+                                shadows: const [
+                                  BoxShadow(
+                                    blurRadius: 17.0,
+                                    spreadRadius: 15,
+                                    color: Color(0xff5dc8f8),
+                                  ),
+                                ],
                                 height: 0.7
                             ),
                           ),
@@ -110,7 +116,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
-                height: 110,
+                height: screenWidth(context)<720?90:110,
               ),
 
               FittedBox(
