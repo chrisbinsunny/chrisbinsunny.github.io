@@ -142,10 +142,7 @@ class _HomeState extends State<Home> {
               )
             ],
           ),
-          ContactCard(
-            scrollController: ,
-            keys: ,
-          ),
+          ContactCard(),
         ],
       ),
     );
