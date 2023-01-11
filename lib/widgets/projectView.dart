@@ -357,7 +357,7 @@ class ProjectView extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       //elevation: 20,
-      insetPadding: EdgeInsets.symmetric(
+      insetPadding: const EdgeInsets.symmetric(
           horizontal: 20
       ),
       alignment: Alignment.center,
@@ -426,36 +426,40 @@ class ProjectView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InkWell(
-                            onTap: (){
-                              html.window.open(link, 'new tab');
+                          Linker(
+                            name: name,
+                            link: link,
+                            child: InkWell(
+                              onTap: (){
+                                html.window.open(link, 'new tab');
 
-                            },
-                            child: Container(
-                              height: 50,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10
-                              ),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xff5dc8f8),
-                                        Color(0xff065a9d)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter
-                                  )
-                              ),
-                              child: const Texter(
-                                "Launch Project \u{1F680}",
-                                select: false,
+                              },
+                              child: Container(
+                                height: 50,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10
+                                ),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    gradient: const LinearGradient(
+                                        colors: [
+                                          Color(0xff5dc8f8),
+                                          Color(0xff065a9d)
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter
+                                    )
+                                ),
+                                child: const Texter(
+                                  "Launch Project \u{1F680}",
+                                  select: false,
 
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500
+                                  ),
                                 ),
                               ),
                             ),
@@ -463,36 +467,40 @@ class ProjectView extends StatelessWidget {
                           const SizedBox(
                             width: 20,
                           ),
-                          InkWell(
-                            onTap: (){
-                              html.window.open(github, 'new tab');
+                          Linker(
+                            name: "$name GitHub",
+                            link: github,
+                            child: InkWell(
+                              onTap: (){
+                                html.window.open(github, 'new tab');
 
-                            },
-                            child: Container(
-                              height: 50,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10
-                              ),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xff5dc8f8),
-                                        Color(0xff065a9d)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter
-                                  )
-                              ),
-                              child: const Texter(
-                                "View GitHub \u{1F4BB}",
-                                select: false,
+                              },
+                              child: Container(
+                                height: 50,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10
+                                ),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    gradient: const LinearGradient(
+                                        colors: [
+                                          Color(0xff5dc8f8),
+                                          Color(0xff065a9d)
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter
+                                    )
+                                ),
+                                child: const Texter(
+                                  "View GitHub \u{1F4BB}",
+                                  select: false,
 
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500
+                                  ),
                                 ),
                               ),
                             ),
@@ -547,7 +555,7 @@ class ProjectView extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: Colors.white, width: 0.6)),
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       bottom: 10
                   ),
                   child: ClipRRect(
@@ -610,7 +618,7 @@ class ProjectView extends StatelessWidget {
                         ScrollConfiguration.of(context).copyWith(scrollbars: false),
                         child: SingleChildScrollView(
                           controller: scrollController,
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           child: Texter(
                             "\n${desc}\n",
                             style: const TextStyle(
@@ -629,37 +637,41 @@ class ProjectView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      InkWell(
-                        onTap: (){
-                          html.window.open(link, 'new tab');
-                        },
-                        child: Container(
-                          height: 40,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10
-                          ),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xff5dc8f8),
-                                    Color(0xff065a9d)
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter
-                              )
-                          ),
-                          child: const Texter(
-                            "Launch \u{1F680}",
-                            select: false,
+                      Linker(
+                        name: name,
+                        link: link,
+                        child: InkWell(
+                          onTap: (){
+                            html.window.open(link, 'new tab');
+                          },
+                          child: Container(
+                            height: 40,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10
+                            ),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xff5dc8f8),
+                                      Color(0xff065a9d)
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter
+                                )
+                            ),
+                            child: const Texter(
+                              "Launch \u{1F680}",
+                              select: false,
 
-                            style: TextStyle(
-                                color: Colors.black,
+                              style: TextStyle(
+                                  color: Colors.black,
 
 
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600
+                              ),
                             ),
                           ),
                         ),
@@ -667,35 +679,39 @@ class ProjectView extends StatelessWidget {
                       SizedBox(
                         width: screenWidth(context, mulBy: 0.03),
                       ),
-                      InkWell(
-                        onTap: (){
-                          html.window.open(github, 'new tab');
-                        },
-                        child: Container(
-                          height: 40,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10
-                          ),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xff5dc8f8),
-                                    Color(0xff065a9d)
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter
-                              )
-                          ),
-                          child: const Texter(
-                            "GitHub \u{1F4BB}",
-                            select: false,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
+                      Linker(
+                        name: "$name GitHub",
+                        link: github,
+                        child: InkWell(
+                          onTap: (){
+                            html.window.open(github, 'new tab');
+                          },
+                          child: Container(
+                            height: 40,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10
+                            ),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xff5dc8f8),
+                                      Color(0xff065a9d)
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter
+                                )
+                            ),
+                            child: const Texter(
+                              "GitHub \u{1F4BB}",
+                              select: false,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
 
-                                fontWeight: FontWeight.w600
+                                  fontWeight: FontWeight.w600
+                              ),
                             ),
                           ),
                         ),
