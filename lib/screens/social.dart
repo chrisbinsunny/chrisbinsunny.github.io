@@ -49,7 +49,7 @@ class _SocialState extends State<Social> {
       ),
       constraints: BoxConstraints(
       minWidth: 500,
-        minHeight: screenHeight(context),
+        minHeight: screenHeight(context)-70,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -151,11 +151,34 @@ class _SocialState extends State<Social> {
                       }
                     },
                     icon: FontAwesomeIcons.twitter),
-                SocialButton(topic: "LinkedIn", onTap: (){}, icon: FontAwesomeIcons.linkedin),
-                SocialButton(topic: "Instagram", onTap: (){}, icon: FontAwesomeIcons.instagram),
+                SocialButton(topic: "LinkedIn", onTap: () async{
+                  try {
+                    await launchUrl(Uri(
+                      scheme: 'https',
+                      path: 'linkedin.com/in/chrisbinsunny',
+                    ));
+
+                  } catch (e) {
+                    await Clipboard.setData(const ClipboardData(text: 'https://linkedin.com/in/chrisbinsunny'));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                  }
+                }, icon: FontAwesomeIcons.linkedin),
+                SocialButton(topic: "Instagram", onTap: () async{
+                  try {
+                    await launchUrl(Uri(
+                      scheme: 'https',
+                      path: 'instagram.com/binary.ghost',
+                    ));
+
+                  } catch (e) {
+                    await Clipboard.setData(const ClipboardData(text: 'https://instagram.com/binary.ghost'));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                  }
+                }, icon: FontAwesomeIcons.instagram),
               ],
             ),
-          )
+          ),
+
         ],
       ),
     );
