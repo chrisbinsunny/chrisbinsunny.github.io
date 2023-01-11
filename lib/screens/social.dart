@@ -31,9 +31,8 @@ class _SocialState extends State<Social> {
       width: screenWidth(context, mulBy: 1),
       //height: screenHeight(context),
       padding: EdgeInsets.only(
-        left: screenWidth(context, mulBy: 0.15),
-        right: screenWidth(context, mulBy: 0.15),
-        top: 80
+        left: 15,
+        right: 15,
 
       ),
       decoration: const BoxDecoration(
@@ -66,117 +65,109 @@ class _SocialState extends State<Social> {
           const SizedBox(
             height: 70,
           ),
-          SizedBox(
+          Wrap(
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.spaceEvenly,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 20,
+            runSpacing: 20,
+            children: [
+              const SocialButton(topic: "Location", text:"Kerala, India", onTap: null, icon: Icons.pin_drop, large: true,),
+              SocialButton(topic: "Email", text:"chrisbinofficial@gmail.com",
+                onTap: () async{
+                try {
+                  await launchUrl(Uri(
+                      scheme: 'mailto',
+                      path: 'chrisbinofficial@gmail.com',
+                  ));
 
-            width: screenWidth(context, mulBy: 0.6),
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              runAlignment: WrapAlignment.spaceEvenly,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 20,
-              runSpacing: 20,
-              children: [
-                const SocialButton(topic: "Location", text:"Kerala, India", onTap: null, icon: Icons.pin_drop, large: true,),
-                SocialButton(topic: "Email", text:"chrisbinofficial@gmail.com",
-                  onTap: () async{
+                } catch (e) {
+                  dev.log(e.toString());
+                  await Clipboard.setData(const ClipboardData(text: 'chrisbinofficial@gmail.com'));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Email Copied")));
+                }
+              },
+                icon: Icons.email, large: true,),
+              SocialButton(topic: "Phone", text:"+91 83300 70512",
+                onTap: () async{
                   try {
                     await launchUrl(Uri(
-                        scheme: 'mailto',
-                        path: 'chrisbinofficial@gmail.com',
+                      scheme: 'tel',
+                      path: '+918330070512',
                     ));
 
                   } catch (e) {
                     dev.log(e.toString());
-                    await Clipboard.setData(const ClipboardData(text: 'chrisbinofficial@gmail.com'));
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Email Copied")));
+                    await Clipboard.setData(const ClipboardData(text: '+918330070512'));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Number Copied")));
                   }
                 },
-                  icon: Icons.email, large: true,),
-                SocialButton(topic: "Phone", text:"+91 83300 70512",
-                  onTap: () async{
-                    try {
-                      await launchUrl(Uri(
-                        scheme: 'tel',
-                        path: '+918330070512',
-                      ));
+                icon: Icons.phone, large: true,),
 
-                    } catch (e) {
-                      dev.log(e.toString());
-                      await Clipboard.setData(const ClipboardData(text: '+918330070512'));
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Number Copied")));
-                    }
-                  },
-                  icon: Icons.phone, large: true,),
-
-              ],
-            ),
+            ],
           ),
           const SizedBox(
             height: 20,
           ),
-          SizedBox(
-            width: screenWidth(context, mulBy: 0.6),
+          Wrap(
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
+            spacing: 20,
+            runSpacing: 20,
+            children: [
+              SocialButton(topic: "GitHub",
+                  onTap: () async{
+                try {
+                  await launchUrl(Uri(
+                    scheme: 'https',
+                    path: 'github.com/chrisbinsunny',
+                  ));
 
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              runAlignment: WrapAlignment.center,
-              spacing: 20,
-              runSpacing: 20,
-              children: [
-                SocialButton(topic: "GitHub",
-                    onTap: () async{
-                  try {
-                    await launchUrl(Uri(
-                      scheme: 'https',
-                      path: 'github.com/chrisbinsunny',
-                    ));
+                } catch (e) {
+                  await Clipboard.setData(const ClipboardData(text: 'https://github.com/chrisbinsunny'));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                }
+              },
+                  icon: FontAwesomeIcons.github),
+              SocialButton(topic: "Twitter",
+                  onTap: () async{
+                    try {
+                      await launchUrl(Uri(
+                        scheme: 'https',
+                        path: 'twitter.com/chrisbinsunny',
+                      ));
 
-                  } catch (e) {
-                    await Clipboard.setData(const ClipboardData(text: 'https://github.com/chrisbinsunny'));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
-                  }
-                },
-                    icon: FontAwesomeIcons.github),
-                SocialButton(topic: "Twitter",
-                    onTap: () async{
-                      try {
-                        await launchUrl(Uri(
-                          scheme: 'https',
-                          path: 'twitter.com/chrisbinsunny',
-                        ));
+                    } catch (e) {
+                      await Clipboard.setData(const ClipboardData(text: 'https://twitter.com/chrisbinsunny'));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                    }
+                  },
+                  icon: FontAwesomeIcons.twitter),
+              SocialButton(topic: "LinkedIn", onTap: () async{
+                try {
+                  await launchUrl(Uri(
+                    scheme: 'https',
+                    path: 'linkedin.com/in/chrisbinsunny',
+                  ));
 
-                      } catch (e) {
-                        await Clipboard.setData(const ClipboardData(text: 'https://twitter.com/chrisbinsunny'));
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
-                      }
-                    },
-                    icon: FontAwesomeIcons.twitter),
-                SocialButton(topic: "LinkedIn", onTap: () async{
-                  try {
-                    await launchUrl(Uri(
-                      scheme: 'https',
-                      path: 'linkedin.com/in/chrisbinsunny',
-                    ));
+                } catch (e) {
+                  await Clipboard.setData(const ClipboardData(text: 'https://linkedin.com/in/chrisbinsunny'));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                }
+              }, icon: FontAwesomeIcons.linkedin),
+              SocialButton(topic: "Instagram", onTap: () async{
+                try {
+                  await launchUrl(Uri(
+                    scheme: 'https',
+                    path: 'instagram.com/binary.ghost',
+                  ));
 
-                  } catch (e) {
-                    await Clipboard.setData(const ClipboardData(text: 'https://linkedin.com/in/chrisbinsunny'));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
-                  }
-                }, icon: FontAwesomeIcons.linkedin),
-                SocialButton(topic: "Instagram", onTap: () async{
-                  try {
-                    await launchUrl(Uri(
-                      scheme: 'https',
-                      path: 'instagram.com/binary.ghost',
-                    ));
-
-                  } catch (e) {
-                    await Clipboard.setData(const ClipboardData(text: 'https://instagram.com/binary.ghost'));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
-                  }
-                }, icon: FontAwesomeIcons.instagram),
-              ],
-            ),
+                } catch (e) {
+                  await Clipboard.setData(const ClipboardData(text: 'https://instagram.com/binary.ghost'));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                }
+              }, icon: FontAwesomeIcons.instagram),
+            ],
           ),
 
         ],
