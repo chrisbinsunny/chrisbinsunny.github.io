@@ -72,8 +72,12 @@ class _SocialState extends State<Social> {
             spacing: 20,
             runSpacing: 20,
             children: [
-              const SocialButton(topic: "Location", text:"Kerala, India", onTap: null, icon: Icons.pin_drop, large: true,),
-              SocialButton(topic: "Email", text:"chrisbinofficial@gmail.com",
+              const SocialButton(topic: "Location", text:"Kerala, India",
+                link: "keralatourism.org",
+                onTap: null, icon: Icons.pin_drop, large: true,),
+              SocialButton(topic: "Email",
+                text:"chrisbinofficial@gmail.com",
+                link:"mailto:chrisbinofficial@gmail.com",
                 onTap: () async{
                 try {
                   await launchUrl(Uri(
@@ -88,7 +92,9 @@ class _SocialState extends State<Social> {
                 }
               },
                 icon: Icons.email, large: true,),
-              SocialButton(topic: "Phone", text:"+91 83300 70512",
+              SocialButton(topic: "Phone",
+                link:"tel:+918330070512",
+                text:"+91 83300 70512",
                 onTap: () async{
                   try {
                     await launchUrl(Uri(
@@ -115,7 +121,9 @@ class _SocialState extends State<Social> {
             spacing: 20,
             runSpacing: 20,
             children: [
-              SocialButton(topic: "GitHub",
+              SocialButton(
+                  topic: "GitHub",
+                  link: "https://github.com/chrisbinsunny",
                   onTap: () async{
                 try {
                   await launchUrl(Uri(
@@ -130,6 +138,7 @@ class _SocialState extends State<Social> {
               },
                   icon: FontAwesomeIcons.github),
               SocialButton(topic: "Twitter",
+                  link:"https://twitter.com/chrisbinsunny",
                   onTap: () async{
                     try {
                       await launchUrl(Uri(
@@ -143,7 +152,10 @@ class _SocialState extends State<Social> {
                     }
                   },
                   icon: FontAwesomeIcons.twitter),
-              SocialButton(topic: "LinkedIn", onTap: () async{
+              SocialButton(topic: "LinkedIn",
+                  link: "https://linkedin.com/in/chrisbinsunny",
+
+                  onTap: () async{
                 try {
                   await launchUrl(Uri(
                     scheme: 'https',
@@ -155,7 +167,10 @@ class _SocialState extends State<Social> {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
                 }
               }, icon: FontAwesomeIcons.linkedin),
-              SocialButton(topic: "Instagram", onTap: () async{
+              SocialButton(
+                  topic: "Instagram",
+                  link: "https://instagram.com/binary.ghost",
+                  onTap: () async{
                 try {
                   await launchUrl(Uri(
                     scheme: 'https',
@@ -179,86 +194,90 @@ class _SocialState extends State<Social> {
 
 
 class SocialButton extends StatelessWidget {
-  const SocialButton({Key? key, this.large=false, this.text="", required this.topic, required this.onTap, required this.icon}) : super(key: key);
+  const SocialButton({Key? key, this.large=false, this.text="", required this.link, required this.topic, required this.onTap, required this.icon}) : super(key: key);
 
   final IconData icon;
   final VoidCallback? onTap;
-  final String topic, text;
+  final String topic, text, link;
   final bool large;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: large?
-      Container(
-        height: 170,
-        width: 300,
-        padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 15
-        ),
-        constraints: const BoxConstraints(
-          minWidth: 100,
-          minHeight: 100,
-        ),
-        decoration: BoxDecoration(
-          color: const Color(0xff2a2a2a),
-          borderRadius: BorderRadius.circular(15),
+    return Linker(
+      name: topic,
+      link: link,
+      child: InkWell(
+        onTap: onTap,
+        child: large?
+        Container(
+          height: 170,
+          width: 300,
+          padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 15
+          ),
+          constraints: const BoxConstraints(
+            minWidth: 100,
+            minHeight: 100,
+          ),
+          decoration: BoxDecoration(
+            color: const Color(0xff2a2a2a),
+            borderRadius: BorderRadius.circular(15),
 
-        ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Icon(icon,
-          color: Theme.of(context).primaryColor,
-            size: 28,
           ),
-          Texter(
-            topic.toUpperCase(),
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600
-            ),
-          ),
-          FittedBox(
-            child: Texter(
-              text,
-              style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400
-              ),
-            ),
-          )
-        ],
-      ),
-      ):
-      Container(
-        height: 140,
-        width: 140,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 15
-        ),
-        decoration: BoxDecoration(
-          color: const Color(0xff2a2a2a),
-          borderRadius: BorderRadius.circular(15),
-        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Icon(icon,
-              color: Theme.of(context).primaryColor,
+            color: Theme.of(context).primaryColor,
               size: 28,
             ),
             Texter(
-              topic,
+              topic.toUpperCase(),
               style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600
+                fontSize: 20,
+                fontWeight: FontWeight.w600
               ),
             ),
+            FittedBox(
+              child: Texter(
+                text,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400
+                ),
+              ),
+            )
           ],
+        ),
+        ):
+        Container(
+          height: 140,
+          width: 140,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 15
+          ),
+          decoration: BoxDecoration(
+            color: const Color(0xff2a2a2a),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Icon(icon,
+                color: Theme.of(context).primaryColor,
+                size: 28,
+              ),
+              Texter(
+                topic,
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
