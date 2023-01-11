@@ -1,5 +1,7 @@
 
 
+import 'dart:math';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/contactCard.dart';
@@ -23,8 +25,22 @@ class _HomeState extends State<Home> {
     return Container(
       width: screenWidth(context, mulBy: 1),
      // height: screenHeight(context),  ///Reducing 70 for appbar
-      color: const Color(0xff0c0c0c),
-      //alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(
+          horizontal: 30,
+      ),
+      decoration: BoxDecoration(
+        color: const Color(0xff0c0c0c),
+
+        gradient: LinearGradient(
+            colors: [
+              Color(0xff0c0c0c),
+              Color(0xff04324f),
+              Color(0xff0c0c0c),
+            ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
       constraints: BoxConstraints(
       minWidth: 500,
         minHeight:  screenHeight(context),  ///Reducing 70 for appbar
@@ -33,11 +49,17 @@ class _HomeState extends State<Home> {
         alignment: WrapAlignment.spaceEvenly,
         runAlignment: WrapAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
+        runSpacing: 20,
+        spacing: 20,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              if(screenWidth(context)<720)
+              SizedBox(
+                height: screenHeight(context, mulBy: 0.18),
+              ),
               const Texter(
                 " Hey, I am",
                 style: TextStyle(
@@ -88,6 +110,17 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
+                height: 30
+              ),
+              const Texter(
+                "Mobile developer | Tech Enthusiast\nOn a mission to make clean app UI/UX\nFlutter | Dart ",
+                style: TextStyle(
+                    fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xff0c0c0c)
+                ),
+              ),
+              SizedBox(
                 height: screenHeight(context, mulBy: 0.1),
               ),
               const Texter(
@@ -103,7 +136,7 @@ class _HomeState extends State<Home> {
                 fit: BoxFit.scaleDown,
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  //height: screenHeight(context, mulBy: 0.25),
+                  height: screenHeight(context, mulBy: 0.1),
                   width: 400,
                   child: DefaultTextStyle(
                     style: TextStyle(
