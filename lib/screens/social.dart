@@ -73,7 +73,7 @@ class _SocialState extends State<Social> {
             runSpacing: 20,
             children: [
               const SocialButton(topic: "Location", text:"Kerala, India",
-                link: "keralatourism.org",
+                link: "https://keralatourism.org",
                 onTap: null, icon: Icons.pin_drop, large: true,),
               SocialButton(topic: "Email",
                 text:"chrisbinofficial@gmail.com",
