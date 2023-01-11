@@ -9,6 +9,7 @@ import 'package:portfolio/constants/variables.dart';
 import 'package:portfolio/screens/about.dart';
 import 'package:portfolio/screens/projects.dart';
 import 'package:portfolio/screens/social.dart';
+import 'package:portfolio/widgets/widgets.dart';
 import 'screens/home.dart';
 import 'sizes.dart';
 
@@ -69,10 +70,22 @@ class _IndexState extends State<Index> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  Home(key: Variables.keys[0],),
-                  About(key: Variables.keys[1],),
-                  Projects(key: Variables.keys[2],),
-                  Social(key: Variables.keys[3])
+                  // Home(key: Variables.keys[0],),
+                  // About(key: Variables.keys[1],),
+                  // Projects(key: Variables.keys[2],),
+                  Social(key: Variables.keys[3]),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Texter(
+                      "Developed with \u{1F499} using Flutter",
+                    style: TextStyle(
+                      fontSize: 16
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
