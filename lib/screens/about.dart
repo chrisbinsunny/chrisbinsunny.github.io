@@ -67,7 +67,6 @@ class _AboutState extends State<About> {
               const SizedBox(
                 height: 25,
               ),
-              ContactCard(),
             ],
           ),
           SizedBox(
