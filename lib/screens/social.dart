@@ -1,15 +1,11 @@
-
-
-import 'dart:async';
-import 'dart:math';
 import 'dart:developer' as dev;
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
-import 'package:seo/html/seo_widget.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Social extends StatefulWidget {
   const Social({Key? key}) : super(key: key);
@@ -19,6 +15,13 @@ class Social extends StatefulWidget {
 }
 
 class _SocialState extends State<Social> {
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -73,9 +76,37 @@ class _SocialState extends State<Social> {
               spacing: 20,
               runSpacing: 20,
               children: [
-                SocialButton(topic: "Location", text:"Kerala, India", onTap: (){}, icon: Icons.pin_drop, large: true,),
-                SocialButton(topic: "Email", text:"chrisbinofficial@gmail.com", onTap: (){}, icon: Icons.email, large: true,),
-                SocialButton(topic: "Phone", text:"+91 83300 70512", onTap: (){}, icon: Icons.phone, large: true,),
+                const SocialButton(topic: "Location", text:"Kerala, India", onTap: null, icon: Icons.pin_drop, large: true,),
+                SocialButton(topic: "Email", text:"chrisbinofficial@gmail.com",
+                  onTap: () async{
+                  try {
+                    await launchUrl(Uri(
+                        scheme: 'mailto',
+                        path: 'chrisbinofficial@gmail.com',
+                    ));
+
+                  } catch (e) {
+                    dev.log(e.toString());
+                    await Clipboard.setData(const ClipboardData(text: 'chrisbinofficial@gmail.com'));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Email Copied")));
+                  }
+                },
+                  icon: Icons.email, large: true,),
+                SocialButton(topic: "Phone", text:"+91 83300 70512",
+                  onTap: () async{
+                    try {
+                      await launchUrl(Uri(
+                        scheme: 'tel',
+                        path: '+918330070512',
+                      ));
+
+                    } catch (e) {
+                      dev.log(e.toString());
+                      await Clipboard.setData(const ClipboardData(text: '+918330070512'));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Number Copied")));
+                    }
+                  },
+                  icon: Icons.phone, large: true,),
 
               ],
             ),
@@ -87,13 +118,39 @@ class _SocialState extends State<Social> {
             width: screenWidth(context, mulBy: 0.6),
 
             child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
               spacing: 20,
               runSpacing: 20,
               children: [
-                SocialButton(topic: "GitHub", onTap: (){}, icon: FontAwesomeIcons.github),
-                SocialButton(topic: "Twitter", onTap: (){}, icon: FontAwesomeIcons.twitter),
+                SocialButton(topic: "GitHub",
+                    onTap: () async{
+                  try {
+                    await launchUrl(Uri(
+                      scheme: 'https',
+                      path: 'github.com/chrisbinsunny',
+                    ));
+
+                  } catch (e) {
+                    await Clipboard.setData(const ClipboardData(text: 'https://github.com/chrisbinsunny'));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                  }
+                },
+                    icon: FontAwesomeIcons.github),
+                SocialButton(topic: "Twitter",
+                    onTap: () async{
+                      try {
+                        await launchUrl(Uri(
+                          scheme: 'https',
+                          path: 'twitter.com/chrisbinsunny',
+                        ));
+
+                      } catch (e) {
+                        await Clipboard.setData(const ClipboardData(text: 'https://twitter.com/chrisbinsunny'));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                      }
+                    },
+                    icon: FontAwesomeIcons.twitter),
                 SocialButton(topic: "LinkedIn", onTap: (){}, icon: FontAwesomeIcons.linkedin),
                 SocialButton(topic: "Instagram", onTap: (){}, icon: FontAwesomeIcons.instagram),
               ],
@@ -111,14 +168,14 @@ class SocialButton extends StatelessWidget {
   const SocialButton({Key? key, this.large=false, this.text="", required this.topic, required this.onTap, required this.icon}) : super(key: key);
 
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String topic, text;
   final bool large;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: onTap,
       child: large?
       Container(
         height: 170,
@@ -161,17 +218,15 @@ class SocialButton extends StatelessWidget {
       ),
       ):
       Container(
-        height: screenHeight(context, mulBy: 0.14),
-        width: screenWidth(context, mulBy: 0.07),
-
-        constraints: const BoxConstraints(
-          minWidth: 100,
-          minHeight: 100,
+        height: 140,
+        width: 140,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 15
         ),
         decoration: BoxDecoration(
           color: const Color(0xff2a2a2a),
           borderRadius: BorderRadius.circular(15),
-
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -181,7 +236,7 @@ class SocialButton extends StatelessWidget {
               size: 28,
             ),
             Texter(
-              topic.toUpperCase(),
+              topic,
               style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600
