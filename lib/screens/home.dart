@@ -110,17 +110,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
-                height: 30
-              ),
-              const Texter(
-                "Mobile developer | Tech Enthusiast\nOn a mission to make clean app UI/UX\nFlutter | Dart ",
-                style: TextStyle(
-                    fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xff0c0c0c)
-                ),
-              ),
-              SizedBox(
                 height: screenHeight(context, mulBy: 0.1),
               ),
               const Texter(
