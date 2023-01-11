@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
             children: [
               if(screenWidth(context)<720)
               SizedBox(
-                height: screenHeight(context, mulBy: 0.18),
+                height: 180,
               ),
               const Texter(
                 " Hey, I am",
@@ -110,55 +110,64 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
-                height: screenHeight(context, mulBy: 0.1),
+                height: 110,
               ),
-              const Texter(
-                "I'm a",
-                style: TextStyle(
-                    fontSize: 34
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
+
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  height: screenHeight(context, mulBy: 0.1),
+                  height: 100,
                   width: 400,
-                  child: DefaultTextStyle(
-                    style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.w100,
-                      color: Colors.white.withOpacity(0.9),
-                      shadows: const [
-                        BoxShadow(
-                          blurRadius: 17.0,
-                          spreadRadius: 20,
-                          color: Color(0xff5dc8f8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Texter(
+                        "I'm a",
+                        style: TextStyle(
+                            fontSize: 34
                         ),
-                      ],
-                    ),
-                    child: AnimatedTextKit(
-                      repeatForever: true,
-                      pause: const Duration(seconds: 1),
-                      animatedTexts: [
-                        FlickerAnimatedText(
-                          'App Developer',
+                      ),
+                      DefaultTextStyle(
+                        style: TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.w100,
+                          color: Colors.white.withOpacity(0.9),
+                          shadows: const [
+                            BoxShadow(
+                              blurRadius: 17.0,
+                              spreadRadius: 20,
+                              color: Color(0xff5dc8f8),
+                            ),
+                          ],
                         ),
-                        FlickerAnimatedText(
-                          'Speaker',
+                        child: AnimatedTextKit(
+                          repeatForever: true,
+                          pause: const Duration(seconds: 1),
+                          animatedTexts: [
+                            FlickerAnimatedText(
+                              'Mobile Developer',
+                            ),
+                            FlickerAnimatedText(
+                              'Speaker',
+                            ),
+                            FlickerAnimatedText(
+                              'Engineer',
+                            ),
+                            FlickerAnimatedText(
+                              'Designer',
+                            ),
+                            FlickerAnimatedText(
+                              'Photographer',
+                            ),
+                            FlickerAnimatedText(
+                              'Flutter Scientist',
+                            ),
+                          ],
+                          displayFullTextOnTap: true,
                         ),
-                        FlickerAnimatedText(
-                          'Engineer',
-                        ),
-                        FlickerAnimatedText(
-                          'Designer',
-                        ),
-                      ],
-                      displayFullTextOnTap: true,
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               )
