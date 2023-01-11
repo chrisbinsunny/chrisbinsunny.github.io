@@ -7,8 +7,10 @@ import 'package:portfolio/widgets/widgets.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class ContactCard extends StatefulWidget {
-  const ContactCard({Key? key}) : super(key: key);
+  const ContactCard({super.key, required this.keys, required this.scrollController});
 
+  final GlobalKey keys;
+  final ScrollController scrollController;
   @override
   State<ContactCard> createState() => _ContactCardState();
 }
@@ -391,12 +393,20 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
             height: 50,
           ),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              widget.scrollController.position
+                  .ensureVisible(
+                  widget.keys.currentContext!.findRenderObject()!,
+                  curve: Curves.easeInOut,
+
+                  duration: const Duration(seconds: 1),
+                  alignment: -0.7
+              );
+            },
             child: Container(
               height: 45,
               width: 200,
               decoration: BoxDecoration(
-                color: Colors.green,
                 borderRadius: BorderRadius.circular(13),
                 gradient: LinearGradient(
                     colors: [
@@ -410,6 +420,16 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter
                 )
+              ),
+              alignment: Alignment.center,
+              child: Texter(
+                "Contact Me",
+                select: false,
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  fontWeight: FontWeight.w600
+                ),
               ),
             ),
           )
