@@ -2,15 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/constants/variables.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class ContactCard extends StatefulWidget {
-  const ContactCard({super.key, required this.keys, required this.scrollController});
+  const ContactCard({super.key, });
 
-  final GlobalKey keys;
-  final ScrollController scrollController;
   @override
   State<ContactCard> createState() => _ContactCardState();
 }
@@ -394,9 +393,9 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           ),
           InkWell(
             onTap: (){
-              widget.scrollController.position
+              Variables.scrollController.position
                   .ensureVisible(
-                  widget.keys.currentContext!.findRenderObject()!,
+                  Variables.keys[3].currentContext!.findRenderObject()!,
                   curve: Curves.easeInOut,
 
                   duration: const Duration(seconds: 1),
