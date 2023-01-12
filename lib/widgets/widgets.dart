@@ -69,7 +69,7 @@ class Imager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Seo.image(
-      src: "https://chrisbinsunny.github.io/$path",
+      src: "https://chrisbinsunny.github.io/assets/$path",
       alt: altText,
       child: Image.asset(
         path,
