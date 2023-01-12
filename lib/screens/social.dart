@@ -31,7 +31,7 @@ class _SocialState extends State<Social> {
     return Container(
       width: screenWidth(context, mulBy: 1),
       //height: screenHeight(context),
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 15,
         right: 15,
 
@@ -136,14 +136,11 @@ class _SocialState extends State<Social> {
                       "GitHub",
                     );
                 try {
-                  await launchUrl(Uri(
-                    scheme: 'https',
-                    path: 'github.com/chrisbinsunny',
-                  ));
+                  await launchUrl(Uri.parse('https://github.com/chrisbinsunny'));
 
                 } catch (e) {
                   await Clipboard.setData(const ClipboardData(text: 'https://github.com/chrisbinsunny'));
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                 }
               },
                   icon: FontAwesomeIcons.github),
@@ -154,18 +151,16 @@ class _SocialState extends State<Social> {
                       "Twitter",
                     );
                     try {
-                      await launchUrl(Uri(
-                        scheme: 'https',
-                        path: 'twitter.com/chrisbinsunny',
-                      ));
+                      await launchUrl(Uri.parse('https://twitter.com/chrisbinsunny'));
 
                     } catch (e) {
                       await Clipboard.setData(const ClipboardData(text: 'https://twitter.com/chrisbinsunny'));
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                     }
                   },
                   icon: FontAwesomeIcons.twitter),
-              SocialButton(topic: "LinkedIn",
+              SocialButton(
+                  topic: "LinkedIn",
                   link: "https://linkedin.com/in/chrisbinsunny",
 
                   onTap: () async{
@@ -173,14 +168,11 @@ class _SocialState extends State<Social> {
                       "LinkedIn",
                     );
                 try {
-                  await launchUrl(Uri(
-                    scheme: 'https',
-                    path: 'linkedin.com/in/chrisbinsunny',
-                  ));
+                  await launchUrl(Uri.parse('https://linkedin.com/in/chrisbinsunny'));
 
                 } catch (e) {
                   await Clipboard.setData(const ClipboardData(text: 'https://linkedin.com/in/chrisbinsunny'));
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                 }
               }, icon: FontAwesomeIcons.linkedin),
               SocialButton(
@@ -191,14 +183,11 @@ class _SocialState extends State<Social> {
                       "Instagram",
                     );
                 try {
-                  await launchUrl(Uri(
-                    scheme: 'https',
-                    path: 'instagram.com/binary.ghost',
-                  ));
+                  await launchUrl(Uri.parse('https://instagram.com/binary.ghost'));
 
                 } catch (e) {
                   await Clipboard.setData(const ClipboardData(text: 'https://instagram.com/binary.ghost'));
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Texter("Link Copied")));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                 }
               }, icon: FontAwesomeIcons.instagram),
             ],
