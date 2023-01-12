@@ -25,11 +25,11 @@ class _HomeState extends State<Home> {
     return Container(
       width: screenWidth(context, mulBy: 1),
      // height: screenHeight(context),  ///Reducing 70 for appbar
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
           horizontal: 30,
       ),
-      decoration: BoxDecoration(
-        color: const Color(0xff0c0c0c),
+      decoration: const BoxDecoration(
+        color: Color(0xff0c0c0c),
 
         gradient: LinearGradient(
             colors: [
@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if(screenWidth(context)<720)
-              SizedBox(
+              const SizedBox(
                 height: 180,
               ),
               FittedBox(
@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
                               fontSize: 70,
                               color: Colors.white,
                               fontFamily: "Gilroy",
-                              shadows: const [
+                              shadows: [
                                 BoxShadow(
                                   blurRadius: 17.0,
                                   spreadRadius: 15,
@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
                                 //color: Color(0xff065a9d),
                                 fontSize: 70,
                                 color: Colors.white,
-                                shadows: const [
+                                shadows: [
                                   BoxShadow(
                                     blurRadius: 17.0,
                                     spreadRadius: 15,
@@ -149,10 +149,11 @@ class _HomeState extends State<Home> {
                         ),
                         child: AnimatedTextKit(
                           repeatForever: true,
-                          pause: const Duration(seconds: 1),
+                          pause: const Duration(seconds: 0),
                           animatedTexts: [
                             FlickerAnimatedText(
                               'Mobile Developer',
+
                             ),
                             FlickerAnimatedText(
                               'Speaker',
@@ -179,7 +180,7 @@ class _HomeState extends State<Home> {
               )
             ],
           ),
-          ContactCard(),
+          const ContactCard(),
         ],
       ),
     );
