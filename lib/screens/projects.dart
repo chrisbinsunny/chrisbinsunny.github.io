@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/projectView.dart';
 import 'package:portfolio/widgets/widgets.dart';
@@ -135,6 +136,9 @@ class ProjectItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        AnalyticsService.logProject(
+          projectDetails.name,
+        );
         showDialog(
           barrierColor: Color(0x98021a2d),
           context: context,
