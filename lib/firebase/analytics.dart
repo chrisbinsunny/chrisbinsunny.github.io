@@ -33,12 +33,6 @@ class AnalyticsService extends ChangeNotifier{
   }
 
 
-  static Future<void> logPlayedContactCard(String name) async {
-    await FirebaseAnalytics.instance.logEvent(
-      name: "playedContactCard",
-    );
-  }
-
   static Future<void> logAppBarButton(String name, {String type="AppBar"}) async {
     await FirebaseAnalytics.instance.logEvent(
       name: "appBarButtonClicked",
@@ -58,7 +52,7 @@ class AnalyticsService extends ChangeNotifier{
     );
   }
 
-  Future<void> logProjectLaunched(String project) async {
+  static Future<void> logProjectLaunched(String project) async {
     await FirebaseAnalytics.instance.logEvent(
       name: "projectLaunched",
       parameters: {
