@@ -26,48 +26,62 @@ class AnalyticsService extends ChangeNotifier{
     );
   }
 
-  Future<void> logSearch(String search) async {
+  static Future<void> logEvent(String name) async {
     await FirebaseAnalytics.instance.logEvent(
-      name: "safariSearch",
-      parameters: {
-        "search": search,
-      },
+      name: name,
     );
   }
 
-  Future<void> logFolder(String name) async {
+
+  static Future<void> logPlayedContactCard(String name) async {
     await FirebaseAnalytics.instance.logEvent(
-      name: "folderName",
+      name: "playedContactCard",
+    );
+  }
+
+  static Future<void> logAppBarButton(String name, {String type="AppBar"}) async {
+    await FirebaseAnalytics.instance.logEvent(
+      name: "appBarButtonClicked",
       parameters: {
         "name": name,
+        "type": type
       },
     );
   }
 
-  Future<void> logTerminal(String search) async {
+  static Future<void> logProjectGitLaunched(String project) async {
     await FirebaseAnalytics.instance.logEvent(
-      name: "terminalCommand",
+      name: "projectGitHubView",
       parameters: {
-        "command": search,
+        "project": project,
       },
     );
   }
 
-  Future<void> logWallPaper(String search) async {
+  Future<void> logProjectLaunched(String project) async {
     await FirebaseAnalytics.instance.logEvent(
-      name: "wallpaperChanged",
+      name: "projectLaunched",
       parameters: {
-        "wallpaper": search,
+        "project": project,
+      },
+    );
+  }
+
+  static Future<void> logProject(String project) async {
+    await FirebaseAnalytics.instance.logEvent(
+      name: "projectViewed",
+      parameters: {
+        "project": project,
       },
     );
   }
 
 
 
-  Future logOpened(String a) async {
+  static Future logContact(String a) async {
     await analytics.logEvent(
-      name: "App Opened",
-      parameters: {'app': a,},
+      name: "contactClicked",
+      parameters: {'item': a,},
     );
   }
 }
