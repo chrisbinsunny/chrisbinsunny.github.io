@@ -15,6 +15,7 @@ Explore my Portfolio [Here](https://chrisbinsunny.github.io).
 ![GitHub](https://img.shields.io/github/license/chrisbinsunny/chrisbinsunny.github.io)
 ![GitHub Repo stars](https://img.shields.io/github/stars/chrisbinsunny/chrisbinsunny.github.io?style=social)
 ![Twitter Follow](https://img.shields.io/twitter/follow/chrisbinsunny?style=social)
+[![Visitors](https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2Fchrisbinsunny%2Fchrisbinsunny.github.io&label=Visitors&countColor=%23263759&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fchrisbinsunny%2Fchrisbinsunny.github.io)
 
 
 Star the repo if you like the project.
