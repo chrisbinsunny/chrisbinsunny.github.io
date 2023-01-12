@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -79,6 +80,9 @@ class _SocialState extends State<Social> {
                 text:"chrisbinofficial@gmail.com",
                 link:"mailto:chrisbinofficial@gmail.com",
                 onTap: () async{
+                  AnalyticsService.logContact(
+                    "Email",
+                  );
                 try {
                   await launchUrl(Uri(
                       scheme: 'mailto',
@@ -96,6 +100,9 @@ class _SocialState extends State<Social> {
                 link:"tel:+918330070512",
                 text:"+91 83300 70512",
                 onTap: () async{
+                  AnalyticsService.logContact(
+                    "Phone",
+                  );
                   try {
                     await launchUrl(Uri(
                       scheme: 'tel',
@@ -125,6 +132,9 @@ class _SocialState extends State<Social> {
                   topic: "GitHub",
                   link: "https://github.com/chrisbinsunny",
                   onTap: () async{
+                    AnalyticsService.logContact(
+                      "GitHub",
+                    );
                 try {
                   await launchUrl(Uri(
                     scheme: 'https',
@@ -140,6 +150,9 @@ class _SocialState extends State<Social> {
               SocialButton(topic: "Twitter",
                   link:"https://twitter.com/chrisbinsunny",
                   onTap: () async{
+                    AnalyticsService.logContact(
+                      "Twitter",
+                    );
                     try {
                       await launchUrl(Uri(
                         scheme: 'https',
@@ -156,6 +169,9 @@ class _SocialState extends State<Social> {
                   link: "https://linkedin.com/in/chrisbinsunny",
 
                   onTap: () async{
+                    AnalyticsService.logContact(
+                      "LinkedIn",
+                    );
                 try {
                   await launchUrl(Uri(
                     scheme: 'https',
@@ -171,6 +187,9 @@ class _SocialState extends State<Social> {
                   topic: "Instagram",
                   link: "https://instagram.com/binary.ghost",
                   onTap: () async{
+                    AnalyticsService.logContact(
+                      "Instagram",
+                    );
                 try {
                   await launchUrl(Uri(
                     scheme: 'https',
