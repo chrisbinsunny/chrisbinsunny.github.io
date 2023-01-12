@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/firebase/analytics.dart';
 import 'package:provider/provider.dart';
 
 import '../sizes.dart';
@@ -102,6 +103,10 @@ class AppBarCustomState extends State<AppBarCustom> {
                               Spacer(),
                               AppBarButton(
                                   onTap: (){
+                                    AnalyticsService.logAppBarButton(
+                                      "Home",
+                                      type: "AppBar"
+                                    );
                                     widget.scrollController.position
                                         .ensureVisible(
                                         widget.keys[0].currentContext!.findRenderObject()!,
@@ -118,6 +123,10 @@ class AppBarCustomState extends State<AppBarCustom> {
                               ),
                               AppBarButton(
                                   onTap: (){
+                                    AnalyticsService.logAppBarButton(
+                                        "About",
+                                        type: "AppBar"
+                                    );
                                     widget.scrollController.position
                                         .ensureVisible(
                                         widget.keys[1].currentContext!.findRenderObject()!,
@@ -135,6 +144,10 @@ class AppBarCustomState extends State<AppBarCustom> {
                               ),
                               AppBarButton(
                                   onTap: (){
+                                    AnalyticsService.logAppBarButton(
+                                        "Projects",
+                                        type: "AppBar"
+                                    );
                                     widget.scrollController.position
                                         .ensureVisible(
                                         widget.keys[2].currentContext!.findRenderObject()!,
@@ -152,6 +165,10 @@ class AppBarCustomState extends State<AppBarCustom> {
                               ),
                               AppBarButton(
                                   onTap: (){
+                                    AnalyticsService.logAppBarButton(
+                                        "Social",
+                                        type: "AppBar"
+                                    );
                                     widget.scrollController.position
                                         .ensureVisible(
                                         widget.keys[3].currentContext!.findRenderObject()!,

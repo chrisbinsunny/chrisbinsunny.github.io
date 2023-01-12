@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/firebase/analytics.dart';
 import '../widgets/nothing.dart';
 import '../widgets/widgets.dart';
 import '../widgets/functions.dart';
@@ -68,6 +69,10 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                         viewing: value,
                         count: 0,
                         onTap: (){
+                          AnalyticsService.logAppBarButton(
+                              "Home",
+                              type: "Drawer"
+                          );
                           widget.scrollController.position
                               .ensureVisible(
                               widget.keys[0].currentContext!.findRenderObject()!,
@@ -84,6 +89,10 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                         count: 1,
 
                         onTap: (){
+                          AnalyticsService.logAppBarButton(
+                              "About",
+                              type: "Drawer"
+                          );
                           widget.scrollController.position
                               .ensureVisible(
                               widget.keys[1].currentContext!.findRenderObject()!,
@@ -100,6 +109,10 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                         count: 2,
 
                         onTap: (){
+                          AnalyticsService.logAppBarButton(
+                              "Projects",
+                              type: "Drawer"
+                          );
                           widget.scrollController.position
                               .ensureVisible(
                               widget.keys[2].currentContext!.findRenderObject()!,
@@ -116,6 +129,10 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                         count: 3,
 
                         onTap: (){
+                          AnalyticsService.logAppBarButton(
+                              "Social",
+                              type: "Drawer"
+                          );
                           widget.scrollController.position
                               .ensureVisible(
                               widget.keys[3].currentContext!.findRenderObject()!,

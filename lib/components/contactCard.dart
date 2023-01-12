@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/constants/variables.dart';
+import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -327,6 +328,9 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
       ..rotateY(angle);
     return GestureDetector(
       onHorizontalDragStart: (details){
+        AnalyticsService.logEvent(
+            "contactCardPlayed",
+        );
         controller.stop();
         isFrontStart= isFront;
       },
@@ -393,6 +397,9 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           ),
           InkWell(
             onTap: (){
+              AnalyticsService.logEvent(
+                "contactMeClicked",
+              );
               Variables.scrollController.position
                   .ensureVisible(
                   Variables.keys[3].currentContext!.findRenderObject()!,
