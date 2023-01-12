@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       enabled: true,
       tree: WidgetTree(context: context),
       child: MaterialApp(
-        title: 'Chrisbin Sunny - App Developer | Speaker',
+        title: 'Chrisbin Sunny - Mobile Developer | Speaker',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: Color(0xff5dc8f8),
