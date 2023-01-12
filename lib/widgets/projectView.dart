@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/sizes.dart';
 import 'dart:html' as html;
 import 'dart:ui' as ui;
@@ -431,6 +432,9 @@ class ProjectView extends StatelessWidget {
                             link: link,
                             child: InkWell(
                               onTap: (){
+                                AnalyticsService.logProjectLaunched(
+                                  name,
+                                );
                                 html.window.open(link, 'new tab');
 
                               },
@@ -472,6 +476,9 @@ class ProjectView extends StatelessWidget {
                             link: github,
                             child: InkWell(
                               onTap: (){
+                                AnalyticsService.logProjectGitLaunched(
+                                  name,
+                                );
                                 html.window.open(github, 'new tab');
 
                               },
@@ -641,8 +648,11 @@ class ProjectView extends StatelessWidget {
                         name: name,
                         link: link,
                         child: InkWell(
-                          onTap: (){
+                          onTap: (){ AnalyticsService.logProjectLaunched(
+                            name,
+                          );
                             html.window.open(link, 'new tab');
+
                           },
                           child: Container(
                             height: 40,
@@ -684,6 +694,9 @@ class ProjectView extends StatelessWidget {
                         link: github,
                         child: InkWell(
                           onTap: (){
+                            AnalyticsService.logProjectGitLaunched(
+                              name,
+                            );
                             html.window.open(github, 'new tab');
                           },
                           child: Container(
