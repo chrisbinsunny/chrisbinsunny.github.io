@@ -1,268 +1,80 @@
-import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/firebase/analytics.dart';
-import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Social extends StatefulWidget {
+const _links = [
+  ('Email', 'chrisbinofficial@gmail.com', 'mailto:chrisbinofficial@gmail.com', FontAwesomeIcons.solidEnvelope),
+  ('GitHub', 'chrisbinsunny', 'https://github.com/chrisbinsunny', FontAwesomeIcons.github),
+  ('LinkedIn', 'chrisbinsunny', 'https://linkedin.com/in/chrisbinsunny', FontAwesomeIcons.linkedin),
+  ('Twitter', 'chrisbinsunny', 'https://twitter.com/chrisbinsunny', FontAwesomeIcons.xTwitter),
+  ('Instagram', 'binary.ghost', 'https://instagram.com/binary.ghost', FontAwesomeIcons.instagram),
+  ('Location', 'Bengaluru, India', 'https://maps.google.com/?q=Bengaluru,India', FontAwesomeIcons.locationDot),
+];
+
+class Social extends StatelessWidget {
   const Social({super.key});
 
-  @override
-  State<Social> createState() => _SocialState();
-}
-
-class _SocialState extends State<Social> {
-
-
-  @override
-  void initState() {
-    super.initState();
+  Future<void> _open(BuildContext context, String topic, String link) async {
+    AnalyticsService.logContact(topic);
+    final messenger = ScaffoldMessenger.of(context);
+    final opened = await launchUrl(Uri.parse(link)).catchError((_) => false);
+    if (!opened) {
+      final text = link.replaceFirst("mailto:", "");
+      await Clipboard.setData(ClipboardData(text: text));
+      messenger.showSnackBar(SnackBar(content: Text("$topic copied: $text")));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-
-    return Container(
-      width: screenWidth(context, mulBy: 1),
-      //height: screenHeight(context),
-      padding: const EdgeInsets.only(
-        left: 15,
-        right: 15,
-
-      ),
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Color(0xff0c0c0c),
-                Color(0xff0f1617),
-                Color(0xff0c0c0c)
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter
-          )
-      ),
-      constraints: BoxConstraints(
-      minWidth: 500,
-        minHeight: screenHeight(context)-70,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Texter(
-            "I'm Social",
-            textAlign: TextAlign.end,
-            style: TextStyle(
-                fontSize: 44,
-                fontWeight: FontWeight.w700
-            ),
-          ),
-          const SizedBox(
-            height: 70,
-          ),
-          Wrap(
-            alignment: WrapAlignment.center,
-            runAlignment: WrapAlignment.spaceEvenly,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            spacing: 20,
-            runSpacing: 20,
-            children: [
-              const SocialButton(topic: "Location", text:"Bengaluru, India",
-                link: "https://maps.google.com/?q=Bengaluru,India",
-                onTap: null, icon: Icons.pin_drop, large: true,),
-              SocialButton(topic: "Email",
-                text:"chrisbinofficial@gmail.com",
-                link:"mailto:chrisbinofficial@gmail.com",
-                onTap: () async{
-                  AnalyticsService.logContact(
-                    "Email",
-                  );
-                try {
-                  await launchUrl(Uri(
-                      scheme: 'mailto',
-                      path: 'chrisbinofficial@gmail.com',
-                  ));
-
-                } catch (e) {
-                  dev.log(e.toString());
-                  await Clipboard.setData(const ClipboardData(text: 'chrisbinofficial@gmail.com'));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Email Copied")));
-                }
-              },
-                icon: Icons.email, large: true,),
-
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Wrap(
-            alignment: WrapAlignment.center,
-            runAlignment: WrapAlignment.center,
-            spacing: 20,
-            runSpacing: 20,
-            children: [
-              SocialButton(
-                  topic: "GitHub",
-                  link: "https://github.com/chrisbinsunny",
-                  onTap: () async{
-                    AnalyticsService.logContact(
-                      "GitHub",
-                    );
-                try {
-                  await launchUrl(Uri.parse('https://github.com/chrisbinsunny'));
-
-                } catch (e) {
-                  await Clipboard.setData(const ClipboardData(text: 'https://github.com/chrisbinsunny'));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
-                }
-              },
-                  icon: FontAwesomeIcons.github.data),
-              SocialButton(topic: "Twitter",
-                  link:"https://twitter.com/chrisbinsunny",
-                  onTap: () async{
-                    AnalyticsService.logContact(
-                      "Twitter",
-                    );
-                    try {
-                      await launchUrl(Uri.parse('https://twitter.com/chrisbinsunny'));
-
-                    } catch (e) {
-                      await Clipboard.setData(const ClipboardData(text: 'https://twitter.com/chrisbinsunny'));
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
-                    }
-                  },
-                  icon: FontAwesomeIcons.twitter.data),
-              SocialButton(
-                  topic: "LinkedIn",
-                  link: "https://linkedin.com/in/chrisbinsunny",
-
-                  onTap: () async{
-                    AnalyticsService.logContact(
-                      "LinkedIn",
-                    );
-                try {
-                  await launchUrl(Uri.parse('https://linkedin.com/in/chrisbinsunny'));
-
-                } catch (e) {
-                  await Clipboard.setData(const ClipboardData(text: 'https://linkedin.com/in/chrisbinsunny'));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
-                }
-              }, icon: FontAwesomeIcons.linkedin.data),
-              SocialButton(
-                  topic: "Instagram",
-                  link: "https://instagram.com/binary.ghost",
-                  onTap: () async{
-                    AnalyticsService.logContact(
-                      "Instagram",
-                    );
-                try {
-                  await launchUrl(Uri.parse('https://instagram.com/binary.ghost'));
-
-                } catch (e) {
-                  await Clipboard.setData(const ClipboardData(text: 'https://instagram.com/binary.ghost'));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
-                }
-              }, icon: FontAwesomeIcons.instagram.data),
-            ],
-          ),
-
-        ],
-      ),
-    );
-  }
-}
-
-
-
-class SocialButton extends StatelessWidget {
-  const SocialButton({super.key, this.large=false, this.text="", required this.link, required this.topic, required this.onTap, required this.icon});
-
-  final IconData icon;
-  final VoidCallback? onTap;
-  final String topic, text, link;
-  final bool large;
-
-  @override
-  Widget build(BuildContext context) {
-    return Linker(
-      name: topic,
-      link: link,
-      child: InkWell(
-        onTap: onTap,
-        child: large?
-        Container(
-          height: 170,
-          width: 300,
-          padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 15
-          ),
-          constraints: const BoxConstraints(
-            minWidth: 100,
-            minHeight: 100,
-          ),
-          decoration: BoxDecoration(
-            color: const Color(0xff2a2a2a),
-            borderRadius: BorderRadius.circular(15),
-
-          ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Icon(icon,
-            color: Theme.of(context).primaryColor,
-              size: 28,
-            ),
-            Texter(
-              topic.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600
-              ),
-            ),
-            FittedBox(
-              child: Texter(
-                text,
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400
-                ),
-              ),
-            )
-          ],
-        ),
-        ):
-        Container(
-          height: 140,
-          width: 140,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 15
-          ),
-          decoration: BoxDecoration(
-            color: const Color(0xff2a2a2a),
-            borderRadius: BorderRadius.circular(15),
-          ),
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    return Section(
+      eyebrow: "Social",
+      title: "Let's talk.",
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 640),
+        child: Panel(
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(icon,
-                color: Theme.of(context).primaryColor,
-                size: 28,
-              ),
-              Texter(
-                topic,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600
+              for (var i = 0; i < _links.length; i++) ...[
+                if (i > 0) Divider(height: 1, indent: 64, color: scheme.outlineVariant),
+                Linker(
+                  name: _links[i].$1,
+                  link: _links[i].$3,
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: InkWell(
+                      onTap: () => _open(context, _links[i].$1, _links[i].$3),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 60),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          child: Row(
+                            children: [
+                              SizedBox(width: 28, child: FaIcon(_links[i].$4, size: 20, color: scheme.primary)),
+                              const SizedBox(width: 16),
+                              SizedBox(
+                                width: 90,
+                                child: Text(_links[i].$1, style: theme.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600)),
+                              ),
+                              Expanded(
+                                child: Text(_links[i].$2, overflow: TextOverflow.ellipsis, style: mono(context, size: 14)),
+                              ),
+                              Icon(Icons.arrow_outward_rounded, size: 18, color: scheme.onSurfaceVariant),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         ),

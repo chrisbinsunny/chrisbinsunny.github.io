@@ -1,185 +1,125 @@
-
-
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/contactCard.dart';
-import 'package:portfolio/sizes.dart';
+import 'package:portfolio/components/navPill.dart';
+import 'package:portfolio/constants/theme.dart';
+import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/widgets/widgets.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final size = MediaQuery.sizeOf(context);
+    final compact = size.width < 600;
+
+    final intro = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Texter("MOBILE DEVELOPER (FLUTTER) · BENGALURU", style: mono(context, color: theme.colorScheme.primary)),
+        const SizedBox(height: 16),
+        RichTexter(
+          text: "Chrisbin Sunny",
+          child: Text(
+            "Chrisbin\nSunny",
+            style: theme.textTheme.displayLarge!.copyWith(fontSize: compact ? 56 : 88),
+          ),
+        ),
+        const SizedBox(height: 24),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 520),
+          child: Texter(
+            "Flutter engineer with 7+ years shipping mobile, web, TV and automotive apps, "
+            "from a 5M-download kids' app to Tethxr, a social app I built solo.",
+            style: theme.textTheme.bodyLarge!.copyWith(fontSize: 19, color: theme.colorScheme.onSurfaceVariant),
+          ),
+        ),
+        const SizedBox(height: 32),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            FilledButton(
+              onPressed: () {
+                AnalyticsService.logEvent("contactMeClicked");
+                scrollToSection(context, 4);
+              },
+              child: const Text("Contact Me"),
+            ),
+            OutlinedButton(
+              onPressed: () => scrollToSection(context, 3),
+              child: const Text("View Projects"),
+            ),
+          ],
+        ),
+      ],
+    );
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Phones: name fills and centres the first screen; the card follows below.
+        if (constraints.maxWidth < 600) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: size.height,
+                  // leaves room for the bottom tab bar
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 80),
+                    child: Align(alignment: Alignment.centerLeft, child: _RiseIn(child: intro)),
+                  ),
+                ),
+                const ContactCard(),
+                const SizedBox(height: 48),
+              ],
+            ),
+          );
+        }
+        return Center(
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 1100, minHeight: size.height),
+            padding: const EdgeInsets.fromLTRB(32, 120, 32, 64),
+            alignment: Alignment.center,
+            child: _RiseIn(
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runSpacing: 56,
+                spacing: 40,
+                children: [
+                  ConstrainedBox(constraints: const BoxConstraints(maxWidth: 600), child: intro),
+                  const ContactCard(),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
-class _HomeState extends State<Home> {
+/// The one orchestrated moment: hero rises in on load. Skipped with reduced motion.
+class _RiseIn extends StatelessWidget {
+  const _RiseIn({required this.child});
+
+  final Widget child;
+
   @override
   Widget build(BuildContext context) {
-
-
-
-    return Container(
-      width: screenWidth(context, mulBy: 1),
-     // height: screenHeight(context),  ///Reducing 70 for appbar
-      padding: const EdgeInsets.symmetric(
-          horizontal: 30,
-      ),
-      decoration: const BoxDecoration(
-        color: Color(0xff0c0c0c),
-
-        gradient: LinearGradient(
-            colors: [
-              Color(0xff0c0c0c),
-              Color(0xff03253a),
-              Color(0xff0c0c0c),
-            ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      constraints: BoxConstraints(
-      minWidth: 500,
-        minHeight:  screenHeight(context),  ///Reducing 70 for appbar
-      ),
-      child: Wrap(
-        alignment: WrapAlignment.spaceEvenly,
-        runAlignment: WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        runSpacing: 40,
-        spacing: 20,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if(screenWidth(context)<720)
-              const SizedBox(
-                height: 180,
-              ),
-              FittedBox(
-                fit: BoxFit.scaleDown,
-
-                child: RichTexter(
-                  text: "Chrisbin Sunny",
-                  child: RichText(
-                    text: const TextSpan(
-                        text:
-                            " Hey, I am\n",
-                        style: TextStyle(
-                          fontSize: 34,
-                          color: Colors.white,
-                          fontFamily: "Gilroy",
-                        ),
-                        children: [
-                          TextSpan(
-                            text: "Chrisbin\n",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              // color: Color(0xff5dc8f8),
-                              fontSize: 70,
-                              color: Colors.white,
-                              fontFamily: "Gilroy",
-                              shadows: [
-                                BoxShadow(
-                                  blurRadius: 17.0,
-                                  spreadRadius: 15,
-                                  color: Color(0xff5dc8f8),
-                                ),
-                              ],
-                            ),
-                          ),
-                          TextSpan(
-                            text: "Sunny",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                //color: Color(0xff065a9d),
-                                fontSize: 70,
-                                color: Colors.white,
-                                shadows: [
-                                  BoxShadow(
-                                    blurRadius: 17.0,
-                                    spreadRadius: 15,
-                                    color: Color(0xff5dc8f8),
-                                  ),
-                                ],
-                                height: 0.7
-                            ),
-                          ),
-                        ]
-                    ),
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: screenWidth(context)<720?90:110,
-              ),
-
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  width: 400,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Texter(
-                        "I'm a",
-                        style: TextStyle(
-                            fontSize: 34
-                        ),
-                      ),
-                      DefaultTextStyle(
-                        style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.w100,
-                          color: Colors.white.withValues(alpha: 0.9),
-                          shadows: const [
-                            BoxShadow(
-                              blurRadius: 17.0,
-                              spreadRadius: 20,
-                              color: Color(0xff5dc8f8),
-                            ),
-                          ],
-                        ),
-                        child: AnimatedTextKit(
-                          repeatForever: true,
-                          pause: const Duration(seconds: 0),
-                          animatedTexts: [
-                            FlickerAnimatedText(
-                              'Mobile Developer',
-
-                            ),
-                            FlickerAnimatedText(
-                              'Speaker',
-                            ),
-                            FlickerAnimatedText(
-                              'Engineer',
-                            ),
-                            FlickerAnimatedText(
-                              'Founder',
-                            ),
-                            FlickerAnimatedText(
-                              'Package Author',
-                            ),
-                            FlickerAnimatedText(
-                              'Flutter Scientist',
-                            ),
-                          ],
-                          displayFullTextOnTap: true,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-          const ContactCard(),
-        ],
+    if (MediaQuery.disableAnimationsOf(context)) return child;
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 700),
+      curve: Curves.easeOutCubic,
+      child: child,
+      builder: (context, t, child) => Opacity(
+        opacity: t,
+        child: Transform.translate(offset: Offset(0, 24 * (1 - t)), child: child),
       ),
     );
   }

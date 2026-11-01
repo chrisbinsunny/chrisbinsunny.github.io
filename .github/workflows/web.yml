@@ -3,16 +3,23 @@ name: Portfolio
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+
+# flutter-gh-pages pushes the build to the production branch
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3 # Only works with v2
+      - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
-      - uses: bluefireteam/flutter-gh-pages@v7
+        with:
+          channel: stable
+          cache: true
+      - uses: bluefireteam/flutter-gh-pages@v9
         with:
           targetBranch: production
           baseHref: /
-          customArgs: --web-renderer canvaskit
