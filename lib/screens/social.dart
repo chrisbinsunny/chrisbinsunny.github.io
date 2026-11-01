@@ -76,8 +76,8 @@ class _SocialState extends State<Social> {
                 link: "https://maps.google.com/?q=Bengaluru,India",
                 onTap: null, icon: Icons.pin_drop, large: true,),
               SocialButton(topic: "Email",
-                text:"chrisbinsunny1@gmail.com",
-                link:"mailto:chrisbinsunny1@gmail.com",
+                text:"chrisbinofficial@gmail.com",
+                link:"mailto:chrisbinofficial@gmail.com",
                 onTap: () async{
                   AnalyticsService.logContact(
                     "Email",
@@ -85,36 +85,16 @@ class _SocialState extends State<Social> {
                 try {
                   await launchUrl(Uri(
                       scheme: 'mailto',
-                      path: 'chrisbinsunny1@gmail.com',
+                      path: 'chrisbinofficial@gmail.com',
                   ));
 
                 } catch (e) {
                   dev.log(e.toString());
-                  await Clipboard.setData(const ClipboardData(text: 'chrisbinsunny1@gmail.com'));
+                  await Clipboard.setData(const ClipboardData(text: 'chrisbinofficial@gmail.com'));
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Email Copied")));
                 }
               },
                 icon: Icons.email, large: true,),
-              SocialButton(topic: "Phone",
-                link:"tel:+918330070512",
-                text:"+91 83300 70512",
-                onTap: () async{
-                  AnalyticsService.logContact(
-                    "Phone",
-                  );
-                  try {
-                    await launchUrl(Uri(
-                      scheme: 'tel',
-                      path: '+918330070512',
-                    ));
-
-                  } catch (e) {
-                    dev.log(e.toString());
-                    await Clipboard.setData(const ClipboardData(text: '+918330070512'));
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Number Copied")));
-                  }
-                },
-                icon: Icons.phone, large: true,),
 
             ],
           ),

@@ -241,26 +241,10 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
             height: 30,
           ),
           SizedBox(
-            width: constraints.maxWidth*0.55,
-            child: const FittedBox(
-              child: Texter(
-                " (IND)  +91 83300 70512",
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w300
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          SizedBox(
             width: constraints.maxWidth*0.65,
             child: const FittedBox(
               child: Texter(
-                " chrisbinsunny1@gmail.com",
+                " chrisbinofficial@gmail.com",
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
