@@ -7,14 +7,14 @@ const nothing = Nothing();
 /// It is useful when you have to return a widget and can't return null.
 class Nothing extends Widget {
   /// Creates a [Nothing] widget.
-  const Nothing({Key? key}) : super(key: key);
+  const Nothing({super.key});
 
   @override
   Element createElement() => _NilElement(this);
 }
 
 class _NilElement extends Element {
-  _NilElement(Nothing widget) : super(widget);
+  _NilElement(Nothing super.widget);
 
   @override
   void mount(Element? parent, dynamic newSlot) {
@@ -32,5 +32,5 @@ class _NilElement extends Element {
   bool get debugDoingBuild => false;
 
   @override
-  void performRebuild() {}
+  void performRebuild() => super.performRebuild();
 }

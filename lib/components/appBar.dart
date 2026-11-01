@@ -1,11 +1,8 @@
 
-import 'dart:developer';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/firebase/analytics.dart';
-import 'package:provider/provider.dart';
 
 import '../sizes.dart';
 import '../widgets/functions.dart';
@@ -44,7 +41,7 @@ class AppBarCustomState extends State<AppBarCustom> {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10, tileMode: TileMode.clamp),
         child: Container(
-          color: Colors.black.withOpacity(0.1), ///303030
+          color: Colors.black.withValues(alpha: 0.1), ///303030
           alignment: Alignment.centerLeft,
          // height: 70,
           child: Padding(
@@ -54,7 +51,7 @@ class AppBarCustomState extends State<AppBarCustom> {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 ///Had to add a lesser width due to the padding of 40
-                if(constraints.biggest.width<610){
+                if(constraints.biggest.width<800){
 
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,7 +142,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                               AppBarButton(
                                   onTap: (){
                                     AnalyticsService.logAppBarButton(
-                                        "Projects",
+                                        "Experience",
                                         type: "AppBar"
                                     );
                                     widget.scrollController.position
@@ -157,7 +154,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                                         alignment: -0.7
                                     );
                                   },
-                                  text: 'Projects',
+                                  text: 'Experience',
                                   hovered: hovered,
                                   viewing: viewing,
 
@@ -166,7 +163,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                               AppBarButton(
                                   onTap: (){
                                     AnalyticsService.logAppBarButton(
-                                        "Social",
+                                        "Projects",
                                         type: "AppBar"
                                     );
                                     widget.scrollController.position
@@ -178,11 +175,32 @@ class AppBarCustomState extends State<AppBarCustom> {
                                         alignment: -0.7
                                     );
                                   },
-                                  text: 'Social',
+                                  text: 'Projects',
                                   hovered: hovered,
                                   viewing: viewing,
 
                                   count: 3
+                              ),
+                              AppBarButton(
+                                  onTap: (){
+                                    AnalyticsService.logAppBarButton(
+                                        "Social",
+                                        type: "AppBar"
+                                    );
+                                    widget.scrollController.position
+                                        .ensureVisible(
+                                        widget.keys[4].currentContext!.findRenderObject()!,
+                                        curve: Curves.easeInOut,
+
+                                        duration: const Duration(seconds: 1),
+                                        alignment: -0.7
+                                    );
+                                  },
+                                  text: 'Social',
+                                  hovered: hovered,
+                                  viewing: viewing,
+
+                                  count: 4
                               ),
                             ],
                           ),
@@ -208,7 +226,7 @@ class AppBarCustomState extends State<AppBarCustom> {
 
 
 class AppBarButton extends StatelessWidget {
-  const AppBarButton({Key? key, required this.onTap, required this.text, required this.hovered, required this.viewing, required this.count}) : super(key: key);
+  const AppBarButton({super.key, required this.onTap, required this.text, required this.hovered, required this.viewing, required this.count});
 
   final ValueNotifier<int> hovered, viewing;
   final VoidCallback onTap;
@@ -238,7 +256,7 @@ class AppBarButton extends StatelessWidget {
                   duration: const Duration(milliseconds: 100),
                   height: ((hovered.value==count)||(view==count))?30:0,
                   curve: Curves.easeIn,
-                  width:((hovered.value==count)||(view==count))?100:0,
+                  width:((hovered.value==count)||(view==count))?120:0,
                   decoration: BoxDecoration(
                       gradient: hovered.value==count?LinearGradient(
                         colors: [
@@ -263,7 +281,7 @@ class AppBarButton extends StatelessWidget {
                 );
               },),
             SizedBox(
-              width: 100,
+              width: 120,
               child: Texter(
                 text,
                 select: false,

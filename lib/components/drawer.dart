@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -10,7 +9,7 @@ import '../widgets/widgets.dart';
 import '../widgets/functions.dart';
 
 class CustomEndDrawer extends StatefulWidget {
-  const CustomEndDrawer({Key? key, required this.keys, required this.scrollController}): super(key: key);
+  const CustomEndDrawer({super.key, required this.keys, required this.scrollController});
   final List<GlobalKey> keys;
   final ScrollController scrollController;
 
@@ -38,7 +37,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20, tileMode: TileMode.clamp),
             child: Drawer(
-              backgroundColor: Colors.white.withOpacity(0.07),
+              backgroundColor: Colors.white.withValues(alpha: 0.07),
               shape: const Border(
                 left: BorderSide(
                   color: Color(0x18ffffff),
@@ -110,7 +109,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
 
                         onTap: (){
                           AnalyticsService.logAppBarButton(
-                              "Projects",
+                              "Experience",
                               type: "Drawer"
                           );
                           widget.scrollController.position
@@ -122,11 +121,31 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                               alignment: -0.2
                           );
                         },
-                        text: 'Projects',
+                        text: 'Experience',
                       ),
                       AppBarButton(
                         viewing: value,
                         count: 3,
+
+                        onTap: (){
+                          AnalyticsService.logAppBarButton(
+                              "Projects",
+                              type: "Drawer"
+                          );
+                          widget.scrollController.position
+                              .ensureVisible(
+                              widget.keys[3].currentContext!.findRenderObject()!,
+                              curve: Curves.easeInOut,
+
+                              duration: const Duration(seconds: 1),
+                              alignment: -0.2
+                          );
+                        },
+                        text: 'Projects',
+                      ),
+                      AppBarButton(
+                        viewing: value,
+                        count: 4,
 
                         onTap: (){
                           AnalyticsService.logAppBarButton(
@@ -135,7 +154,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                           );
                           widget.scrollController.position
                               .ensureVisible(
-                              widget.keys[3].currentContext!.findRenderObject()!,
+                              widget.keys[4].currentContext!.findRenderObject()!,
                               curve: Curves.easeInOut,
 
                               duration: const Duration(seconds: 1),
@@ -153,7 +172,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                             vertical: 20
                         ),
                         decoration: BoxDecoration(
-                            color: Theme.of(context).secondaryHeaderColor.withOpacity(0.4),
+                            color: Theme.of(context).secondaryHeaderColor.withValues(alpha: 0.4),
                             borderRadius: BorderRadius.circular(10)
                         ),
                         child: IconButton(
@@ -191,7 +210,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
 
 
 class AppBarButton extends StatelessWidget {
-  const AppBarButton({Key? key, required this.onTap, required this.text, required this.viewing, required this.count}) : super(key: key);
+  const AppBarButton({super.key, required this.onTap, required this.text, required this.viewing, required this.count});
 
   final VoidCallback onTap;
   final String text;
@@ -209,10 +228,10 @@ class AppBarButton extends StatelessWidget {
       ),
 
       onTap: onTap,
-      hoverColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.1),
-      focusColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.3),
+      hoverColor: Theme.of(context).secondaryHeaderColor.withValues(alpha: 0.1),
+      focusColor: Theme.of(context).secondaryHeaderColor.withValues(alpha: 0.3),
       enabled: true,
-      selectedTileColor: Theme.of(context).secondaryHeaderColor.withOpacity(0.4),
+      selectedTileColor: Theme.of(context).secondaryHeaderColor.withValues(alpha: 0.4),
       selected: viewing==count,
       leading: const Icon(
         Icons.navigate_before,

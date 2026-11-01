@@ -1,5 +1,4 @@
 import 'dart:developer' as dev;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +8,7 @@ import 'package:portfolio/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Social extends StatefulWidget {
-  const Social({Key? key}) : super(key: key);
+  const Social({super.key});
 
   @override
   State<Social> createState() => _SocialState();
@@ -73,12 +72,12 @@ class _SocialState extends State<Social> {
             spacing: 20,
             runSpacing: 20,
             children: [
-              const SocialButton(topic: "Location", text:"Kerala, India",
-                link: "https://keralatourism.org",
+              const SocialButton(topic: "Location", text:"Bengaluru, India",
+                link: "https://maps.google.com/?q=Bengaluru,India",
                 onTap: null, icon: Icons.pin_drop, large: true,),
               SocialButton(topic: "Email",
-                text:"chrisbinofficial@gmail.com",
-                link:"mailto:chrisbinofficial@gmail.com",
+                text:"chrisbinsunny1@gmail.com",
+                link:"mailto:chrisbinsunny1@gmail.com",
                 onTap: () async{
                   AnalyticsService.logContact(
                     "Email",
@@ -86,12 +85,12 @@ class _SocialState extends State<Social> {
                 try {
                   await launchUrl(Uri(
                       scheme: 'mailto',
-                      path: 'chrisbinofficial@gmail.com',
+                      path: 'chrisbinsunny1@gmail.com',
                   ));
 
                 } catch (e) {
                   dev.log(e.toString());
-                  await Clipboard.setData(const ClipboardData(text: 'chrisbinofficial@gmail.com'));
+                  await Clipboard.setData(const ClipboardData(text: 'chrisbinsunny1@gmail.com'));
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Email Copied")));
                 }
               },
@@ -143,7 +142,7 @@ class _SocialState extends State<Social> {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                 }
               },
-                  icon: FontAwesomeIcons.github),
+                  icon: FontAwesomeIcons.github.data),
               SocialButton(topic: "Twitter",
                   link:"https://twitter.com/chrisbinsunny",
                   onTap: () async{
@@ -158,7 +157,7 @@ class _SocialState extends State<Social> {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                     }
                   },
-                  icon: FontAwesomeIcons.twitter),
+                  icon: FontAwesomeIcons.twitter.data),
               SocialButton(
                   topic: "LinkedIn",
                   link: "https://linkedin.com/in/chrisbinsunny",
@@ -174,7 +173,7 @@ class _SocialState extends State<Social> {
                   await Clipboard.setData(const ClipboardData(text: 'https://linkedin.com/in/chrisbinsunny'));
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                 }
-              }, icon: FontAwesomeIcons.linkedin),
+              }, icon: FontAwesomeIcons.linkedin.data),
               SocialButton(
                   topic: "Instagram",
                   link: "https://instagram.com/binary.ghost",
@@ -189,7 +188,7 @@ class _SocialState extends State<Social> {
                   await Clipboard.setData(const ClipboardData(text: 'https://instagram.com/binary.ghost'));
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Texter("Link Copied")));
                 }
-              }, icon: FontAwesomeIcons.instagram),
+              }, icon: FontAwesomeIcons.instagram.data),
             ],
           ),
 
@@ -202,7 +201,7 @@ class _SocialState extends State<Social> {
 
 
 class SocialButton extends StatelessWidget {
-  const SocialButton({Key? key, this.large=false, this.text="", required this.link, required this.topic, required this.onTap, required this.icon}) : super(key: key);
+  const SocialButton({super.key, this.large=false, this.text="", required this.link, required this.topic, required this.onTap, required this.icon});
 
   final IconData icon;
   final VoidCallback? onTap;

@@ -1,13 +1,11 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/projectView.dart';
 import 'package:portfolio/widgets/widgets.dart';
-import 'package:seo/html/seo_widget.dart';
 
 class Projects extends StatefulWidget {
-  const Projects({Key? key}) : super(key: key);
+  const Projects({super.key});
 
   @override
   State<Projects> createState() => _ProjectsState();
@@ -44,7 +42,7 @@ class _ProjectsState extends State<Projects> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Texter(
-            "Open Source Projects",
+            "Projects",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w600,
@@ -54,6 +52,47 @@ class _ProjectsState extends State<Projects> {
           const SizedBox(
             height: 35,
           ),
+          const ProjectCategory("Flutter Packages"),
+          Wrap(
+            direction: Axis.horizontal,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            alignment: WrapAlignment.spaceEvenly,
+            runAlignment: WrapAlignment.spaceEvenly,
+            spacing: 100,
+            runSpacing: 40,
+            children: const [
+              ProjectItem(
+                name: "blurhashx",
+                projectDetails: ProjectDetails(
+                  name: "blurhashx",
+                  altText: "blurhashx Flutter package.",
+                  desc: "\u{25ca} A high-performance Flutter BlurHash package, built to fix slow placeholders in Tethxr.\n"
+                      "\u{25ca} Cut encoding to 5–8 ms (~250x faster) using Flutter's native Skia decoder.\n"
+                      "\u{25ca} Linear-light downsampling, a separable 2D DCT and sRGB/cosine lookup tables.\n"
+                      "\u{25ca} encodeAsync runs on a background isolate with zero-copy transfer.\n"
+                      "\u{25ca} Matches the official BlurHash spec; 160/160 pub points, 600+ downloads.",
+                  github: "https://github.com/chrisbinsunny/blurhashx",
+                  link: "https://pub.dev/packages/blurhashx",
+                ),
+              ),
+              ProjectItem(
+                name: "Flippy",
+                projectDetails: ProjectDetails(
+                  name: "Flippy",
+                  altText: "Flippy Flutter package.",
+                  desc: "\u{25ca} A Flutter package for 3D card-flip widgets.\n"
+                      "\u{25ca} Drag to flip, with a controller for flipping from code.\n"
+                      "\u{25ca} Supports flips from all sides with shadows.",
+                  github: "https://github.com/chrisbinsunny/flippy",
+                  link: "https://pub.dev/packages/flippy",
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 60,
+          ),
+          const ProjectCategory("Web Apps"),
           Wrap(
             direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -121,14 +160,14 @@ class _ProjectsState extends State<Projects> {
 
 class ProjectItem extends StatelessWidget {
   const ProjectItem(
-      {Key? key,
+      {super.key,
       required this.name,
-      required this.image,
+      this.image,
       this.imageFit = BoxFit.cover,
-      required this.projectDetails})
-      : super(key: key);
+      required this.projectDetails});
 
-  final String image, name;
+  final String name;
+  final String? image;
   final BoxFit imageFit;
   final ProjectDetails projectDetails;
 
@@ -167,12 +206,29 @@ class ProjectItem extends StatelessWidget {
                   BoxShadow(
                       color: Color(0x2dffffff), spreadRadius: 3, blurRadius: 15)
                 ]),
-            child: Imager(
-              path: image,
-              altText: "Project item image which shows $image.",
-              imageFit: imageFit,
-              alignment: Alignment.center,
-            ),
+            child: image == null
+                ? Container(
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Color(0xff03253a), Color(0xff0c0c0c)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight)),
+                    child: Texter(
+                      name,
+                      select: false,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 36,
+                          color: Theme.of(context).primaryColor),
+                    ),
+                  )
+                : Imager(
+                    path: image!,
+                    altText: "Project item image which shows $image.",
+                    imageFit: imageFit,
+                    alignment: Alignment.center,
+                  ),
           ),
           const SizedBox(
             height: 15,
@@ -193,13 +249,35 @@ class ProjectItem extends StatelessWidget {
 }
 
 class ProjectDetails {
-  final String image, altText, desc, github, link, name;
+  final String altText, desc, github, link, name;
+  final String? image;
 
   const ProjectDetails(
-      {required this.image,
+      {this.image,
       required this.altText,
       required this.desc,
       required this.github,
         required this.name,
       required this.link});
+}
+
+class ProjectCategory extends StatelessWidget {
+  const ProjectCategory(this.title, {super.key});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 30),
+      child: Texter(
+        title,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 24,
+            color: Theme.of(context).primaryColor),
+      ),
+    );
+  }
 }

@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/sizes.dart';
-import 'dart:html' as html;
-import 'dart:ui' as ui;
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:portfolio/widgets/widgets.dart';
 
@@ -12,9 +11,10 @@ import 'package:portfolio/widgets/widgets.dart';
 class ProjectView extends StatelessWidget {
 
 
-  ProjectView({Key? key, required this.name, required this.image, required this.altText, required this.desc, required this.github, required this.link}) : super(key: key);
+  ProjectView({super.key, required this.name, this.image, required this.altText, required this.desc, required this.github, required this.link});
 
-  final String name, image, altText, desc, github, link;
+  final String name, altText, desc, github, link;
+  final String? image;
   final ScrollController scrollController= ScrollController();
 
   @override
@@ -99,7 +99,7 @@ class ProjectView extends StatelessWidget {
                                 AnalyticsService.logProjectLaunched(
                                   name,
                                 );
-                                html.window.open(link, 'new tab');
+                                launchUrl(Uri.parse(link));
 
                               },
                               child: Container(
@@ -143,7 +143,7 @@ class ProjectView extends StatelessWidget {
                                 AnalyticsService.logProjectGitLaunched(
                                   name,
                                 );
-                                html.window.open(github, 'new tab');
+                                launchUrl(Uri.parse(github));
 
                               },
                               child: Container(
@@ -180,6 +180,7 @@ class ProjectView extends StatelessWidget {
                       )
                     ],
                   ),
+                  if (image != null)
                   Container(
                     width: screenWidth(context, mulBy: 0.35),
                     constraints: const BoxConstraints(
@@ -192,7 +193,7 @@ class ProjectView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Imager(
                         altText: altText,
-                        path: image,
+                        path: image!,
                       ),
                     ),
                   ),
@@ -218,6 +219,7 @@ class ProjectView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                if (image != null)
                 Container(
                   width: constraints.maxWidth*0.6,
                   constraints: const BoxConstraints(
@@ -233,7 +235,7 @@ class ProjectView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: Imager(
                       altText: altText,
-                      path: image,
+                      path: image!,
                     ),
                   ),
                 ),
@@ -291,7 +293,7 @@ class ProjectView extends StatelessWidget {
                           controller: scrollController,
                           physics: const BouncingScrollPhysics(),
                           child: Texter(
-                            "\n${desc}\n",
+                            "\n$desc\n",
                             style: const TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 15.5,
@@ -315,7 +317,7 @@ class ProjectView extends StatelessWidget {
                           onTap: (){ AnalyticsService.logProjectLaunched(
                             name,
                           );
-                            html.window.open(link, 'new tab');
+                            launchUrl(Uri.parse(link));
                           },
                           child: Container(
                             height: 40,
@@ -360,7 +362,7 @@ class ProjectView extends StatelessWidget {
                             AnalyticsService.logProjectGitLaunched(
                               name,
                             );
-                            html.window.open(github, 'new tab');
+                            launchUrl(Uri.parse(github));
                           },
                           child: Container(
                             height: 40,

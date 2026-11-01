@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seo/html/seo_widget.dart';
 
 class Texter extends StatelessWidget {
-  const Texter(this.text, {Key? key, this.select=true, this.style=const TextStyle(), this.textAlign=TextAlign.start, this.maxLines}) : super(key: key);
+  const Texter(this.text, {super.key, this.select=true, this.style=const TextStyle(), this.textAlign=TextAlign.start, this.maxLines});
 
   final TextStyle style;
   final String text;
@@ -44,7 +44,7 @@ class Texter extends StatelessWidget {
 }
 
 class RichTexter extends StatelessWidget {
-  const RichTexter({Key? key, required this.child, required this.text}) : super(key: key);
+  const RichTexter({super.key, required this.child, required this.text});
 
   final Widget child;
   final String text;
@@ -59,7 +59,7 @@ class RichTexter extends StatelessWidget {
 }
 
 class Imager extends StatelessWidget {
-  const Imager({Key? key,  this.imageFit = BoxFit.cover, required this.altText, required this.path, this.colorBlendMode, this.alignment= Alignment.center}) : super(key: key);
+  const Imager({super.key,  this.imageFit = BoxFit.cover, required this.altText, required this.path, this.colorBlendMode, this.alignment= Alignment.center});
 
   final String path, altText;
   final BlendMode? colorBlendMode;
@@ -82,7 +82,7 @@ class Imager extends StatelessWidget {
 }
 
 class Linker extends StatelessWidget {
-  const Linker({Key? key, required this.name, required this.link, required this.child}) : super(key: key);
+  const Linker({super.key, required this.name, required this.link, required this.child});
 
   final String link, name;
   final Widget child;

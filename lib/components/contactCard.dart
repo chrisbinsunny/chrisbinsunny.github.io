@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/constants/variables.dart';
 import 'package:portfolio/firebase/analytics.dart';
-import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
@@ -230,7 +229,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
           SizedBox(
             width: constraints.maxWidth*0.6,
             child: const FittedBox(
-              child: Texter("  App Developer | Speaker",
+              child: Texter("  Mobile Developer | Speaker",
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w200
@@ -261,7 +260,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
             width: constraints.maxWidth*0.65,
             child: const FittedBox(
               child: Texter(
-                " chrisbinofficial@gmail.com",
+                " chrisbinsunny1@gmail.com",
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
@@ -402,7 +401,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
               );
               Variables.scrollController.position
                   .ensureVisible(
-                  Variables.keys[3].currentContext!.findRenderObject()!,
+                  Variables.keys[4].currentContext!.findRenderObject()!,
                   curve: Curves.easeInOut,
 
                   duration: const Duration(seconds: 1),
@@ -453,7 +452,7 @@ class _ContactCardState extends State<ContactCard> with SingleTickerProviderStat
     }
   }
 
-  getWidth(){
+  double getWidth(){
     return dragPosition>180?(130+(180-dragPosition)*1.44):130-(dragPosition*1.44);
   }
 

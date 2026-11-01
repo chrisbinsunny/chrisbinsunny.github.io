@@ -1,16 +1,14 @@
 
 
-import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/contactCard.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
-import 'package:seo/html/seo_widget.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -123,9 +121,9 @@ class _HomeState extends State<Home> {
                 fit: BoxFit.scaleDown,
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  height: 100,
                   width: 400,
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Texter(
@@ -138,7 +136,7 @@ class _HomeState extends State<Home> {
                         style: TextStyle(
                           fontSize: 50,
                           fontWeight: FontWeight.w100,
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                           shadows: const [
                             BoxShadow(
                               blurRadius: 17.0,
@@ -162,10 +160,10 @@ class _HomeState extends State<Home> {
                               'Engineer',
                             ),
                             FlickerAnimatedText(
-                              'Designer',
+                              'Founder',
                             ),
                             FlickerAnimatedText(
-                              'Photographer',
+                              'Package Author',
                             ),
                             FlickerAnimatedText(
                               'Flutter Scientist',

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           secondaryHeaderColor: Color(0xff065a9d),
           scaffoldBackgroundColor: const Color(0xff0c0c0c),
           scrollbarTheme: ScrollbarThemeData(
-            thumbColor: MaterialStateProperty.all<Color>(Color(0x5455889f))
+            thumbColor: WidgetStateProperty.all<Color>(Color(0x5455889f))
           ),
           fontFamily: "Gilroy",
           textTheme: Theme.of(context).textTheme.apply(

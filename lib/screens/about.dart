@@ -1,15 +1,12 @@
 
 
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:portfolio/components/contactCard.dart';
 import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
 class About extends StatefulWidget {
-  const About({Key? key}) : super(key: key);
+  const About({super.key});
 
   @override
   State<About> createState() => _AboutState();
@@ -71,11 +68,12 @@ class _AboutState extends State<About> {
                 ),
                 const Texter(
                   "Ever since I was a teenager, programming has been a passion of mine. "
-                      "My goal is to make technology accessible to everyone, which is why I frequently give tech talks and workshops at schools and colleges. "
-                      "Currently, I am focused on creating clean and user-friendly UI/UX using the Flutter Web framework.\n\n"
-                      "Over the past few years, I have had the opportunity to work on a wide range of Flutter mobile and web projects, gaining a wealth of experience in the process. "
-                      "By working for both companies and individuals across the globe and attending meetups, I have had the opportunity to learn from and collaborate with some truly exceptional and motivated individuals.\n\n"
-                      "I am currently working remotely with a select group of freelance clients, while also open to new opportunities.",
+                      "Today I'm a Flutter engineer with 7+ years of shipping mobile, web, TV and automotive apps, "
+                      "from a kids' learning app with 5M+ downloads to a social app I built and launched solo.\n\n"
+                      "I'm a Frontend Engineer at Kutuki and the founder of Tethxr. "
+                      "I also maintain open source Flutter packages like blurhashx and Flippy.\n\n"
+                      "I love making technology accessible to everyone. I've conducted 7 workshops and delivered 9+ talks on Flutter and programming, "
+                      "won 1st prize at the Amazon Alexa Use Case Competition (KSUM) and 2nd prize at the Hack19 Flutter International Hackathon.",
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 19,
@@ -127,7 +125,7 @@ class _AboutState extends State<About> {
                   minHeight: 480,
                 ),
                 child: const Texter(
-                  "Flutter, Dart, Firebase, Supabase, Google Cloud Maps, GoLang",
+                  "Flutter, Dart, Go, Python, Supabase, Firebase, PostgreSQL, AWS S3, BLoC, GetX, RevenueCat",
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 52,
