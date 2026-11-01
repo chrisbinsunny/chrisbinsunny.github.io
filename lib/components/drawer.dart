@@ -109,7 +109,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
 
                         onTap: (){
                           AnalyticsService.logAppBarButton(
-                              "Experience",
+                              "Latest",
                               type: "Drawer"
                           );
                           widget.scrollController.position
@@ -121,7 +121,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                               alignment: -0.2
                           );
                         },
-                        text: 'Experience',
+                        text: 'Latest',
                       ),
                       AppBarButton(
                         viewing: value,

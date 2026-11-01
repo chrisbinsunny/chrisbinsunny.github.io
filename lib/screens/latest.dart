@@ -4,8 +4,8 @@ import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Experience extends StatelessWidget {
-  const Experience({super.key});
+class Latest extends StatelessWidget {
+  const Latest({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class Experience extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Texter(
-            "Experience",
+            "Latest",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w600,
@@ -43,46 +43,40 @@ class Experience extends StatelessWidget {
           const SizedBox(
             height: 35,
           ),
-          const Wrap(
+          Wrap(
             alignment: WrapAlignment.center,
-            crossAxisAlignment: WrapCrossAlignment.start,
-            spacing: 40,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 50,
             runSpacing: 40,
             children: [
-              ExperienceItem(
-                company: "Tethxr",
+              Container(
+                width: 420,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.white, width: 0.6),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0x2dffffff), spreadRadius: 3, blurRadius: 15)
+                    ]),
+                child: const Imager(
+                  path: "images/tethxr.jpg",
+                  altText: "Tethxr, a social app for meeting people in the same physical space.",
+                ),
+              ),
+              const LatestItem(
+                title: "Tethxr",
                 role: "Founder & Solo Developer",
                 period: "Jul 2026 – Present",
                 about: "Social app for meeting people in the same physical space (iOS, Android)",
                 link: "https://tethxr.com",
-                desc: "\u{25ca} Designed, built and launched the app solo; 500+ users in month one and 350+ chats opened.\n"
-                    "\u{25ca} Serverless Supabase backend (SQL RPCs, Realtime, Auth, Edge Functions) with Firebase.\n"
-                    "\u{25ca} Nearby-user detection over Wi-Fi, Bluetooth and GPS without sharing exact location.\n"
+                desc: "\u{25ca} Designed, built and launched the app solo from scratch; 500+ users in month one, 100+ active users and 350+ chats opened.\n"
+                    "\u{25ca} Serverless, database-centric Supabase backend (SQL RPCs, Realtime, Auth, Edge Functions) with Firebase.\n"
+                    "\u{25ca} Nearby-user detection over Wi-Fi, Bluetooth and GPS with opt-in visibility, never sharing exact location.\n"
                     "\u{25ca} Envelope-encrypted chat, decrypted in an iOS Notification Service Extension.\n"
                     "\u{25ca} Native iOS and Android cameras over Pigeon, making capture near-instant.\n"
-                    "\u{25ca} Shipped 1.0 to 1.5.3 in 3 months.",
-              ),
-              ExperienceItem(
-                company: "Kutuki",
-                role: "Frontend Engineer",
-                period: "Apr 2023 – Present",
-                about: "Kids' learning app across Android, iOS, Auto and TV",
-                desc: "\u{25ca} 99.6% crash-free sessions for an app with 5M+ downloads and 1M peak MAU.\n"
-                    "\u{25ca} Integrated Google Play/App Store Billing and Razorpay.\n"
-                    "\u{25ca} Built the TV app alone in 3 weeks with QR sign-in; 99.7% crash-free.\n"
-                    "\u{25ca} Built an automotive app without Google Play services.\n"
-                    "\u{25ca} Cut load times by 80% with GetX and deferred loading.\n"
-                    "\u{25ca} Built 15+ games per section across Grammar and Math with Lottie animations.",
-              ),
-              ExperienceItem(
-                company: "Freelance",
-                role: "Consultant – Mobile Developer",
-                period: "Sep 2019 – Apr 2023",
-                about: "Flutter apps for clients across the globe",
-                desc: "\u{25ca} Architected a PayU payment flow for a home appliances client.\n"
-                    "\u{25ca} Built styled Google Maps polylines for a health-industry client.\n"
-                    "\u{25ca} Integrated PDF reader, image-to-PDF and border detection for a billing app.\n"
-                    "\u{25ca} Delivered a clothing-brand e-commerce app in 4 weeks and a gym slot-booking app.",
+                    "\u{25ca} Direct client uploads to AWS S3 through pre-signed URLs.\n"
+                    "\u{25ca} Shipped 1.0 to 1.5.3 in 3 months with radar view, invites and age verification.",
               ),
             ],
           ),
@@ -92,16 +86,16 @@ class Experience extends StatelessWidget {
   }
 }
 
-class ExperienceItem extends StatelessWidget {
-  const ExperienceItem({super.key, required this.company, required this.role, required this.period, required this.about, required this.desc, this.link});
+class LatestItem extends StatelessWidget {
+  const LatestItem({super.key, required this.title, required this.role, required this.period, required this.about, required this.desc, this.link});
 
-  final String company, role, period, about, desc;
+  final String title, role, period, about, desc;
   final String? link;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 340,
+      width: 480,
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
           color: const Color(0xff111111),
@@ -115,7 +109,7 @@ class ExperienceItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Texter(
-            company,
+            title,
             style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 30,
@@ -164,11 +158,11 @@ class ExperienceItem extends StatelessWidget {
               height: 15,
             ),
             Linker(
-              name: company,
+              name: title,
               link: link!,
               child: InkWell(
                 onTap: () {
-                  AnalyticsService.logProjectLaunched(company);
+                  AnalyticsService.logProjectLaunched(title);
                   launchUrl(Uri.parse(link!));
                 },
                 child: Texter(

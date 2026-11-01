@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/components/drawer.dart';
 import 'package:portfolio/constants/variables.dart';
 import 'package:portfolio/screens/about.dart';
-import 'package:portfolio/screens/experience.dart';
+import 'package:portfolio/screens/latest.dart';
 import 'package:portfolio/screens/projects.dart';
 import 'package:portfolio/screens/social.dart';
 import 'package:portfolio/widgets/widgets.dart';
@@ -72,7 +72,7 @@ class _IndexState extends State<Index> {
                 children: [
                   Home(key: Variables.keys[0],),
                   About(key: Variables.keys[1],),
-                  Experience(key: Variables.keys[2],),
+                  Latest(key: Variables.keys[2],),
                   Projects(key: Variables.keys[3],),
                   Social(key: Variables.keys[4]),
                   const SizedBox(

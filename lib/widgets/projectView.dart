@@ -11,10 +11,9 @@ import 'package:portfolio/widgets/widgets.dart';
 class ProjectView extends StatelessWidget {
 
 
-  ProjectView({super.key, required this.name, this.image, required this.altText, required this.desc, required this.github, required this.link});
+  ProjectView({super.key, required this.name, required this.image, required this.altText, required this.desc, required this.github, required this.link});
 
-  final String name, altText, desc, github, link;
-  final String? image;
+  final String name, image, altText, desc, github, link;
   final ScrollController scrollController= ScrollController();
 
   @override
@@ -180,7 +179,6 @@ class ProjectView extends StatelessWidget {
                       )
                     ],
                   ),
-                  if (image != null)
                   Container(
                     width: screenWidth(context, mulBy: 0.35),
                     constraints: const BoxConstraints(
@@ -193,7 +191,7 @@ class ProjectView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Imager(
                         altText: altText,
-                        path: image!,
+                        path: image,
                       ),
                     ),
                   ),
@@ -219,7 +217,6 @@ class ProjectView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (image != null)
                 Container(
                   width: constraints.maxWidth*0.6,
                   constraints: const BoxConstraints(
@@ -235,7 +232,7 @@ class ProjectView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: Imager(
                       altText: altText,
-                      path: image!,
+                      path: image,
                     ),
                   ),
                 ),

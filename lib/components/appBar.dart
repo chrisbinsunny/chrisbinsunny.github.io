@@ -51,7 +51,7 @@ class AppBarCustomState extends State<AppBarCustom> {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 ///Had to add a lesser width due to the padding of 40
-                if(constraints.biggest.width<800){
+                if(constraints.biggest.width<710){
 
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,7 +142,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                               AppBarButton(
                                   onTap: (){
                                     AnalyticsService.logAppBarButton(
-                                        "Experience",
+                                        "Latest",
                                         type: "AppBar"
                                     );
                                     widget.scrollController.position
@@ -154,7 +154,7 @@ class AppBarCustomState extends State<AppBarCustom> {
                                         alignment: -0.7
                                     );
                                   },
-                                  text: 'Experience',
+                                  text: 'Latest',
                                   hovered: hovered,
                                   viewing: viewing,
 
@@ -256,7 +256,7 @@ class AppBarButton extends StatelessWidget {
                   duration: const Duration(milliseconds: 100),
                   height: ((hovered.value==count)||(view==count))?30:0,
                   curve: Curves.easeIn,
-                  width:((hovered.value==count)||(view==count))?120:0,
+                  width:((hovered.value==count)||(view==count))?100:0,
                   decoration: BoxDecoration(
                       gradient: hovered.value==count?LinearGradient(
                         colors: [
@@ -281,7 +281,7 @@ class AppBarButton extends StatelessWidget {
                 );
               },),
             SizedBox(
-              width: 120,
+              width: 100,
               child: Texter(
                 text,
                 select: false,

@@ -63,8 +63,11 @@ class _ProjectsState extends State<Projects> {
             children: const [
               ProjectItem(
                 name: "blurhashx",
+                image: "images/blurhashx.png",
+                imageFit: BoxFit.contain,
                 projectDetails: ProjectDetails(
                   name: "blurhashx",
+                  image: "images/blurhashx.png",
                   altText: "blurhashx Flutter package.",
                   desc: "\u{25ca} A high-performance Flutter BlurHash package, built to fix slow placeholders in Tethxr.\n"
                       "\u{25ca} Cut encoding to 5–8 ms (~250x faster) using Flutter's native Skia decoder.\n"
@@ -77,8 +80,11 @@ class _ProjectsState extends State<Projects> {
               ),
               ProjectItem(
                 name: "Flippy",
+                image: "images/flippy.gif",
+                imageFit: BoxFit.contain,
                 projectDetails: ProjectDetails(
                   name: "Flippy",
+                  image: "images/flippy.gif",
                   altText: "Flippy Flutter package.",
                   desc: "\u{25ca} A Flutter package for 3D card-flip widgets.\n"
                       "\u{25ca} Drag to flip, with a controller for flipping from code.\n"
@@ -162,12 +168,11 @@ class ProjectItem extends StatelessWidget {
   const ProjectItem(
       {super.key,
       required this.name,
-      this.image,
+      required this.image,
       this.imageFit = BoxFit.cover,
       required this.projectDetails});
 
-  final String name;
-  final String? image;
+  final String image, name;
   final BoxFit imageFit;
   final ProjectDetails projectDetails;
 
@@ -206,29 +211,12 @@ class ProjectItem extends StatelessWidget {
                   BoxShadow(
                       color: Color(0x2dffffff), spreadRadius: 3, blurRadius: 15)
                 ]),
-            child: image == null
-                ? Container(
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            colors: [Color(0xff03253a), Color(0xff0c0c0c)],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight)),
-                    child: Texter(
-                      name,
-                      select: false,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 36,
-                          color: Theme.of(context).primaryColor),
-                    ),
-                  )
-                : Imager(
-                    path: image!,
-                    altText: "Project item image which shows $image.",
-                    imageFit: imageFit,
-                    alignment: Alignment.center,
-                  ),
+            child: Imager(
+              path: image,
+              altText: "Project item image which shows $image.",
+              imageFit: imageFit,
+              alignment: Alignment.center,
+            ),
           ),
           const SizedBox(
             height: 15,
@@ -249,11 +237,10 @@ class ProjectItem extends StatelessWidget {
 }
 
 class ProjectDetails {
-  final String altText, desc, github, link, name;
-  final String? image;
+  final String image, altText, desc, github, link, name;
 
   const ProjectDetails(
-      {this.image,
+      {required this.image,
       required this.altText,
       required this.desc,
       required this.github,
