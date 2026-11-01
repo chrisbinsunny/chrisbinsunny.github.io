@@ -30,3 +30,6 @@ linter:
 analyzer:
   errors:
     undefined_prefixed_name: ignore
+  exclude:
+    - build/**
+    - web/**

@@ -1,118 +1,102 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/firebase/analytics.dart';
-import 'package:portfolio/sizes.dart';
 import 'package:portfolio/widgets/projectView.dart';
 import 'package:portfolio/widgets/widgets.dart';
-import 'package:seo/html/seo_widget.dart';
 
-class Projects extends StatefulWidget {
-  const Projects({Key? key}) : super(key: key);
+const _packages = [
+  ProjectDetails(
+    name: "blurhashx",
+    kind: "pub.dev package",
+    image: "images/blurhashx.png",
+    imageFit: BoxFit.contain,
+    altText: "blurhashx example showing images and their BlurHash placeholders.",
+    desc: "A high-performance Flutter BlurHash package, built to fix slow placeholders in Tethxr.\n"
+        "Cut encoding to 5–8 ms (~250x faster) using Flutter's native Skia decoder.\n"
+        "Linear-light downsampling, a separable 2D DCT and sRGB/cosine lookup tables.\n"
+        "encodeAsync runs on a background isolate with zero-copy transfer.\n"
+        "Matches the official BlurHash spec; 160/160 pub points, 600+ downloads.\n"
+        "The image placeholders on this site are drawn with it.",
+    github: "https://github.com/chrisbinsunny/blurhashx",
+    link: "https://pub.dev/packages/blurhashx",
+  ),
+  ProjectDetails(
+    name: "Flippy",
+    kind: "pub.dev package",
+    image: "images/flippy.gif",
+    imageFit: BoxFit.contain,
+    altText: "Flippy demo of a card being dragged to flip.",
+    desc: "A Flutter package for 3D card-flip widgets.\n"
+        "Drag to flip, with a controller for flipping from code.\n"
+        "Supports flips from all sides with shadows.\n"
+        "The contact card on this site flips the same way.",
+    github: "https://github.com/chrisbinsunny/flippy",
+    link: "https://pub.dev/packages/flippy",
+  ),
+];
 
-  @override
-  State<Projects> createState() => _ProjectsState();
-}
+const _webApps = [
+  ProjectDetails(
+    name: "ChrisHub",
+    kind: "Flutter Web",
+    image: "images/chrishub.jpg",
+    detailImage: "images/chrishubWeb.jpg",
+    altText: "Home screen of ChrisHub, Chrisbin's MacBook Pro.",
+    desc: "A portfolio website built as a web simulation of macOS Big Sur.\n"
+        "Recreated Terminal, Safari, Messages, VS Code and Spotify.\n"
+        "Create and delete folders, change brightness, wallpaper and more.\n"
+        "Provider for state and Hive as the local database.\n"
+        "Tech stack: Flutter, Firebase, Hive.",
+    github: "https://github.com/chrisbinsunny/chrishub",
+    link: "https://chrisbinsunny.github.io/chrishub",
+  ),
+  ProjectDetails(
+    name: "DREAM",
+    kind: "Flutter Web",
+    image: "images/dream.png",
+    detailImage: "images/dreamWeb.jpg",
+    imageFit: BoxFit.contain,
+    altText: "Home screen of DREAM colour finder and gradient maker.",
+    desc: "A web tool that pulls colours from images and screenshots.\n"
+        "Gradient builder for website backgrounds.\n"
+        "CSS code copying and sharing.\n"
+        "Tech stack: Flutter, Provider.",
+    github: "https://github.com/chrisbinsunny/dream",
+    link: "https://chrisbinsunny.github.io/dream",
+  ),
+  ProjectDetails(
+    name: "Flutter Talks",
+    kind: "Flutter Web",
+    image: "images/flutterTalks.jpg",
+    detailImage: "images/flutterTalksWeb.jpg",
+    altText: "Home screen of Flutter Talks by Chrisbin Sunny.",
+    desc: "A presentation website shown at the intro session of workshops.\n"
+        "Intro to Flutter slides, controlled with the arrow keys.\n"
+        "Every slide has its own link.\n"
+        "Tech stack: Flutter, Provider.",
+    github: "https://github.com/chrisbinsunny/Flutter-Talks",
+    link: "https://chrisbinsunny.github.io/Flutter-Talks",
+  ),
+];
 
-class _ProjectsState extends State<Projects> {
+class Projects extends StatelessWidget {
+  const Projects({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: screenWidth(context, mulBy: 1),
-      //height: screenHeight(context)-70,  ///Reducing 70 for appbar
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Color(0xff0c0c0c),
-                Color(0xff0f1617),
-                Color(0xff0c0c0c),
-
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter
-          )
-      ),
-      //color: Colors.green,
-      constraints: BoxConstraints(
-        minWidth: 500,
-        minHeight: screenHeight(context) ,
-      ),
-      padding: EdgeInsets.symmetric(
-          horizontal: screenWidth(context, mulBy: 0.05),
-          vertical: screenHeight(context, mulBy: 0.07)),
+    return Section(
+      eyebrow: "Projects",
+      title: "Open source work.",
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Texter(
-            "Open Source Projects",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 34,
-                color: Theme.of(context).secondaryHeaderColor),
-          ),
-          const SizedBox(
-            height: 35,
-          ),
-          Wrap(
-            direction: Axis.horizontal,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            alignment: WrapAlignment.spaceEvenly,
-            runAlignment: WrapAlignment.spaceEvenly,
-            spacing: 100,
-            runSpacing: 40,
-            children: const [
-              ProjectItem(
-                  name: "ChrisHub",
-                  image: "images/chrishub.jpg",
-                  projectDetails: ProjectDetails(
-                    name: "ChrisHub",
-                    image: "images/chrishubWeb.jpg",
-                      altText: "Home screen of chrishub- Chrisbin's Macbook Pro",
-                      desc: "\u{25ca} A portfolio website built as a Web Simulation of macOS Big Sur.\n"
-                      "\u{25ca} Implemented Terminal, Safari, Messages, VSCode, Spotify, etc.\n"
-                    "\u{25ca} Integrated features like create/delete folder, change brightness,wallpaper, etc.\n"
-                    "\u{25ca} Used Provider for managing the state and Hive as local database.\n"
-                    "\u{25ca} Tech stack: Flutter, Firebase, Hive ",
-                    github: "https://github.com/chrisbinsunny/chrishub",
-                      link: "https://chrisbinsunny.github.io/chrishub",
-                  ),
-              ),
-              ProjectItem(
-                name: "D R E A M",
-                image: "images/dream.png",
-                imageFit: BoxFit.contain,
-                projectDetails: ProjectDetails(
-                  name: "DREAM- Color Finder",
-                  image: "images/dreamWeb.jpg",
-                  altText: "Home screen of Dream color finder and gradient maker.",
-                  desc: "\u{25ca} A website built to find colours from images and screenshots.\n"
-                  "\u{25ca} Implemented a gradient builder to create website backgrounds.\n"
-               "\u{25ca} Integrated CSS code copying and sharing.\n"
-                "\u{25ca} Used Provider for managing the state.\n"
-                "\u{25ca} Tech stack: Flutter",
-                  github: "https://github.com/chrisbinsunny/dream",
-                  link: "https://chrisbinsunny.github.io/dream",
-                ),
-              ),
-              ProjectItem(
-                name: "Flutter Talks",
-                image: "images/flutterTalks.jpg",
-                projectDetails: ProjectDetails(
-                  name: "Flutter Talks by Chrisbin",
-                  image: "images/flutterTalksWeb.jpg",
-                  altText: "Home screen of Flutter talks by Chrisbin Sunny.\n",
-                  desc: "\u{25ca} A presentation website to be shown at the intro session of workshops.\n"
-                  "\u{25ca} The website shows Intro to Flutter slides and is to be controlled by arrow keys.\n"
-                      "\u{25ca} Can be controlled by using the link to each slide.\n"
-                      "\u{25ca} Used Provider for managing the state.\n"
-                      "\u{25ca} Tech stack: Flutter",
-                  github: "https://github.com/chrisbinsunny/Flutter-Talks",
-                  link: "https://chrisbinsunny.github.io/Flutter-Talks",
-                ),
-              ),
-            ],
-          )
+          Texter("FLUTTER PACKAGES", style: mono(context)),
+          const SizedBox(height: 16),
+          Wrap(spacing: 24, runSpacing: 24, children: [for (final p in _packages) ProjectItem(details: p)]),
+          const SizedBox(height: 56),
+          Texter("WEB APPS", style: mono(context)),
+          const SizedBox(height: 16),
+          Wrap(spacing: 24, runSpacing: 24, children: [for (final p in _webApps) ProjectItem(details: p)]),
         ],
       ),
     );
@@ -120,86 +104,84 @@ class _ProjectsState extends State<Projects> {
 }
 
 class ProjectItem extends StatelessWidget {
-  const ProjectItem(
-      {Key? key,
-      required this.name,
-      required this.image,
-      this.imageFit = BoxFit.cover,
-      required this.projectDetails})
-      : super(key: key);
+  const ProjectItem({super.key, required this.details});
 
-  final String image, name;
-  final BoxFit imageFit;
-  final ProjectDetails projectDetails;
+  final ProjectDetails details;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        AnalyticsService.logProject(
-          projectDetails.name,
-        );
-        showDialog(
-          barrierColor: Color(0x98021a2d),
-          context: context,
-          builder: (context) {
-            return ProjectView(
-              name: projectDetails.name,
-              image: projectDetails.image,
-              altText: projectDetails.altText,
-              link: projectDetails.link,
-              desc: projectDetails.desc,
-              github: projectDetails.github,
+    final theme = Theme.of(context);
+    final width = MediaQuery.sizeOf(context).width < 600 ? MediaQuery.sizeOf(context).width - 48 : 320.0;
+    return SizedBox(
+      width: width,
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () {
+            AnalyticsService.logProject(details.name);
+            showDialog(
+              context: context,
+              builder: (context) => ProjectView(details: details),
             );
           },
-        );
-      },
-      child: Column(
-        children: [
-          Container(
-            width: 260,
-            height: 180,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            decoration: BoxDecoration(
-                color: const Color(0xff0c0c0c),
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0x2dffffff), spreadRadius: 3, blurRadius: 15)
-                ]),
-            child: Imager(
-              path: image,
-              altText: "Project item image which shows $image.",
-              imageFit: imageFit,
-              alignment: Alignment.center,
+          child: Panel(
+            padding: EdgeInsets.zero,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AspectRatio(
+                  aspectRatio: 16 / 10,
+                  child: ColoredBox(
+                    color: theme.colorScheme.surface,
+                    child: Imager(
+                      path: details.image,
+                      altText: details.altText,
+                      imageFit: details.imageFit,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Texter(details.name, select: false, style: theme.textTheme.titleLarge!),
+                            const SizedBox(height: 2),
+                            Texter(details.kind, select: false, style: mono(context)),
+                          ],
+                        ),
+                      ),
+                      Icon(Icons.arrow_forward_rounded, color: theme.colorScheme.onSurfaceVariant),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          Texter(
-            name,
-            style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 24,
-                fontFamily: "Gilroy",
-                color: Color(0xffffffff)),
-            textAlign: TextAlign.left,
-          )
-        ],
+        ),
       ),
     );
   }
 }
 
 class ProjectDetails {
-  final String image, altText, desc, github, link, name;
+  final String name, kind, image, altText, desc, github, link;
+  final String? detailImage;
+  final BoxFit imageFit;
 
-  const ProjectDetails(
-      {required this.image,
-      required this.altText,
-      required this.desc,
-      required this.github,
-        required this.name,
-      required this.link});
+  const ProjectDetails({
+    required this.name,
+    required this.kind,
+    required this.image,
+    this.detailImage,
+    this.imageFit = BoxFit.cover,
+    required this.altText,
+    required this.desc,
+    required this.github,
+    required this.link,
+  });
 }

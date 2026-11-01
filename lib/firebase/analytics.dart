@@ -1,5 +1,4 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/foundation.dart';
 
 class AnalyticsService extends ChangeNotifier{
@@ -10,7 +9,7 @@ class AnalyticsService extends ChangeNotifier{
 
   Future<void> setCurrentScreen(String screen) async {
     print('Setting current screen to $screen');
-    await analytics.setCurrentScreen(
+    await analytics.logScreenView(
       screenName: screen,
     );
   }
@@ -18,9 +17,6 @@ class AnalyticsService extends ChangeNotifier{
   Future<void> logCurrentScreen(String screen) async {
     print('Setting current screen to $screen');
 
-    await analytics.setCurrentScreen(
-      screenName: screen,
-    );
     await analytics.logScreenView(
       screenName: screen,
     );

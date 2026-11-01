@@ -1,145 +1,83 @@
-
-
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:portfolio/components/contactCard.dart';
-import 'package:portfolio/sizes.dart';
+import 'package:portfolio/constants/theme.dart';
 import 'package:portfolio/widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
-class About extends StatefulWidget {
-  const About({Key? key}) : super(key: key);
+const _skills = {
+  'Languages': ['Dart', 'C', 'C++', 'Python', 'Go', 'SQL'],
+  'Mobile & Frameworks': ['Flutter', 'GetX', 'Provider', 'BLoC', 'Pigeon', 'Isolates', 'Lottie'],
+  'Databases': ['PostgreSQL', 'Isar', 'Hive', 'Drift', 'SQLite'],
+  'Backend & Cloud': ['Supabase', 'Firebase', 'AWS S3'],
+  'Payments & Tools': ['RevenueCat', 'Razorpay', 'PayU', 'Play Billing', 'App Store Billing', 'Git'],
+};
 
-  @override
-  State<About> createState() => _AboutState();
-}
-
-class _AboutState extends State<About> {
-
+class About extends StatelessWidget {
+  const About({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    return Container(
-      width: screenWidth(context, mulBy: 1),
-      //height: screenHeight(context)-70,  ///Reducing 70 for appbar
-      //color: const Color(0xff0c0c0c),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xff0c0c0c),
-            Color(0xff0f1617),
-            Color(0xff0c0c0c)
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter
-        )
-      ),
-      constraints: BoxConstraints(
-        minWidth: 500,
-        minHeight: screenHeight(context),
-      ),
-      padding: EdgeInsets.symmetric(
-          horizontal: screenWidth(context, mulBy: 0.05),
-          vertical: screenHeight(context, mulBy: 0.07)
-      ),
+    final theme = Theme.of(context);
+    return Section(
       child: Wrap(
-        direction: Axis.horizontal,
+        alignment: WrapAlignment.spaceBetween,
         crossAxisAlignment: WrapCrossAlignment.center,
-        alignment: WrapAlignment.spaceEvenly,
-        runAlignment: WrapAlignment.spaceEvenly,
-        spacing: 20,
-        runSpacing: 40,
+        spacing: 48,
+        runSpacing: 48,
         children: [
-          SizedBox(
-            width: 600,
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SectionHeading(eyebrow: "About", title: "Engineer, speaker, builder."),
+                const SizedBox(height: 24),
                 Texter(
-                  "About Me",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 34,
-                      color: Theme.of(context).secondaryHeaderColor
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const Texter(
-                  "Ever since I was a teenager, programming has been a passion of mine. "
-                      "My goal is to make technology accessible to everyone, which is why I frequently give tech talks and workshops at schools and colleges. "
-                      "Currently, I am focused on creating clean and user-friendly UI/UX using the Flutter Web framework.\n\n"
-                      "Over the past few years, I have had the opportunity to work on a wide range of Flutter mobile and web projects, gaining a wealth of experience in the process. "
-                      "By working for both companies and individuals across the globe and attending meetups, I have had the opportunity to learn from and collaborate with some truly exceptional and motivated individuals.\n\n"
-                      "I am currently working remotely with a select group of freelance clients, while also open to new opportunities.",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 19,
-                  ),
-                  textAlign: TextAlign.start,
+                  "I've loved programming since I was a teenager, and today I make apps that people use every day.\n\n"
+                  "At Kutuki, I helped build a learning app for kids that runs on phones, tablets, TVs and even cars. "
+                  "Now I'm the founder and only developer of Tethxr, an app that helps you meet people around you.\n\n"
+                  "I also share free tools with other developers, and I enjoy teaching. I've given talks and workshops "
+                  "on Flutter and won a few hackathons along the way.",
+                  style: theme.textTheme.bodyLarge!,
                 ),
               ],
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Texter(
-                "Skill Stack",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 34,
-                    color: Theme.of(context).secondaryHeaderColor
-                ),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 460),
+            child: Panel(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (final e in _skills.entries) ...[
+                    Texter(e.key.toUpperCase(), style: mono(context)),
+                    const SizedBox(height: 10),
+                    Wrap(spacing: 8, runSpacing: 8, children: [for (final s in e.value) _Chip(s)]),
+                    if (e.key != _skills.keys.last) const SizedBox(height: 22),
+                  ],
+                ],
               ),
-              const SizedBox(
-                height: 25,
-              ),
-              Container(
-                width: 400,
-                clipBehavior: Clip.antiAlias,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: const Color(0xff0c0c0c),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                        color: Colors.white,
-                        width: 0.7
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color(0x2dffffff),
-                          spreadRadius: 4,
-                          blurRadius: 15
-                      )
-                    ]
-                ),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 10
-                ),
-                constraints: const BoxConstraints(
-                  minHeight: 480,
-                ),
-                child: const Texter(
-                  "Flutter, Dart, Firebase, Supabase, Google Cloud Maps, GoLang",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 52,
-                      color: Color(0x6b3093c0)
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              )
-            ],
+            ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _Chip extends StatelessWidget {
+  const _Chip(this.label);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: scheme.outlineVariant),
+      ),
+      child: Texter(label, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: scheme.onSurface)),
     );
   }
 }
