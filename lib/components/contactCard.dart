@@ -50,10 +50,9 @@ class _ContactCardState extends State<ContactCard>
                   text: const TextSpan(
                     text: "Chrisbin\n",
                     style: TextStyle(
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w900,
                       color: Color(0xff5dc8f8),
                       fontSize: 32,
-                      fontFamily: "Gilroy",
                       letterSpacing: 1.5,
                     ),
                     children: [
@@ -93,7 +92,6 @@ class _ContactCardState extends State<ContactCard>
                       fontWeight: FontWeight.w200,
                       letterSpacing: 1,
                       height: 1.7,
-                      fontFamily: "Gilroy",
                     ),
                   ),
                 ],
@@ -120,7 +118,6 @@ class _ContactCardState extends State<ContactCard>
                       fontWeight: FontWeight.w100,
                       letterSpacing: 1,
                       height: 1.7,
-                      fontFamily: "Gilroy",
                     ),
                   ),
                 ],
@@ -149,7 +146,6 @@ class _ContactCardState extends State<ContactCard>
                       fontWeight: FontWeight.w100,
                       letterSpacing: 1,
                       height: 1.7,
-                      fontFamily: "Gilroy",
                     ),
                   ),
                 ],
@@ -178,7 +174,6 @@ class _ContactCardState extends State<ContactCard>
                       fontWeight: FontWeight.w100,
                       letterSpacing: 1,
                       height: 1.7,
-                      fontFamily: "Gilroy",
                     ),
                   ),
                 ],
@@ -228,7 +223,6 @@ class _ContactCardState extends State<ContactCard>
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.white,
-                  fontFamily: "Gilroy",
                   fontWeight: FontWeight.w300,
                 ),
               ),
@@ -244,7 +238,6 @@ class _ContactCardState extends State<ContactCard>
                 style: TextStyle(
                   fontSize: 17,
                   color: null,
-                  fontFamily: "Gilroy",
                   fontWeight: FontWeight.w500,
                   foreground: Paint()
                     ..shader = const LinearGradient(
@@ -353,7 +346,6 @@ class _ContactCardState extends State<ContactCard>
                     ),
                     child: DefaultTextStyle.merge(
                       style: const TextStyle(
-                        fontFamily: "Gilroy",
                         color: Colors.white,
                       ),
                       child: isFront

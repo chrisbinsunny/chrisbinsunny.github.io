@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Texter("MOBILE DEVELOPER (FLUTTER) · BENGALURU", style: mono(context, color: theme.colorScheme.primary)),
+        Texter("FOUNDER, TETHXR · BENGALURU", style: mono(context, color: theme.colorScheme.primary)),
         const SizedBox(height: 16),
         RichTexter(
           text: "Chrisbin Sunny",
@@ -31,8 +31,8 @@ class Home extends StatelessWidget {
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),
           child: Texter(
-            "Flutter engineer with 7+ years shipping mobile, web, TV and automotive apps, "
-            "from a 5M-download kids' app to Tethxr, a social app I built solo.",
+            "I build apps for phones, the web, TVs and cars. "
+            "From a learning app loved by kids to Tethxr, a social app I made on my own.",
             style: theme.textTheme.bodyLarge!.copyWith(fontSize: 19, color: theme.colorScheme.onSurfaceVariant),
           ),
         ),

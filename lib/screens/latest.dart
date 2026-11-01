@@ -4,20 +4,16 @@ import 'package:portfolio/firebase/analytics.dart';
 import 'package:portfolio/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const _stats = [
-  ('500+', 'users in month one'),
-  ('350+', 'chats opened'),
-  ('1.0 → 1.5.3', 'in 3 months'),
-];
+// Update on each Tethxr release.
+const _latestVersion = '1.5.3';
 
 const _details = [
-  'Designed, built and launched the app solo from scratch.',
-  'Serverless, database-centric Supabase backend (SQL RPCs, Realtime, Auth, Edge Functions) with Firebase.',
-  'Nearby-user detection over Wi-Fi, Bluetooth and GPS with opt-in visibility, never sharing exact location.',
-  'Envelope-encrypted chat, decrypted in an iOS Notification Service Extension.',
-  'Native iOS and Android cameras over Pigeon, making capture near-instant on mid-range Android.',
-  'Direct client uploads to AWS S3 through pre-signed URLs.',
-  'Radar view, invite flow, new onboarding and age verification.',
+  'See who else is around you right now, at a café, an event or on campus.',
+  'Start a chat and meet in person.',
+  'Your exact location is never shared, and you choose when people can see you.',
+  'Chats are private and protected.',
+  'Available on iPhone and Android.',
+  'Designed, built and launched by me, from scratch.',
 ];
 
 class Latest extends StatelessWidget {
@@ -42,27 +38,15 @@ class Latest extends StatelessWidget {
     final info = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Texter("FOUNDER & SOLO DEVELOPER · JUL 2026 – PRESENT", style: mono(context)),
+        Texter("FOUNDER & SOLE DEVELOPER", style: mono(context)),
         const SizedBox(height: 12),
         Texter("Tethxr", style: theme.textTheme.headlineLarge!.copyWith(fontSize: 48)),
         const SizedBox(height: 8),
-        Texter("A social app for meeting people in the same physical space. iOS and Android.",
+        Texter("An app that helps you meet the people who are in the same place as you.",
             style: theme.textTheme.bodyLarge!.copyWith(color: theme.colorScheme.onSurfaceVariant)),
         const SizedBox(height: 28),
-        Wrap(
-          spacing: 32,
-          runSpacing: 16,
-          children: [
-            for (final s in _stats)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Texter(s.$1, style: mono(context, size: 24, color: theme.colorScheme.onSurface)),
-                  Texter(s.$2, style: theme.textTheme.bodyMedium!),
-                ],
-              ),
-          ],
-        ),
+        Texter(_latestVersion, style: mono(context, size: 24, color: theme.colorScheme.onSurface)),
+        Texter("latest version", style: theme.textTheme.bodyMedium!),
         const SizedBox(height: 28),
         Linker(
           name: "Tethxr",

@@ -60,11 +60,15 @@ const blurHashes = {
 };
 
 final _blurCache = <String, Future<ui.Image>>{};
+final _blurDecoded = <String, ui.Image>{};
 
 Future<ui.Image> _decodeBlur(String hash) => _blurCache.putIfAbsent(hash, () {
   final completer = Completer<ui.Image>();
   ui.decodeImageFromPixels(BlurHash.decode(hash, width: 32, height: 32), 32, 32,
-      ui.PixelFormat.rgba8888, completer.complete);
+      ui.PixelFormat.rgba8888, (image) {
+    _blurDecoded[hash] = image;
+    completer.complete(image);
+  });
   return completer.future;
 });
 
@@ -93,19 +97,20 @@ class Imager extends StatelessWidget {
           alignment: alignment,
           excludeFromSemantics: true,
           frameBuilder: hash == null ? null : (context, child, frame, sync) {
-            if (sync) return child;
+            // Keep the blur behind cached images too, so contained images never sit on a bare background.
             return Stack(
               fit: StackFit.passthrough,
               children: [
                 Positioned.fill(
                   child: FutureBuilder(
                     future: _decodeBlur(hash),
+                    initialData: _blurDecoded[hash],
                     builder: (context, snap) => snap.hasData
                         ? RawImage(image: snap.data, fit: BoxFit.cover)
                         : const SizedBox(),
                   ),
                 ),
-                AnimatedOpacity(opacity: frame == null ? 0 : 1, duration: fade, child: child),
+                AnimatedOpacity(opacity: sync || frame != null ? 1 : 0, duration: sync ? Duration.zero : fade, child: child),
               ],
             );
           },
@@ -131,11 +136,12 @@ class Linker extends StatelessWidget {
   }
 }
 
-/// Page section: centred, max 1100 wide, eyebrow + title, gutters that shrink on phones.
+/// Page section: centred, max 1100 wide, gutters that shrink on phones.
+/// Without [eyebrow]/[title] the child places its own [SectionHeading].
 class Section extends StatelessWidget {
-  const Section({super.key, required this.eyebrow, required this.title, required this.child});
+  const Section({super.key, this.eyebrow, this.title, required this.child});
 
-  final String eyebrow, title;
+  final String? eyebrow, title;
   final Widget child;
 
   @override
@@ -148,14 +154,32 @@ class Section extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Texter(eyebrow.toUpperCase(), style: mono(context, color: Theme.of(context).colorScheme.primary)),
-            const SizedBox(height: 8),
-            Texter(title, style: Theme.of(context).textTheme.headlineLarge!),
-            const SizedBox(height: 40),
+            if (title != null) ...[
+              SectionHeading(eyebrow: eyebrow!, title: title!),
+              const SizedBox(height: 40),
+            ],
             child,
           ],
         ),
       ),
+    );
+  }
+}
+
+class SectionHeading extends StatelessWidget {
+  const SectionHeading({super.key, required this.eyebrow, required this.title});
+
+  final String eyebrow, title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Texter(eyebrow.toUpperCase(), style: mono(context, color: Theme.of(context).colorScheme.primary)),
+        const SizedBox(height: 8),
+        Texter(title, style: Theme.of(context).textTheme.headlineLarge!),
+      ],
     );
   }
 }

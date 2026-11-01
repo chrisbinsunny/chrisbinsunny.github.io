@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 2.0.0+2026110201
 
 environment:
   sdk: ^3.13.0
@@ -73,24 +73,6 @@ flutter:
     # Geist from Google Fonts, bundled so google_fonts skips the runtime fetch
     - fonts/
 
-  # Gilroy is only for the business card, which mirrors the printed card
-  fonts:
-    - family: Gilroy
-      fonts:
-        - asset: fonts/GilroyThin.otf
-          weight: 100
-        - asset: fonts/GilroyUltraLight.otf
-          weight: 200
-        - asset: fonts/GilroyLight.otf
-          weight: 300
-        - asset: fonts/GilroyRegular.otf
-          weight: 400
-        - asset: fonts/GilroyMedium.otf
-          weight: 500
-        - asset: fonts/GilroySemiBold.otf
-          weight: 600
-        - asset: fonts/GilroyExtraBold.otf
-          weight: 800
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

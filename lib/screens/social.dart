@@ -33,38 +33,33 @@ class Social extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
-    return Section(
-      eyebrow: "Social",
-      title: "Let's talk.",
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 640),
-        child: Panel(
+    Widget panel(List<(String, String, String, FaIconData)> links) => Panel(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
             children: [
-              for (var i = 0; i < _links.length; i++) ...[
+              for (var i = 0; i < links.length; i++) ...[
                 if (i > 0) Divider(height: 1, indent: 64, color: scheme.outlineVariant),
                 Linker(
-                  name: _links[i].$1,
-                  link: _links[i].$3,
+                  name: links[i].$1,
+                  link: links[i].$3,
                   child: Material(
                     type: MaterialType.transparency,
                     child: InkWell(
-                      onTap: () => _open(context, _links[i].$1, _links[i].$3),
+                      onTap: () => _open(context, links[i].$1, links[i].$3),
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(minHeight: 60),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           child: Row(
                             children: [
-                              SizedBox(width: 28, child: FaIcon(_links[i].$4, size: 20, color: scheme.primary)),
+                              SizedBox(width: 28, child: FaIcon(links[i].$4, size: 20, color: scheme.primary)),
                               const SizedBox(width: 16),
                               SizedBox(
                                 width: 90,
-                                child: Text(_links[i].$1, style: theme.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600)),
+                                child: Text(links[i].$1, style: theme.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600)),
                               ),
                               Expanded(
-                                child: Text(_links[i].$2, overflow: TextOverflow.ellipsis, style: mono(context, size: 14)),
+                                child: Text(links[i].$2, overflow: TextOverflow.ellipsis, style: mono(context, size: 14)),
                               ),
                               Icon(Icons.arrow_outward_rounded, size: 18, color: scheme.onSurfaceVariant),
                             ],
@@ -77,8 +72,23 @@ class Social extends StatelessWidget {
               ],
             ],
           ),
-        ),
-      ),
+        );
+
+    final half = (_links.length / 2).ceil();
+    return Section(
+      eyebrow: "Social",
+      title: "Let's talk.",
+      // Two columns on wide screens so the list spans the same width as other sections.
+      child: MediaQuery.sizeOf(context).width >= 900
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: panel(_links.sublist(0, half))),
+                const SizedBox(width: 24),
+                Expanded(child: panel(_links.sublist(half))),
+              ],
+            )
+          : panel(_links),
     );
   }
 }

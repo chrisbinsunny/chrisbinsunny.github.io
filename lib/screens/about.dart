@@ -10,14 +10,6 @@ const _skills = {
   'Payments & Tools': ['RevenueCat', 'Razorpay', 'PayU', 'Play Billing', 'App Store Billing', 'Git'],
 };
 
-const _talks = [
-  '1st Prize, Amazon Alexa Use Case Competition, KSUM',
-  '2nd Prize (Maker\'s Tribe), Hack19 Flutter International Hackathon',
-  'Finalist, HackDelhi Ultrahack \'19',
-  'Published paper: "Cabby – The Ride Sharing Platform"',
-  '7 workshops and 9+ talks on Flutter and programming',
-];
-
 class About extends StatelessWidget {
   const About({super.key});
 
@@ -25,9 +17,9 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Section(
-      eyebrow: "About",
-      title: "Engineer, speaker, builder.",
       child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 48,
         runSpacing: 48,
         children: [
@@ -36,31 +28,16 @@ class About extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SectionHeading(eyebrow: "About", title: "Engineer, speaker, builder."),
+                const SizedBox(height: 24),
                 Texter(
-                  "Programming has been my passion since I was a teenager. Today I'm a Frontend Engineer at Kutuki, "
-                  "keeping a kids' learning app with 5M+ downloads 99.6% crash-free across Android, iOS, Auto and TV, "
-                  "and the founder of Tethxr.\n\n"
-                  "I also maintain open source Flutter packages like blurhashx and Flippy, and I love making technology "
-                  "accessible through talks and workshops.",
+                  "I've loved programming since I was a teenager, and today I make apps that people use every day.\n\n"
+                  "At Kutuki, I helped build a learning app for kids that runs on phones, tablets, TVs and even cars. "
+                  "Now I'm the founder and only developer of Tethxr, an app that helps you meet people around you.\n\n"
+                  "I also share free tools with other developers, and I enjoy teaching. I've given talks and workshops "
+                  "on Flutter and won a few hackathons along the way.",
                   style: theme.textTheme.bodyLarge!,
                 ),
-                const SizedBox(height: 32),
-                Texter("TALKS & AWARDS", style: mono(context)),
-                const SizedBox(height: 12),
-                for (final t in _talks)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 9, right: 12),
-                          child: Icon(Icons.circle, size: 6, color: theme.colorScheme.primary),
-                        ),
-                        Expanded(child: Texter(t, style: theme.textTheme.bodyMedium!)),
-                      ],
-                    ),
-                  ),
               ],
             ),
           ),
